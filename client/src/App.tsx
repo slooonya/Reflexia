@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router';
-import { Dashboard } from './pages/DashboardPage';
+import { HomePage } from './pages/HomePage';
 import { AuthPage } from './pages/AuthPage';
 import { GuidedReflectionPage } from './pages/GuidedReflectionPage';
 import { ImageEditingPage } from './pages/ImageEditingPage';
@@ -13,7 +13,7 @@ function App() {
 
   return (
     <Routes>
-      <Route index element={<Dashboard />} />
+      <Route index element={<HomePage />} />
       // <Route index element={<LandingPage />}/>
 
       <Route path="auth" element={<AuthPage />} />

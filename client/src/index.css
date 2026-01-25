@@ -1,6 +1,8 @@
 :root {
   --font-heading: 'Cooper Black', Georgia, serif;
   --font-body: sans-serif;
+  --color-accent: #413326;
+  --color-base: #F6E9DB;
 }
 
 * {
@@ -13,12 +15,12 @@ body {
   font-weight: 400;
   color: black;
   line-height: 1.6;
-  background-color: #F6E9DB;
+  background-color: var(--color-base);
 }
 
 h1 {
   font-family: var(--font-heading);
-  color: #413326;
+  color: var(--color-accent);
 }
 
 button {
