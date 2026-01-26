@@ -29,7 +29,7 @@ function App() {
       <Route path="upload" element={<UploadPage />} />
       <Route path="profile" element={<UserProfilePage />} />
 
-      <Route path="error" element={<NotFoundPage />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   )
 }

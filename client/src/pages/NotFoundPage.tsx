@@ -1,5 +1,17 @@
+import { BackButton } from "../components/BackButton";
+import { Navbar } from "../components/Navbar";
+import './NotFoundPage.css';
+
 export function NotFoundPage() {
   return (
-    <p>Not Found Page Coming Soon</p>
+    <>
+      <title>Not Found</title>
+
+      <Navbar />
+
+      <div className="page-content">
+          <BackButton />
+      </div>
+    </>
   );
 }
