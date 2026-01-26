@@ -26,3 +26,14 @@
   font-size: 25px;
   padding-top: 5px;
 }
+
+.not-found .polaroid {
+  pointer-events: none;
+  transform: rotate(-5deg);
+  transition: none;
+}
+
+.not-found .polaroid:hover {
+  transform: rotate(-5deg);
+  box-shadow: none;
+}

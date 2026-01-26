@@ -1,8 +1,42 @@
 .page-content {
-  padding-left: 70px;
-  padding-top: 120px;
+  padding: 150px 220px 0px 220px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  align-items: center;
+  gap: 80px;
+}
+
+.polaroid-container {
+  max-width: 300px;
+  width: 100%;
+}
+
+.error-container h1 {
+  font-size: 72px;
+}
+
+.error-container p {
+  font-size: 20px;
+  color: grey;
+  margin-bottom: 16px;
 }
 
 @media (max-width: 768px) {
-  
+  .page-content {
+    grid-template-columns: 1fr;
+    padding: 70px 24px;
+    text-align: center;
+    gap: 20px;
+  }
+
+  .polaroid-container {
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .error-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 }
