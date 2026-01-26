@@ -1,8 +1,9 @@
 .range-toggle {
-  position: relative;
+  position: fixed;
   display: inline-flex;
   padding: 4px;
   border-radius: 50px;
+  z-index: 10;
 }
 
 .range-toggle-btn {

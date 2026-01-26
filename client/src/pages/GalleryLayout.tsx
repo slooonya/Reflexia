@@ -8,6 +8,8 @@ export function GalleryLayout() {
     <>
       <Navbar />
 
+      <div className="blur-box" />
+
       <div className="gallery-container">
         <RangeToggle />
         <Outlet />

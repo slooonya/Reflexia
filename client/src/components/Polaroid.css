@@ -1,0 +1,28 @@
+.polaroid {
+  background: white;
+  padding: 12px 12px 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 1;
+}
+
+.polaroid:hover {
+  transform: scale(1.03) rotate(5deg);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.polaroid-image {
+  width: 100%;
+  aspect-ratio: 3 / 4;
+  object-fit: cover;
+  border-radius: 5px;
+}
+
+.polaroid-caption {
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 25px;
+  padding-top: 5px;
+}

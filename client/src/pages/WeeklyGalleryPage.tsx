@@ -1,3 +1,4 @@
+import { Polaroid } from '../components/Polaroid';
 import './WeeklyGalleryPage.css'
 
 export function WeeklyGalleryPage() {
@@ -6,8 +7,13 @@ export function WeeklyGalleryPage() {
       <title>Weekly Gallery</title>
 
       <div className="gallery-grid">
-        <div className="grid-slot"></div>
-        <div className="grid-slot"></div>
+        <div className="grid-slot">
+          <Polaroid />
+        </div>
+        <div className="grid-slot">
+          <Polaroid />
+        </div>
+        
         <div className="grid-slot"></div>
         <div className="grid-slot"></div>
         <div className="grid-slot"></div>
