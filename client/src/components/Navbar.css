@@ -67,20 +67,19 @@
   text-decoration: none;
   font-size: 14px;
   font-weight: 500;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease;
+  transform: translateY(-2px);
+  box-shadow: 0 4px rgba(197, 197, 197, 1);
+  transition: all 0.2 ease;
 }
 
 .upload-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.28);
+  transform: translateY(0px);
+  box-shadow: 0 3px rgba(197, 197, 197, 1);
 }
 
 .upload-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+  transform: translateY(2px);
+  box-shadow: none;
 }
 
 .upload-icon {

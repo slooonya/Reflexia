@@ -30,10 +30,11 @@
 }
 
 .upload-box:hover {
-  transform: translateY(2px);
+  transform: translateY(1px);
 }
 
 .upload-box:active {
+  transform: translateY(2px);
   box-shadow: none;
 }
 

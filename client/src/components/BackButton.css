@@ -9,16 +9,18 @@
   font-size: 14px;
   font-weight: 500;
   border-radius: 50px;
+  box-shadow: 0 6px rgb(91, 71, 53);
+  transition: all 0.2s ease;
 }
 
 .back-btn:hover {
-  transform: translateY(-1px);
-  box-shadow: 0 8px 18px rgba(0,0,0,0.28);
+  transform: translateY(2px);
+  box-shadow: 0 4px rgb(91, 71, 53);
 }
 
 .back-btn:active {
-  transform: translateY(0);
-  box-shadow: 0 4px 10px rgba(0,0,0,0.18);
+  transform: translateY(6px);
+  box-shadow: none;
 }
 
 .back-icon {
