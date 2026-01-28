@@ -69,7 +69,7 @@
   font-weight: 500;
   transform: translateY(-2px);
   box-shadow: 0 4px rgba(197, 197, 197, 1);
-  transition: all 0.2 ease;
+  transition: all 0.2s ease;
 }
 
 .upload-btn:hover {

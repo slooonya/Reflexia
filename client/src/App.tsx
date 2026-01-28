@@ -10,6 +10,7 @@ import { UserProfilePage } from './pages/UserProfilePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 // import { LandingPage } from './pages/LandingPage';
 import './App.css'
+import { DetailsPage } from './pages/DetailsPage';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
       <Route path="editing" element={<ImageEditingPage />} />
       <Route path="upload" element={<UploadPage />} />
       <Route path="profile" element={<UserProfilePage />} />
+      <Route path="details" element={<DetailsPage />}></Route>
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
