@@ -1,0 +1,44 @@
+.progress-header {
+  position: fixed;
+  top: 12px;
+  left: 24px;
+  right: 24px;
+  height: 64px;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 24px;
+}
+
+.progress-steps,
+.session-action {
+  display: flex;
+  align-items: center;
+  color: var(--color-accent);
+  font-weight: 600;
+}
+
+.icon-btn {
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: none;
+}
+
+.progress-bar {
+  height: 10px;
+  width: 100%;
+  background: white;
+  border-radius: 50px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 50px;
+  transition: width 0.2s ease;
+}

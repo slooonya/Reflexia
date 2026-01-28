@@ -3,7 +3,7 @@ import { WeeklyGalleryPage } from './pages/WeeklyGalleryPage';
 import { MonthlyGalleryPage } from './pages/MonthlyGalleryPage';
 import { GalleryLayout } from './pages/GalleryLayout';
 import { AuthPage } from './pages/AuthPage';
-import { GuidedReflectionPage } from './pages/GuidedReflectionPage';
+import { GuidedReflectionPage } from './pages/reflection/GuidedReflectionPage';
 import { ImageEditingPage } from './pages/ImageEditingPage';
 import { UploadPage } from './pages/upload/UploadPage';
 import { UserProfilePage } from './pages/UserProfilePage';
