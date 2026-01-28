@@ -5,7 +5,7 @@ import { GalleryLayout } from './pages/GalleryLayout';
 import { AuthPage } from './pages/AuthPage';
 import { GuidedReflectionPage } from './pages/GuidedReflectionPage';
 import { ImageEditingPage } from './pages/ImageEditingPage';
-import { UploadPage } from './pages/UploadPage';
+import { UploadPage } from './pages/upload/UploadPage';
 import { UserProfilePage } from './pages/UserProfilePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 // import { LandingPage } from './pages/LandingPage';

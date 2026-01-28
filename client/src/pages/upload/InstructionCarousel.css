@@ -1,76 +1,4 @@
-.upload-container {
-  padding: 120px 70px 0px 70px;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  align-items: start;
-  gap: 80px;
-  margin-bottom: 3rem;
-}
-
-.upload-left h1 {
-  font-size: 52px;
-  line-height: 1.1;
-  margin-bottom: 1rem;
-}
-
-.upload-left p {
-  font-size: 16px;
-  color: grey;
-}
-
-.upload-box {
-  margin-top: 1.5rem;
-  text-align: center;
-  border: 2px dashed var(--color-accent);
-  border-radius: 20px;
-  background-color: white;
-  cursor: pointer;
-  box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.15);
-  transition: all 0.25s ease;
-}
-
-.upload-box:hover {
-  transform: translateY(1px);
-}
-
-.upload-box:active {
-  transform: translateY(2px);
-  box-shadow: none;
-}
-
-.upload-box input {
-  display: none;
-}
-
-.upload-box label {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  cursor: pointer;
-  padding: 1.5rem;
-}
-
-.upload-box img {
-  width: 32px;
-  margin-bottom: 8px;
-}
-
-.upload-box span {
-  font-size: large;
-  font-weight: 600;
-}
-
-.upload-box small {
-  color: #A0A0A0;
-}
-
-.upload-right {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.steps {
+.step-indicator {
   display: flex;
   gap: 12px;
   margin-bottom: 1rem;
@@ -92,7 +20,7 @@
   background: var(--color-accent);
 }
 
-.instruction-carousel {
+.instruction-container {
   display: flex;
   align-items: center;
   gap: 16px;
@@ -120,7 +48,7 @@
   pointer-events: none;
 }
 
-.instruction-polaroid {
+.instruction-box {
   background-color: white;
   border-radius: 10px;
   padding: 1rem 1rem 1rem 1rem;
@@ -129,7 +57,7 @@
   width: 100%;
 }
 
-.instruction-image {
+.step-illustration {
   width: 100%;
   aspect-ratio: 16 / 10;
   overflow: hidden;
@@ -137,14 +65,14 @@
   border: 1px solid #A0A0A0;
 }
 
-.instruction-image img {
+.step-illustration img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   cursor: pointer;
 }
 
-.instruction-description {
+.step-description {
   margin-top: 1rem;
   font-size: 1rem;
   font-weight: 600;
@@ -153,11 +81,11 @@
   text-align: center;
 }
 
-.instruction-description a {
+.step-description a {
   color: var(--color-accent);
 }
 
-.instruction-description code {
+.step-description code {
   background: #e6e6e6;
   font-size: medium;
   border-radius: 4px;
@@ -189,30 +117,7 @@
 }
 
 @media (max-width: 768px) {
-  .upload-container {
-    padding-top: 60px;
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
-    margin-bottom: 120px;
-  }
-  
-  .upload-left h1 {
-    font-size: 40px;
-  }
-
-  .upload-left p {
-    font-size: 14px;
-  }
-
-  .upload-right {
-    display: flex;
-    flex-direction: row;
-    align-items: start;
-    gap: 16px;
-  }
-
-  .steps {
+  .step-indicator {
     flex-direction: column;
   }
 

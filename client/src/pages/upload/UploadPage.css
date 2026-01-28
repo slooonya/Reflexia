@@ -1,0 +1,50 @@
+.upload-page-content {
+  padding: 120px 70px 0px 70px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: start;
+  gap: 80px;
+  margin-bottom: 3rem;
+}
+
+.upload-left-container h1 {
+  font-size: 52px;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.upload-left-container p {
+  font-size: 16px;
+  color: grey;
+}
+
+.upload-right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .upload-page-content {
+    padding-top: 60px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    margin-bottom: 120px;
+  }
+  
+  .upload-left-container h1 {
+    font-size: 40px;
+  }
+
+  .upload-left-container p {
+    font-size: 14px;
+  }
+
+  .upload-right-container {
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    gap: 16px;
+  }
+}
