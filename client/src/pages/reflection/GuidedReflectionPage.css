@@ -1,3 +1,94 @@
 .reflection-page-content {
-  padding: 120px 70px 0px 70px;
+  height: calc(100vh - 100px);
+  padding: 100px 70px 0px;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 64px;
+  margin-bottom: 1rem;
+}
+
+.reflection-left-container {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.heading {
+  font-size: 24px;
+  line-height: 1.1;
+}
+
+.reflective-image {
+  max-width: 300px;
+  width: 100%;
+}
+
+.reflection-right-container {
+  background: white;
+  border-radius: 20px;
+  height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: 30px;
+  box-shadow: 0 10px 24px rgba(0,0,0,0.18);
+}
+
+.next-step-button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-bottom: 6px;
+  border: 2px solid rgb(197, 197, 197, 1);
+  background-color: white;
+  color: black;
+  padding: 12px;
+  border-radius: 12px;
+  font-weight: 600;
+  transform: translateY(-2px);
+  box-shadow: 0 6px rgb(197, 197, 197, 1);
+  transition: all 0.2s ease;
+}
+
+.next-step-button:hover {
+  transform: translateY(2px);
+  box-shadow: 0 4px rgb(197, 197, 197, 1);
+}
+
+.next-step-button:active {
+  transform: translateY(6px);
+  box-shadow: none;
+}
+
+.next-step-button img {
+  width: 16px;
+}
+
+@media (max-width: 768px) {
+  .reflection-page-content {
+    display: flex;
+    flex-direction: column;
+    height: 100dvh;
+    padding: 80px 16px 16px;
+    gap: 16px;
+  }
+
+  .reflection-left-container {
+    flex-direction: row;
+  }
+
+  .next-step-button {
+    font-size: 12px;
+  }
+
+  .heading {
+    font-size: 18px;
+    padding-left: 32px;
+  }
+
+  .reflective-image {
+    display: none; /* TODO: figure out how to keep the image in the layout (button w/ overlay? smaller polaroid?) */
+  }
 }

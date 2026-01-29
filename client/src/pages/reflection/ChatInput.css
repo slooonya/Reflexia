@@ -1,0 +1,48 @@
+.chat-input {
+  display: flex;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.chat-input textarea {
+  flex: 1;
+  resize: none;
+  padding: 12px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  font-size: 14px;
+}
+
+.chat-input button {
+  padding: 0 20px;
+  border-radius: 12px;
+  border: none;
+  background: var(--color-accent);
+  color: white;
+  font-weight: 600;
+  box-shadow: 0 6px rgb(91, 71, 53);
+  transform: translateY(-6px);
+  transition: all 0.2s ease;
+}
+
+.chat-input button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px rgb(91, 71, 53);
+}
+
+.chat-input button:active {
+  transform: translateY(0);
+  box-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .chat-input textarea {
+    font-size: 12px;
+    min-height: 52px;
+  }
+  
+  .chat-input button {
+    font-size: 12px;
+    min-height: 44px;
+  }
+}

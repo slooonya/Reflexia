@@ -1,0 +1,44 @@
+.chat-intro {
+  transition: opacity 1s ease;
+  padding: 30px;
+  flex-grow: 1;
+}
+
+.chat-intro.hidden {
+  opacity: 0;
+}
+
+.prompt {
+  padding: 1rem 0;
+  text-align: center;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--color-accent);
+}
+
+.tips-heading {
+  margin-top: 1rem;
+}
+
+.tips {
+  font-size: 16px;
+}
+
+@media (max-width: 768px) {
+  .chat-intro {
+    padding: 16px;
+  }
+
+  .prompt {
+    font-size: 14px
+  }
+
+  .tips-heading {
+    font-size: 24px;
+  }
+
+  .tips {
+    font-size: 12px;
+  }
+}

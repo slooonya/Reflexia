@@ -10,7 +10,7 @@ type ProgressHeaderProps = {
 }
 
 export function ProgressHeader({ step, total, onBack }: ProgressHeaderProps) {
-  const progress = (step + 1) / total;
+  const progress = step / total;
   const navigate = useNavigate();
 
   return (
@@ -35,7 +35,7 @@ export function ProgressHeader({ step, total, onBack }: ProgressHeaderProps) {
       </div>
 
       <div className="progress-steps">
-        {step + 1} / {total}
+        {step} / {total}
       </div>
     </div>
     </>

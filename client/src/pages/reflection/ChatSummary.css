@@ -1,0 +1,59 @@
+.chat-summary {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.chat-summary p {
+  flex: 1; 
+  margin: 1rem 0;
+  text-align: justify;
+  padding: 0 1rem;
+  max-height: 500px;
+  overflow-y: auto;
+}
+
+.session-btns {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.session-btn {
+  color: white;
+  background-color: black;
+  border: none;
+  gap: 6px;
+  padding: 16px 32px;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 6px rgb(79, 79, 79);
+  transition: all 0.2s ease;
+}
+
+.session-btn:hover {
+  transform: translateY(2px);
+  box-shadow: 0 4px rgb(79, 79, 79);
+}
+
+.session-btn:active {
+  transform: translateY(6px);
+  box-shadow: none;
+}
+
+
+@media (max-width: 768px) {
+  .chat-summary p {
+    font-size: 14px;
+  }
+
+  .session-btns {
+    gap: 1rem;
+  }
+
+  .session-btn {
+    padding: 12px 24px;
+  }
+}

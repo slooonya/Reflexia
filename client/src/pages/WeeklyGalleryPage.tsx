@@ -1,5 +1,7 @@
+import { Link } from 'react-router';
 import { Polaroid } from '../components/Polaroid';
-import TestImage from '../assets/images/test-image.jpg';
+
+import TestImage from '../assets/images/test-image.png';
 import './WeeklyGalleryPage.css'
 
 export function WeeklyGalleryPage() {
@@ -9,7 +11,9 @@ export function WeeklyGalleryPage() {
 
       <div className="gallery-grid">
         <div className="grid-slot">
-          <Polaroid imageSrc={TestImage} caption={"Jan. 26 - Feb. 1"}/>
+          <Link to="/details">
+            <Polaroid imageSrc={TestImage} caption={"Jan. 26 - Feb. 1"} />
+          </Link>
         </div>
         <div className="grid-slot">
           <Polaroid imageSrc={TestImage} caption={"Jan. 26 - Feb. 1"}/>

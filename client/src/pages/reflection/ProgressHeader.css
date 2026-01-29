@@ -1,14 +1,15 @@
 .progress-header {
+  background: var(--color-base);
   position: fixed;
-  top: 12px;
   left: 24px;
   right: 24px;
   height: 64px;
-  padding: 0 24px;
+  padding: 24px 24px;
   display: grid;
   grid-template-columns: auto 1fr auto;
   align-items: center;
   gap: 24px;
+  z-index: 10;
 }
 
 .progress-steps,

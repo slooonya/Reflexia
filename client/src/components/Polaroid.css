@@ -37,3 +37,9 @@
   transform: rotate(-5deg);
   box-shadow: none;
 }
+
+@media (max-width: 768px) {
+  .polaroid-caption {
+    font-size: 18px;
+  }
+}
