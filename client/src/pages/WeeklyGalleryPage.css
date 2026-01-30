@@ -25,6 +25,11 @@
   border-radius: 8px;
 }
 
+.grid-slot .link {
+  text-decoration: none;
+  color: black;
+}
+
 @media (max-width: 768px) {
   .gallery-grid {
     grid-template-columns: 1fr;

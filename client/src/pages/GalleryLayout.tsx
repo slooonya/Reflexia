@@ -1,9 +1,14 @@
-import { Outlet } from "react-router";
+import { Outlet, useLocation, useNavigate } from "react-router";
 import { Navbar } from "../components/Navbar";
-import { RangeToggle } from "../components/RangeToggle";
+import { Toggle } from "../components/Toggle";
 import './GalleryLayout.css';
 
 export function GalleryLayout() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const active = location.pathname.includes("month") ? "Month" : "Week";
+
   return (
     <>
       <Navbar />
@@ -11,7 +16,10 @@ export function GalleryLayout() {
       <div className="blur-box" />
 
       <div className="gallery-container">
-        <RangeToggle />
+        <div className="gallery-toggle">
+          <Toggle options={["Week", "Month"]} active={active} variant="brown" 
+                  onChange={(value) => navigate(`/gallery/${value.toLowerCase()}`)}/>
+        </div>
         <Outlet />
       </div>
     </>

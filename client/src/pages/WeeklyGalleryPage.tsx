@@ -11,7 +11,7 @@ export function WeeklyGalleryPage() {
 
       <div className="gallery-grid">
         <div className="grid-slot">
-          <Link to="/details">
+          <Link to="/details" className="link">
             <Polaroid imageSrc={TestImage} caption={"Jan. 26 - Feb. 1"} />
           </Link>
         </div>
