@@ -1,6 +1,6 @@
 import { Outlet, useLocation, useNavigate } from "react-router";
-import { Navbar } from "../components/Navbar";
-import { Toggle } from "../components/Toggle";
+import { Navbar } from "../../components/Navbar";
+import { Toggle } from "../../components/Toggle";
 import './GalleryLayout.css';
 
 export function GalleryLayout() {

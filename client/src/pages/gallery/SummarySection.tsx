@@ -1,6 +1,6 @@
 import { Link } from 'react-router';
-import EditIcon from '../assets/icons/edit-icon.svg';
-import ReflectIcon from '../assets/icons/reflect-icon.svg';
+import EditIcon from '../../assets/icons/edit-icon.svg';
+import ReflectIcon from '../../assets/icons/reflect-icon.svg';
 import './SummarySection.css';
 
 export function SummarySection() {

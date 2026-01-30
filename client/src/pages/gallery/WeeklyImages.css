@@ -1,0 +1,33 @@
+.weekly-images {
+  display: flex;
+  flex-direction: column;
+  border-radius: 20px;
+  border: 8px solid white;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+}
+
+.weekly-images img {
+  max-width: 60px;
+}
+
+.weekly-images img:first-child {
+  border-radius: 15px 15px 0 0;
+}
+
+.weekly-images img:last-child {
+  border-radius: 0 0 15px 15px;
+}
+
+@media (max-width: 768px) {
+  .weekly-images {
+    flex-direction: row;
+  }
+
+  .weekly-images img:first-child {
+    border-radius: 15px 0px 0 15px;
+  }
+
+  .weekly-images img:last-child {
+    border-radius: 0 15px 15px 0;
+  }
+}

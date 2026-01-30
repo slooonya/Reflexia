@@ -1,0 +1,36 @@
+.monthly-gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  padding: 100px 24px 24px 24px;
+}
+
+.monthly-gallery-slot {
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+.monthly-gallery-slot:empty {
+  border: 2px dashed rgba(0,0,0,0.2);
+  border-radius: 8px;
+}
+
+.monthly-image {
+  max-width: 300px;
+}
+
+@media (max-width: 768px) {
+  .monthly-gallery-grid {
+    grid-template-columns: 1fr;
+    padding-top: 20px;
+    gap: 52px;
+  }
+
+  .monthly-gallery-slot {
+    flex-direction: column;
+    gap: 20px;
+  }
+}

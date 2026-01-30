@@ -1,7 +1,7 @@
 import { Link } from 'react-router';
-import { Polaroid } from '../components/Polaroid';
+import { Polaroid } from '../../components/Polaroid';
 
-import TestImage from '../assets/images/test-image.png';
+import TestImage from '../../assets/images/test-image.png';
 import './WeeklyGalleryPage.css'
 
 export function WeeklyGalleryPage() {
