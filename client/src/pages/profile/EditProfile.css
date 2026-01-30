@@ -1,0 +1,64 @@
+.pfp-controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.pfp-upload {
+  order: none;
+  color: white;
+  background-color: black;
+  border: 2px solid black;
+  font-size: 14px;
+  line-height: 1.3;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+}
+
+.pfp-upload label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+  padding: 10px 24px;
+}
+
+.pfp-upload input {
+  display: none;
+}
+
+.pfp-remove button {
+  border: 2px solid black;
+  background-color: white;
+  color: black;
+  padding: 12px 24px;
+  border-radius: 50px;
+  font-weight: 600;
+}
+
+.text-fields {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.text-fields input {
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+
+.confirm-btn {
+  border: none;
+  color: white;
+  background-color: black;
+  padding: 16px 32px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 50px;
+  text-decoration: none;
+}

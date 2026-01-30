@@ -1,0 +1,9 @@
+.logout {
+  border: none;
+  padding: 16px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 50px;
+  color: white;
+  background-color: black;
+}

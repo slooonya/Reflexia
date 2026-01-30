@@ -6,7 +6,7 @@ import { AuthPage } from './pages/AuthPage';
 import { GuidedReflectionPage } from './pages/reflection/GuidedReflectionPage';
 import { ImageEditingPage } from './pages/ImageEditingPage';
 import { UploadPage } from './pages/upload/UploadPage';
-import { UserProfilePage } from './pages/UserProfilePage';
+import { UserProfilePage } from './pages/profile/UserProfilePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 // import { LandingPage } from './pages/LandingPage';
 import './App.css'
