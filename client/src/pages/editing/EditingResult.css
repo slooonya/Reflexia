@@ -1,0 +1,49 @@
+.result-heading {
+  text-align: center;
+  color: black;
+}
+
+.result-image-container {
+  display: flex;
+  justify-content: center;
+  margin: 12px 0;
+}
+
+.result-image-container img {
+  max-width: 250px;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+.result-subheading {
+  text-align: center;
+  color: black;
+}
+
+.result-fixes {
+  text-align: center;
+}
+
+.editing-actions {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 12px;
+}
+
+.editing-actions button {
+  font-size: 14px;
+  border-radius: 50px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border: 2px solid black;
+}
+
+.editing-actions button:first-child {
+  background: none;
+}
+
+.editing-actions button:last-child {
+  background-color: black;
+  color: white;
+}

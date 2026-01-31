@@ -4,7 +4,7 @@ import { MonthlyGalleryPage } from './pages/gallery/MonthlyGalleryPage';
 import { GalleryLayout } from './pages/gallery/GalleryLayout';
 import { AuthPage } from './pages/AuthPage';
 import { GuidedReflectionPage } from './pages/reflection/GuidedReflectionPage';
-import { ImageEditingPage } from './pages/ImageEditingPage';
+import { ImageEditingPage } from './pages/editing/ImageEditingPage';
 import { UploadPage } from './pages/upload/UploadPage';
 import { UserProfilePage } from './pages/profile/UserProfilePage';
 import { NotFoundPage } from './pages/NotFoundPage';

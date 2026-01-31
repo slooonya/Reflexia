@@ -3,7 +3,7 @@ import { BackButton } from '../../components/BackButton';
 import { Polaroid } from '../../components/Polaroid';
 import { Navbar } from '../../components/Navbar';
 import { SummarySection } from './SummarySection';
-import TestImage from '../assets/images/test-image.png';
+import TestImage from '../../assets/images/test-image.png';
 import './DetailsPage.css';
 
 export function DetailsPage() {

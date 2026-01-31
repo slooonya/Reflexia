@@ -1,0 +1,33 @@
+.editing-back {
+  position: fixed;
+  top: 24px;
+  left: 70px;
+}
+
+.editing-page-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 110px 70px 24px;
+}
+
+.editing-left-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.editing-right-container {
+  background-color: white;
+  padding: 30px 40px;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+@media (max-width: 768px) {
+  .editing-page-content {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+}

@@ -1,0 +1,26 @@
+.edit-heading {
+  font-size: 48px;
+  line-height: 1.1;
+  color: black;
+  padding-left: 20px;
+}
+
+.edit-prompts {
+  line-height: 1.3;
+  margin: 24px 0 30px;
+}
+
+.edit-prompts li {
+  margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+  .edit-heading {
+    font-size: 36px;
+    padding-left: 36px;
+  }
+
+  .edit-prompts {
+    font-size: 14px;
+  }
+}
