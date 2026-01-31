@@ -1,23 +1,8 @@
-import { useState } from 'react';
-import './ChatInput.css';
+import { PromptInput } from "../../components/PromptInput";
 
 export function ChatInput({ placeholder, chatMessages, setChatMessages, setHasStarted }) {
-  const [inputText, setInputText] = useState("");
 
-  function handleKeyDown(event) {
-    if (event.key === "Enter" && !event.shiftKey){
-      event.preventDefault();
-      sendMessage();
-    }
-  }
-
-  function saveInputText(event) {
-    setInputText(event.target.value);
-  }
-
-  function sendMessage() {
-    if (!inputText.trim()) return;
-
+  function sendMessage(message) {
     setHasStarted(true);
 
     const newChatMessages = [
@@ -25,7 +10,7 @@ export function ChatInput({ placeholder, chatMessages, setChatMessages, setHasSt
       {
         id: crypto.randomUUID(),
         sender: "user",
-        message: inputText
+        message: message
       }
     ];
     
@@ -39,14 +24,9 @@ export function ChatInput({ placeholder, chatMessages, setChatMessages, setHasSt
         message: "beep boop"
       }
     ]);
-
-    setInputText("");
   }
 
   return (
-    <div className="chat-input">
-      <textarea placeholder={placeholder} value={inputText} onChange={saveInputText} onKeyDown={handleKeyDown}/>
-      <button onClick={sendMessage}>Send</button>
-    </div>
+    <PromptInput placeholder={placeholder} onSubmit={sendMessage}/>
   );
 }

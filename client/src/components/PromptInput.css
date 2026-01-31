@@ -1,10 +1,10 @@
-.chat-input {
+.prompt-input {
   display: flex;
   gap: 12px;
   margin-top: 16px;
 }
 
-.chat-input textarea {
+.prompt-input textarea {
   flex: 1;
   resize: none;
   padding: 12px;
@@ -13,7 +13,7 @@
   font-size: 14px;
 }
 
-.chat-input button {
+.prompt-input button {
   padding: 0 20px;
   border-radius: 12px;
   border: none;
@@ -25,23 +25,23 @@
   transition: all 0.2s ease;
 }
 
-.chat-input button:hover {
+.prompt-input button:hover {
   transform: translateY(-4px);
   box-shadow: 0 4px rgb(91, 71, 53);
 }
 
-.chat-input button:active {
+.prompt-input button:active {
   transform: translateY(0);
   box-shadow: none;
 }
 
 @media (max-width: 768px) {
-  .chat-input textarea {
+  .prompt-input textarea {
     font-size: 12px;
     min-height: 52px;
   }
   
-  .chat-input button {
+  .prompt-input button {
     font-size: 12px;
     min-height: 44px;
   }
