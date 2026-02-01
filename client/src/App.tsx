@@ -2,7 +2,7 @@ import { Routes, Route, Navigate } from 'react-router';
 import { WeeklyGalleryPage } from './pages/gallery/WeeklyGalleryPage';
 import { MonthlyGalleryPage } from './pages/gallery/MonthlyGalleryPage';
 import { GalleryLayout } from './pages/gallery/GalleryLayout';
-import { AuthPage } from './pages/AuthPage';
+import { AuthPage } from './pages/auth/AuthPage';
 import { GuidedReflectionPage } from './pages/reflection/GuidedReflectionPage';
 import { ImageEditingPage } from './pages/editing/ImageEditingPage';
 import { UploadPage } from './pages/upload/UploadPage';

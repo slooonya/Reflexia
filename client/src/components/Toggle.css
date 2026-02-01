@@ -18,6 +18,7 @@
   font-size: 20px;
   font-family: var(--font-heading);
   transition: color 0.4s ease-in-out;
+  white-space: nowrap;
 }
 
 .toggle-slider {

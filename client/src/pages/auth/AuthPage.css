@@ -1,0 +1,62 @@
+.auth-page-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  height: 100vh;
+}
+
+.auth-left-container {
+  padding: 24px 48px;
+}
+
+.auth-right-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: white;
+  gap: 28px;
+}
+
+.auth-form-container {
+  position: relative;
+  min-width: 360px;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+.auth-form-container.signup .signin{
+  transform: translateX(-420px);
+  opacity: 0;
+}
+
+.auth-form-container.signup .signup {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  .auth-page-content {
+    grid-template-columns: 1fr;
+  }
+
+  .auth-left-container {
+    padding: 0;
+    position: initial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .auth-left-container h1 {
+    font-size: 48px;
+  }
+
+  .auth-right-container {
+    flex: 1;
+    border-radius: 24px 24px 0 0;
+  }
+
+  .auth-form-container {
+    min-width: 300px;
+  }
+}

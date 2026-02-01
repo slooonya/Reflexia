@@ -1,0 +1,31 @@
+import { useState } from 'react';
+import { Toggle } from '../../components/Toggle';
+import { SignUpForm } from './SignUpForm';
+import { SignInForm } from './SignInForm';
+
+import './AuthPage.css';
+
+export function AuthPage() {
+  const [mode, setMode] = useState("Sign In");
+
+  return (
+    <>
+      <title>Authentication</title>
+
+      <div className="auth-page-content">
+        <div className="auth-left-container">
+          <h1>Reflexia</h1>
+        </div>
+
+        <div className="auth-right-container">
+          <Toggle options={["Sign In", "Sign Up"]} active={mode} variant="black" onChange={setMode} />
+
+          <div className={`auth-form-container ${mode === "Sign Up" ? "signup" : "signin"}`}>
+            <SignInForm />
+            <SignUpForm />
+          </div>
+        </div>
+      </div>
+    </>
+  );
+}
