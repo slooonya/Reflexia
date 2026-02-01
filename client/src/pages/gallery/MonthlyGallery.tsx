@@ -1,9 +1,9 @@
 import { Polaroid } from '../../components/Polaroid';
 import { WeeklyImages } from './WeeklyImages';
 import TestImage from '../../assets/images/test-image.png';
-import './MonthlyGalleryPage.css'
+import './MonthlyGallery.css'
 
-export function MonthlyGalleryPage() {
+export function MonthlyGallery() {
   return (
     <>
       <title>Monthly Gallery</title>

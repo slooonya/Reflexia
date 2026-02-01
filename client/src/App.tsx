@@ -1,7 +1,5 @@
-import { Routes, Route, Navigate } from 'react-router';
-import { WeeklyGalleryPage } from './pages/gallery/WeeklyGalleryPage';
-import { MonthlyGalleryPage } from './pages/gallery/MonthlyGalleryPage';
-import { GalleryLayout } from './pages/gallery/GalleryLayout';
+import { Routes, Route } from 'react-router';
+import { GalleryPage } from './pages/gallery/GalleryPage';
 import { AuthPage } from './pages/auth/AuthPage';
 import { GuidedReflectionPage } from './pages/reflection/GuidedReflectionPage';
 import { ImageEditingPage } from './pages/editing/ImageEditingPage';
@@ -16,14 +14,9 @@ function App() {
 
   return (
     <Routes>
-      {"<Route index element={<WeeklyGalleryPage />} />"}{"<Route index element={<LandingPage />}/>"}
+      {"<Route index element={<LandingPage />}/>"}
 
-      <Route element={<GalleryLayout />}>
-        <Route index element={<WeeklyGalleryPage />} />
-        <Route path="/gallery/week" element={<Navigate to="/" replace />} />
-        <Route path="/gallery/month" element={<MonthlyGalleryPage />} />
-      </Route>
-
+      <Route index element={<GalleryPage />}/>
       <Route path="auth" element={<AuthPage />} />
       <Route path="reflection" element={<GuidedReflectionPage />} />
       <Route path="editing" element={<ImageEditingPage />} />

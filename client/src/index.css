@@ -10,12 +10,13 @@
   box-sizing: border-box;
 }
 
-body {
+html, body {
   font-family: var(--font-body);
   font-weight: 400;
   color: black;
   line-height: 1.5;
   background-color: var(--color-base);
+  overflow-x: hidden;
 }
 
 h1, h2 {

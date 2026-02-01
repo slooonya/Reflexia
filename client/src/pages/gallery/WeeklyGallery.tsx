@@ -2,9 +2,9 @@ import { Link } from 'react-router';
 import { Polaroid } from '../../components/Polaroid';
 
 import TestImage from '../../assets/images/test-image.png';
-import './WeeklyGalleryPage.css'
+import './WeeklyGallery.css'
 
-export function WeeklyGalleryPage() {
+export function WeeklyGallery() {
   return (
     <>
       <title>Weekly Gallery</title>
