@@ -1,6 +1,6 @@
 .reflection-page-content {
-  height: calc(100vh - 100px);
   padding: 100px 70px 0px;
+  height: 100vh;
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 64px;

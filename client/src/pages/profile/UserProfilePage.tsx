@@ -9,7 +9,7 @@ import TestPfp from '../../assets/images/test-pfp.png';
 import './UserProfilePage.css';
 
 export function UserProfilePage() {
-  const [mode, setMode] = useState("Edit Profile");
+  const [mode, setMode] = useState("Editing");
 
   return (
     <>
@@ -25,15 +25,16 @@ export function UserProfilePage() {
         </div>
         
         <div className="profile-right-container">
-          <Toggle options={["Edit Profile", "Settings"]} active={mode} variant="black" onChange={setMode}/>
+          <Toggle options={["Editing", "Settings"]} active={mode} variant="black" onChange={setMode}/>
 
-          {mode === "Edit Profile" && (
-            <EditProfile />
-          )}
-          
-          {mode === "Settings" && (
-            <Settings />
-          )}
+          <div className={`option-container ${mode === "Editing" ? "edit" : "settings"}`}>
+            <div className="view-mode edit">
+              <EditProfile />
+            </div>
+            <div className="view-mode settings">
+              <Settings />
+            </div>
+          </div>
         </div>
       </div>
     </>
