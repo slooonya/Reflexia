@@ -6,16 +6,32 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
 }
 
-.weekly-images img {
+.weekly-image {
+  position: relative;
+  display: flex;
+}
+
+.weekly-image img {
   max-width: 60px;
 }
 
-.weekly-images img:first-child {
+.weekly-image:first-child img {
   border-radius: 15px 15px 0 0;
 }
 
-.weekly-images img:last-child {
+.weekly-image:last-child img {
   border-radius: 0 0 15px 15px;
+}
+
+.weekly-image span {
+  position: absolute;
+  right: 4px;
+  bottom: 4px;
+  font-size: 11px;
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 3px 6px;
+  border-radius: 8px;
 }
 
 @media (max-width: 768px) {
@@ -23,11 +39,11 @@
     flex-direction: row;
   }
 
-  .weekly-images img:first-child {
+  .weekly-image:first-child img {
     border-radius: 15px 0px 0 15px;
   }
 
-  .weekly-images img:last-child {
+  .weekly-image:last-child img {
     border-radius: 0 15px 15px 0;
   }
 }
