@@ -13,10 +13,10 @@ export function Navbar() {
 
   return (
       <nav className="navbar">
-        <Link to="/" className="logo">Reflexia</Link>
+        <Link to="/gallery" className="logo">Reflexia</Link>
 
         <div className="navbar-links">
-          <NavLink to="/" className="navbar-link">
+          <NavLink to="/gallery" className="navbar-link">
               <img className="navbar-icon" src={isGallery ? ActiveHomeIcon : HomeIcon} />
               <span className="navbar-text">Home</span>
           </NavLink>

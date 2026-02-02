@@ -1,0 +1,6 @@
+.features {
+  height: 100vh;
+  padding: 90px;
+  display: flex;
+  justify-content: center;
+}

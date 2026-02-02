@@ -7,16 +7,15 @@ import { UploadPage } from './pages/upload/UploadPage';
 import { UserProfilePage } from './pages/profile/UserProfilePage';
 import { NotFoundPage } from './pages/NotFoundPage';
 import { DetailsPage } from './pages/gallery/DetailsPage';
-// import { LandingPage } from './pages/LandingPage';
+import { LandingPage } from './pages/landing/LandingPage';
 import './App.css'
 
 function App() {
 
   return (
     <Routes>
-      {"<Route index element={<LandingPage />}/>"}
-
-      <Route index element={<GalleryPage />}/>
+      <Route index element={<LandingPage />}/>
+      <Route path="gallery" element={<GalleryPage />}/>
       <Route path="auth" element={<AuthPage />} />
       <Route path="reflection" element={<GuidedReflectionPage />} />
       <Route path="editing" element={<ImageEditingPage />} />

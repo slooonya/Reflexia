@@ -1,0 +1,8 @@
+.solution {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  min-height: 200vh;
+  padding: 90px;
+  display: flex;
+  justify-content: center;
+}

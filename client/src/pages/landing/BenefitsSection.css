@@ -1,0 +1,7 @@
+.benefits {
+  height: 100vh;
+  background: white;
+  padding: 90px;
+  display: flex;
+  justify-content: center;
+}
