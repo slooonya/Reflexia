@@ -1,8 +1,8 @@
+import { Navbar } from "../../components/Navbar";
 import { BenefitsSection } from "./BenefitsSection";
 import { FeaturesSection } from "./FeaturesSection";
 import { FooterSection } from "./FooterSection";
 import { HeroSection } from "./HeroSection";
-import { LandingNavbar } from "./LandingNavbar";
 import { SolutionSection } from "./SolutionSection";
 import './LandingPage.css';
 
@@ -11,7 +11,7 @@ export function LandingPage() {
     <>
       <title>Reflexia</title>
 
-      <LandingNavbar />
+      <Navbar mode="landing" />
 
       <div className="landing-page-content">
         <HeroSection />
