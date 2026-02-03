@@ -1,15 +1,12 @@
-import TestImage from '../../assets/images/test-image.png';
 import './WeeklyImages.css';
 
-export function WeeklyImages() {
-  const images = [TestImage, TestImage, TestImage, TestImage, TestImage];
-
+export function WeeklyImages({ weeks }) {
   return (
     <div className="weekly-images">
-      {images.map((img, i) => (
-        <div key={i} className="weekly-image">
-          <img src={img} />
-          <span>Week {i + 1}</span>
+      {weeks.map((week, idx) => (
+        <div key={week.id} className="weekly-image">
+          <img src={week.image} />
+          <span>Week {idx + 1}</span>
         </div>
       ))}
     </div>

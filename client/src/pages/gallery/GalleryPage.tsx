@@ -10,6 +10,7 @@ export function GalleryPage() {
 
   return (
     <>
+      <title>Gallery</title>
       <Navbar />
 
       <div className="blur-box" />

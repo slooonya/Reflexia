@@ -1,6 +1,6 @@
 .monthly-gallery-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: 1fr 1fr;
   gap: 40px;
   padding: 100px 24px 24px 24px;
 }
@@ -20,6 +20,11 @@
 
 .monthly-image {
   max-width: 300px;
+}
+
+.monthly-image .link {
+  text-decoration: none;
+  color: black;
 }
 
 @media (max-width: 768px) {

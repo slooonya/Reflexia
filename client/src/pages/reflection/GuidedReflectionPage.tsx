@@ -1,12 +1,13 @@
 import { useState } from 'react';
+import { useParams } from 'react-router';
 import { ProgressHeader } from "./ProgressHeader";
 import { Polaroid } from '../../components/Polaroid';
 import { ChatInput } from './ChatInput';
 import { ChatMessages } from './ChatMessages';
 import { ChatIntro } from './ChatIntro';
 import { ChatSummary } from './ChatSummary';
+import { monthlyGalleryData, weeklyGalleryData } from '../gallery/galleryData';
 
-import TestImage from '../../assets/images/test-image.png';
 import NextIcon from '../../assets/icons/next-icon.svg';
 import './GuidedReflectionPage.css';
 
@@ -65,6 +66,13 @@ export function GuidedReflectionPage() {
 
   const isComplete = step === REFLECTION_STEPS.length;
 
+  const { id, type } = useParams();
+
+  const item = type === "month"
+    ? monthlyGalleryData.find(x => x.id === id)
+    : weeklyGalleryData.find(x => x.id === id);
+  if (!item) return <div>Not Found</div>;
+  
   return (
     <>
       <title>Guided Reflection</title>
@@ -88,7 +96,7 @@ export function GuidedReflectionPage() {
           </div>
           
           <div className="reflective-image">
-            <Polaroid imageSrc={TestImage} caption={"Jan. 26 - Feb. 1"}/>
+            <Polaroid imageSrc={item.image} caption={item.caption}/>
           </div>
         </div>
 

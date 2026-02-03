@@ -9,10 +9,12 @@
 .weekly-image {
   position: relative;
   display: flex;
+  min-height: 90px;
 }
 
 .weekly-image img {
   max-width: 60px;
+  object-fit: cover;
 }
 
 .weekly-image:first-child img {

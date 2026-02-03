@@ -1,19 +1,31 @@
-import { useState } from 'react';
+import { useLocation, useNavigate, useParams } from 'react-router';
 import { BackButton } from '../../components/BackButton';
 import { Polaroid } from '../../components/Polaroid';
 import { Navbar } from '../../components/Navbar';
 import { SummarySection } from './SummarySection';
-import TestImage from '../../assets/images/test-image.png';
+import { monthlyGalleryData, weeklyGalleryData } from './galleryData';
+
 import './DetailsPage.css';
 
 export function DetailsPage() {
-  const [index, setIndex] = useState(0);
-  const images = [TestImage, TestImage, TestImage]
+  const { id } = useParams();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const isMonth = location.pathname.includes("/month/");
+  const type = isMonth ? "month" : "week";
+  const data = isMonth ? monthlyGalleryData : weeklyGalleryData;
+
+  const index = data.findIndex(x => x.id === id);
+  if (index === -1) return <div>Not Found</div>;
+  
+  const item = data[index];
+  const prevItem = data[index - 1];
+  const nextItem = data[index + 1];
 
   return (
     <>
-      <title>... Details</title>
-
+      <title>Details</title>
       <Navbar />
       <div className="details-back">
         <BackButton />
@@ -22,24 +34,24 @@ export function DetailsPage() {
       <div className="details-page-content">
         <div className="details-left-container">
           <div className="polaroid-container">
-            <Polaroid imageSrc={images[index]} caption={`Image ${index + 1}`} />
+            <Polaroid imageSrc={item.image} caption={item.caption} />
           </div>
 
           <div className="controls">
-            <button className={`${index === 0 ? "disabled" : ""}`} 
-                    onClick={() => setIndex(Math.max(0, index - 1))}>
+            <button className={`${!prevItem ? "disabled" : ""}`} 
+                    onClick={() => navigate(`/details/${type}/${prevItem.id}`)}>
               ‹
             </button>
 
-            <button className={`${index === images.length - 1 ? "disabled" : ""}`}
-                    onClick={() => setIndex(Math.min(images.length - 1, index + 1))}>
+            <button className={`${!nextItem ? "disabled" : ""}`}
+                    onClick={() => navigate(`/details/${type}/${nextItem.id}`)}>
               ›
             </button>
           </div>
         </div>
 
         <div className="details-right-container">
-          <SummarySection />
+          <SummarySection summary={item.summary} id={item.id} type={isMonth ? "month" : "week"}/>
         </div>
       </div>
     </>

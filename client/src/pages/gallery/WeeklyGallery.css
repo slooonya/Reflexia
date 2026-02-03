@@ -1,6 +1,6 @@
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 1fr 1fr 1fr;
   gap: 80px;
   padding: 100px 24px 24px 24px;
 }

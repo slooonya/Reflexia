@@ -1,21 +1,28 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { BackButton } from '../../components/BackButton';
 import { Polaroid } from '../../components/Polaroid';
 import { EditingPrompt } from './EditingPrompt';
 import { EditingResult } from './EditingResult';
+import { monthlyGalleryData, weeklyGalleryData } from '../gallery/galleryData';
 
-import TestImage from "../../assets/images/test-image.png";
+import TestImage from '../../assets/images/test-image.png';
 import './ImageEditingPage.css';
 
 export function ImageEditingPage() {
+  const { id, type } = useParams();
+  const navigate = useNavigate();
+
   const [step, setStep] = useState("input");
   const [fixes, setFixes] = useState("");
   const [resultImage, setResultImage] = useState<string | null>(null);
 
   const FIXES = "Cleaned up some of the background details so the illustration feels less busy and gives you more mental “space” to think.";
 
-  const navigate = useNavigate();
+  const item = type === "month"
+    ? monthlyGalleryData.find(x => x.id === id)
+    : weeklyGalleryData.find(x => x.id === id);
+  if (!item) return <div>Not found</div>;
 
   function submitFix() {
     setFixes(FIXES);
@@ -29,7 +36,7 @@ export function ImageEditingPage() {
   }
 
   function accept() {
-    navigate("/details");
+    navigate(`/details/${type}/${id}`);
   }
 
   return (
@@ -43,7 +50,7 @@ export function ImageEditingPage() {
       <div className="editing-page-content">
         <div className="editing-left-container">
           <div className="polaroid-container">
-            <Polaroid imageSrc={TestImage} caption={"Jan. 26 - Feb. 1"} />
+            <Polaroid imageSrc={item.image} caption={item.caption} />
           </div>
         </div>
 

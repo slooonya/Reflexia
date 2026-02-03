@@ -1,33 +1,33 @@
+import { Link } from 'react-router';
 import { Polaroid } from '../../components/Polaroid';
 import { WeeklyImages } from './WeeklyImages';
-import TestImage from '../../assets/images/test-image.png';
+import { monthlyGalleryData, weeklyGalleryData } from './galleryData';
+import { addEmptySlots } from './emptySlotGenerator';
 import './MonthlyGallery.css'
 
 export function MonthlyGallery() {
+  const items = addEmptySlots(monthlyGalleryData, 2);
+
   return (
     <>
-      <title>Monthly Gallery</title>
+      <div className="monthly-gallery-grid">  
+        {items.map(item => {
+          if (item.empty) {
+            return <div className="grid-slot"></div>;
+          }
+          const weeks = item.weeks.map(id => weeklyGalleryData.find(w => w.id === id)).filter(Boolean);
 
-      <div className="monthly-gallery-grid">   
-        <div className="monthly-gallery-slot">
-          <WeeklyImages />
-
-          <div className="monthly-image">
-            <Polaroid imageSrc={TestImage} caption='February' />
-          </div>
-        </div>
-
-        <div className="monthly-gallery-slot">
-          <WeeklyImages />
-
-          <div className="monthly-image">
-            <Polaroid imageSrc={TestImage} caption='March' />
-          </div>
-        </div>
-
-        <div className="grid-slot"></div>
-        <div className="grid-slot"></div>
-        <div className="grid-slot"></div>
+          return (
+            <div className="monthly-gallery-slot" key={item.id}>
+              <WeeklyImages weeks={weeks}/>
+              <div className="monthly-image">
+                <Link to={`/details/month/${item.id}`} className="link">
+                  <Polaroid imageSrc={item.image} caption={item.caption} />
+                </Link>
+              </div>
+            </div>
+          );
+        })} 
       </div>
     </>
   );

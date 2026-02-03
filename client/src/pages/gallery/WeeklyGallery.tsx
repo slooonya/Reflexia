@@ -1,29 +1,25 @@
 import { Link } from 'react-router';
 import { Polaroid } from '../../components/Polaroid';
+import { weeklyGalleryData } from './galleryData';
+import { addEmptySlots } from './emptySlotGenerator';
 
-import TestImage from '../../assets/images/test-image.png';
 import './WeeklyGallery.css'
 
 export function WeeklyGallery() {
+  const items = addEmptySlots(weeklyGalleryData, 3);
+
   return (
     <>
-      <title>Weekly Gallery</title>
-
       <div className="gallery-grid">
-        <div className="grid-slot">
-          <Link to="/details" className="link">
-            <Polaroid imageSrc={TestImage} caption={"Jan. 26 - Feb. 1"} />
-          </Link>
-        </div>
-        <div className="grid-slot">
-          <Polaroid imageSrc={TestImage} caption={"Jan. 26 - Feb. 1"}/>
-        </div>
-
-        <div className="grid-slot"></div>
-        <div className="grid-slot"></div>
-        <div className="grid-slot"></div>
-        <div className="grid-slot"></div>
-        <div className="grid-slot"></div>
+        {items.map(item => (
+          <div className="grid-slot" key={item.id}>
+            {item.empty ? null : (
+              <Link to={`/details/week/${item.id}`} className="link">
+                <Polaroid imageSrc={item.image} caption={item.caption} />
+              </Link>
+            )}
+          </div>
+        ))}
       </div>
     </>
   );

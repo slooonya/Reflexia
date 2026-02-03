@@ -17,11 +17,11 @@ function App() {
       <Route index element={<LandingPage />}/>
       <Route path="gallery" element={<GalleryPage />}/>
       <Route path="auth" element={<AuthPage />} />
-      <Route path="reflection" element={<GuidedReflectionPage />} />
-      <Route path="editing" element={<ImageEditingPage />} />
+      <Route path="/reflection/:type/:id" element={<GuidedReflectionPage />} />
+      <Route path="/editing/:type/:id" element={<ImageEditingPage />} />
       <Route path="upload" element={<UploadPage />} />
       <Route path="profile" element={<UserProfilePage />} />
-      <Route path="details" element={<DetailsPage />}></Route>
+      <Route path="/details/:type/:id" element={<DetailsPage />}></Route>
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
