@@ -2,6 +2,7 @@
   transition: opacity 1s ease;
   padding: 30px;
   flex-grow: 1;
+  animation: fade 1s forwards;
 }
 
 .chat-intro.hidden {

@@ -2,6 +2,7 @@
   display: flex;
   align-items: flex-start;
   margin-bottom: 1rem;
+  animation: fade 0.5s forwards;
 }
 
 .chat-message.user {

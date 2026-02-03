@@ -2,7 +2,9 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  padding: 110px 70px 90px;
+  padding: 120px 70px 50px;
+  margin-bottom: 1rem;
+  animation: fade 1s forwards;
 }
 
 .profile-left-container {
@@ -78,5 +80,21 @@
 
   .profile-right-container {
     padding: 30px;
+  }
+
+  .option-container.settings .view-mode.edit {
+    transform: translateX(-20px);
+  }
+
+  .option-container.settings .view-mode.settings {
+    transform: translateX(0);
+  }
+
+  .view-mode.edit {
+    transform: translateX(0);
+  }
+
+  .view-mode.settings {
+    transform: translateX(20px);
   }
 }

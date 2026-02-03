@@ -4,6 +4,8 @@
   grid-template-columns: 1fr 1.2fr;
   align-items: center;
   gap: 80px;
+  margin-bottom: 2rem;
+  animation: fade 1s forwards;
 }
 
 .polaroid-container {

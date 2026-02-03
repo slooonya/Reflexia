@@ -1,10 +1,11 @@
 .reflection-page-content {
-  padding: 100px 70px 0px;
+  padding: 100px 70px 50px;
   height: 100vh;
   display: grid;
   grid-template-columns: 1fr 2fr;
   gap: 64px;
-  margin-bottom: 1rem;
+  animation: fade 1s forwards;
+  margin-bottom: 8rem;
 }
 
 .reflection-left-container {
@@ -50,6 +51,7 @@
   transform: translateY(-2px);
   box-shadow: 0 6px rgb(197, 197, 197, 1);
   transition: all 0.2s ease;
+  animation: fade 0.5s forwards;
 }
 
 .next-step-button:hover {
@@ -73,6 +75,7 @@
     height: 100dvh;
     padding: 80px 16px 16px;
     gap: 16px;
+    margin-bottom: 0rem;
   }
 
   .reflection-left-container {

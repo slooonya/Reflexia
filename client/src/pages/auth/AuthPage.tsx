@@ -18,7 +18,9 @@ export function AuthPage() {
         </div>
 
         <div className="auth-right-container">
-          <Toggle options={["Sign In", "Sign Up"]} active={mode} variant="black" onChange={setMode} />
+          <div className="toggle-container">
+            <Toggle options={["Sign In", "Sign Up"]} active={mode} variant="black" onChange={setMode} />
+          </div>
 
           <div className={`auth-form-container ${mode === "Sign Up" ? "signup" : "signin"}`}>
             <SignInForm />

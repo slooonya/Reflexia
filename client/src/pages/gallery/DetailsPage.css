@@ -2,13 +2,16 @@
   position: fixed;
   top: 24px;
   left: 70px;
+  z-index: 100;
 }
 
 .details-page-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 60px;
-  padding: 110px 70px 90px;
+  padding: 110px 70px 50px;
+  margin-bottom: 2rem;
+  animation: fade 1s forwards;
 }
 
 .details-left-container {

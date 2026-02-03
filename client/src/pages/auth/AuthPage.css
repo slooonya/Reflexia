@@ -8,6 +8,10 @@
   padding: 24px 48px;
 }
 
+.auth-left-container h1 {
+  animation: fade 1s forwards;
+}
+
 .auth-right-container {
   display: flex;
   flex-direction: column;
@@ -17,11 +21,16 @@
   gap: 28px;
 }
 
+.toggle-container {
+  animation: fade 1s forwards;
+}
+
 .auth-form-container {
   position: relative;
   min-width: 360px;
   min-height: 420px;
   overflow: hidden;
+  animation: fade 1s forwards;
 }
 
 .auth-form-container.signup .signin{

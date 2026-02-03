@@ -2,13 +2,16 @@
   position: fixed;
   top: 24px;
   left: 70px;
+  z-index: 100;
 }
 
 .editing-page-content {
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  padding: 110px 70px 24px;
+  padding: 120px 70px 50px;
+  margin-bottom: 1rem;
+  animation: fade 1s forwards;
 }
 
 .editing-left-container {
@@ -29,5 +32,6 @@
   .editing-page-content {
     grid-template-columns: 1fr;
     gap: 20px;
+    padding: 100px 25px 40px;
   }
 }

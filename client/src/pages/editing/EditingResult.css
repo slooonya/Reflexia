@@ -1,3 +1,7 @@
+.editing-result-container {
+  animation: fade 1s forwards;
+}
+
 .result-heading {
   text-align: center;
   color: black;

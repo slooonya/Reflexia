@@ -2,7 +2,7 @@ import './EditingResult.css';
 
 export function EditingResult({ fixes, resultImage, onRetry, onAccept }) {
   return (
-     <>
+     <div className="editing-result-container">
         <h1 className="result-heading">Result</h1>
 
         <div className="result-image-container">
@@ -23,6 +23,6 @@ export function EditingResult({ fixes, resultImage, onRetry, onAccept }) {
           <button onClick={onRetry}>Retry</button>
           <button onClick={onAccept}>Accept</button>
         </div>
-      </>
+      </div>
   );
 }
