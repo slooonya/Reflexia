@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { ConfirmModal } from '../../components/ConfirmModal';
 
 import ExitIcon from '../../assets/icons/close-icon-brown.svg';
@@ -8,12 +8,13 @@ import './ProgressHeader.css';
 
 export function ProgressHeader({ step, total, onBack }) {
   const [showConfirm, setShowConfirm] = useState(false);
+  const { type, id } = useParams();
 
   const progress = step / total;
   const navigate = useNavigate();
 
   function exit() {
-    navigate(-1);
+    navigate(`/details/${type}/${id}`);
   }
 
   return (
