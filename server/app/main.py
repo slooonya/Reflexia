@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
-from pymongo import AsyncMongoClient
 
 from app.core.config import settings
+from app.db.database import init_db
 
 import logging
 
@@ -12,19 +12,17 @@ logger = logging.getLogger("uvicorn")
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-  app.mongodb_client = AsyncMongoClient(settings.MONGODB_URL)
-  app.database = app.mongodb_client[settings.MONGODB_NAME]
-
-  ping = await app.database.command("ping")
-  if int(ping["ok"]) != 1:
-      raise Exception("Mongo connection failed")
-  else:
-      logger.info("Connected to MongoDB")
+  app.mongo_client = await init_db(
+      settings.DB_URL,
+      settings.DB_NAME
+  )
+  
+  logger.info("Connected to MongoDB")
 
   yield
 
   await app.mongodb_client.close()
-  logger.info("Mongo connection closed")
+  logger.info("MongoDB connection closed")
 
 
 app = FastAPI(title=settings.APP_NAME, lifespan=lifespan)
@@ -36,3 +34,7 @@ app.add_middleware(
   allow_methods=["*"],
   allow_headers=["*"]
 )
+
+@app.get("/")
+async def root():
+    return {"status": "ok"}
