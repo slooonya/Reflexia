@@ -5,6 +5,8 @@ from contextlib import asynccontextmanager
 from app.core.config import settings
 from app.db.database import init_db
 
+from app.routers.insights import router as insights_router
+
 import logging
 
 
@@ -34,6 +36,8 @@ app.add_middleware(
   allow_methods=["*"],
   allow_headers=["*"]
 )
+
+app.include_router(insights_router)
 
 @app.get("/")
 async def root():
