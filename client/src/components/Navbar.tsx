@@ -1,10 +1,10 @@
 import { NavLink, Link, useLocation } from 'react-router';
+
 import UploadIcon from '../assets/icons/upload-icon.svg';
 import HomeIcon from '../assets/icons/home-icon.svg';
 import ProfileIcon from '../assets/icons/profile-icon.svg';
 import ActiveHomeIcon from '../assets/icons/home-active-icon.svg';
 import ActiveProfileIcon from '../assets/icons/profile-active-icon.svg';
-
 import './Navbar.css';
 
 export function Navbar({ mode = "app" }) {

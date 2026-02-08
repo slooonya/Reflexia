@@ -28,30 +28,9 @@
 }
 
 .start-btn {
-  display: flex;
-  align-items: center;
-  color: white;
-  background-color: black;
-  border: none;
-  padding: 12px 32px;
   font-size: 24px;
   font-family: var(--font-heading);
-  font-weight: 600;
-  border-radius: 50px;
-  text-decoration: none;
-  box-shadow: 0 6px rgb(79, 79, 79);
-  transition: all 0.2s ease;
   z-index: 10;
-}
-
-.start-btn:hover {
-  transform: translateY(2px);
-   box-shadow: 0 4px rgb(79, 79, 79);
-}
-
-.start-btn:active {
-  transform: translateY(6px);
-  box-shadow: none;
 }
 
 .copyright {

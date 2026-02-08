@@ -24,36 +24,6 @@
   gap: 2rem;
 }
 
-.action-btn {
-  display: flex;
-  align-items: center;
-  color: white;
-  background-color: black;
-  border: none;
-  gap: 6px;
-  padding: 16px 32px;
-  font-size: 14px;
-  font-weight: 600;
-  border-radius: 50px;
-  text-decoration: none;
-  box-shadow: 0 6px rgb(79, 79, 79);
-  transition: all 0.2s ease;
-}
-
-.action-btn:hover {
-  transform: translateY(2px);
-  box-shadow: 0 4px rgb(79, 79, 79);
-}
-
-.action-btn:active {
-  transform: translateY(6px);
-  box-shadow: none;
-}
-
-.action-btn img {
-  width: 20px;
-}
-
 @media (max-width: 768px) {
   .summary-container p {
     font-size: 14px;
@@ -61,9 +31,5 @@
 
   .action-btns {
     gap: 1rem;
-  }
-
-  .action-btn {
-    padding: 12px 24px;
   }
 }

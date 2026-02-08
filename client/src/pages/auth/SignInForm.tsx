@@ -1,3 +1,5 @@
+import { Button } from '../../components/Button';
+
 import GoogleIcon from '../../assets/icons/google-icon.svg';
 import './AuthForm.css';
 
@@ -12,7 +14,7 @@ export function SignInForm() {
       <input type="email" placeholder="Email"/>
       <input type="password" placeholder="Password"/>
 
-      <button className="primary-btn">Sign in with Email</button>
+      <Button>Sign in with Email</Button>
 
       <div className="auth-divider">
         <div className="line" />
@@ -20,10 +22,7 @@ export function SignInForm() {
         <div className="line" />
       </div>
 
-      <button className="secondary-btn">
-        <img src={GoogleIcon} />
-        Google
-      </button>
+      <Button variant="secondary" icon={GoogleIcon}>Google</Button>
     </div>
   );
 }

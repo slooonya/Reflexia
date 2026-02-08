@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
-import { BackButton } from '../../components/BackButton';
 import { Polaroid } from '../../components/Polaroid';
 import { EditingPrompt } from './EditingPrompt';
 import { EditingResult } from './EditingResult';
+import { Button } from '../../components/Button';
 import { monthlyGalleryData, weeklyGalleryData } from '../gallery/galleryData';
 
 import TestImage from '../../assets/images/test-image.png';
+import BackIcon from '../../assets/icons/back-icon.svg';
 import './ImageEditingPage.css';
 
 export function ImageEditingPage() {
@@ -44,7 +45,9 @@ export function ImageEditingPage() {
       <title>Image Editing</title>
 
       <div className="editing-back">
-          <BackButton />
+        <Button variant="accent" onClick={() => navigate(-1)} icon={BackIcon}>
+          Go back
+        </Button>
       </div>
 
       <div className="editing-page-content">

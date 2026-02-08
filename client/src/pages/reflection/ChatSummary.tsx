@@ -1,4 +1,6 @@
-import { Link, useParams } from 'react-router';
+import { useParams } from 'react-router';
+import { Button } from '../../components/Button';
+
 import './ChatSummary.css';
 
 export function ChatSummary({ summary }) {
@@ -6,13 +8,11 @@ export function ChatSummary({ summary }) {
 
   return (
     <div className="chat-summary">
-      <p>
-        { summary }
-      </p>
+      <p>{ summary }</p>
 
       <div className="session-btns">
-        <Link to="/chat" className="session-btn">Chat</Link>
-        <Link to={`/details/${type}/${id}`} className="session-btn">Complete Session</Link>
+        <Button to="/chat">Chat</Button>
+        <Button to={`/details/${type}/${id}`}>Complete Session</Button>
       </div>
     </div>
   );

@@ -1,10 +1,11 @@
 import { useLocation, useNavigate, useParams } from 'react-router';
-import { BackButton } from '../../components/BackButton';
 import { Polaroid } from '../../components/Polaroid';
 import { Navbar } from '../../components/Navbar';
 import { SummarySection } from './SummarySection';
+import { Button } from '../../components/Button';
 import { monthlyGalleryData, weeklyGalleryData } from './galleryData';
 
+import BackIcon from '../../assets/icons/back-icon.svg';
 import './DetailsPage.css';
 
 export function DetailsPage() {
@@ -28,7 +29,9 @@ export function DetailsPage() {
       <title>Details</title>
       <Navbar />
       <div className="details-back">
-        <BackButton />
+        <Button variant="accent" onClick={() => navigate(-1)} icon={BackIcon}>
+          Go back
+        </Button>
       </div>
 
       <div className="details-page-content">

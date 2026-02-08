@@ -1,10 +1,15 @@
-import { BackButton } from "../components/BackButton";
-import { Navbar } from "../components/Navbar";
-import { Polaroid } from "../components/Polaroid";
-import TVStatic from '../assets/images/tv-static.gif';
+import { useNavigate } from "react-router";
+import { Navbar } from "../../components/Navbar";
+import { Polaroid } from "../../components/Polaroid";
+import { Button } from "../../components/Button";
+
+import BackIcon from '../../assets/icons/back-icon.svg';
+import TVStatic from '../../assets/images/tv-static.gif';
 import './NotFoundPage.css';
 
 export function NotFoundPage() {
+  const navigate = useNavigate();
+
   return (
     <>
       <title>404 Not Found</title>
@@ -20,7 +25,9 @@ export function NotFoundPage() {
             <h1>Oops!</h1>
             <p>We couldn't find the page <br></br>
                you were looking for.</p>
-            <BackButton />
+            <Button variant="accent" onClick={() => navigate(-1)} icon={BackIcon}>
+              Go back
+            </Button>
           </div>
       </div>
     </>

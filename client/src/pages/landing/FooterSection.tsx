@@ -1,4 +1,4 @@
-import { Link } from 'react-router';
+import { Button } from '../../components/Button';
 import './FooterSection.css';
 
 export function FooterSection() {
@@ -7,7 +7,7 @@ export function FooterSection() {
       <div className="footer-content">
         <div className="footer-top">
           <h2>Ready to start <br />consuming mindfully?</h2>
-          <Link to="/auth" className="start-btn">Start</Link>
+          <Button to="/auth" className="start-btn">Start</Button>
         </div>
 
         <div className="copyright">

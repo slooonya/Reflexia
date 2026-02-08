@@ -1,3 +1,4 @@
+import { Button } from '../../components/Button';
 import './EditingResult.css';
 
 export function EditingResult({ fixes, resultImage, onRetry, onAccept }) {
@@ -20,8 +21,8 @@ export function EditingResult({ fixes, resultImage, onRetry, onAccept }) {
         <p className="result-fixes">{fixes}</p>
 
         <div className="editing-actions">
-          <button onClick={onRetry}>Retry</button>
-          <button onClick={onAccept}>Accept</button>
+          <Button onClick={onRetry} variant="secondary">Retry</Button>
+          <Button onClick={onAccept}>Accept</Button>
         </div>
       </div>
   );

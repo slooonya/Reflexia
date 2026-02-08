@@ -5,7 +5,7 @@ import { GuidedReflectionPage } from './pages/reflection/GuidedReflectionPage';
 import { ImageEditingPage } from './pages/editing/ImageEditingPage';
 import { UploadPage } from './pages/upload/UploadPage';
 import { UserProfilePage } from './pages/profile/UserProfilePage';
-import { NotFoundPage } from './pages/NotFoundPage';
+import { NotFoundPage } from './pages/error/NotFoundPage';
 import { DetailsPage } from './pages/gallery/DetailsPage';
 import { LandingPage } from './pages/landing/LandingPage';
 import './App.css'

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router';
+import { Button } from '../../components/Button';
+
 import ParallaxGirl from '../../assets/images/parallax-girl.png';
 import ParallaxBackground from '../../assets/images/parallax-background.png';
 import ParallaxPollaroids from '../../assets/images/parallax-polaroids.png';
@@ -23,7 +24,7 @@ export function HeroSection() {
       <div className="hero-content">
         <h1>Reflexia</h1>
         <p>Your AI assistant for reflection <br /> on personal media consumption</p>
-        <Link to="/auth" className="auth-btn">Start</Link>
+        <Button to="/auth" className="auth-btn" variant="secondary">Start</Button>
       </div>
     </section>
   );

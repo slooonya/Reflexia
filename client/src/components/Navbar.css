@@ -59,6 +59,7 @@
 .upload-btn {
   display: flex;
   align-items: center;
+  border: none;
   gap: 6px;
   padding: 8px 16px;
   border-radius: 50px;

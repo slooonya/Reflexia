@@ -1,3 +1,4 @@
+import { Button } from '../../components/Button';
 import './EditProfile.css';
 
 export function EditProfile() {
@@ -5,14 +6,14 @@ export function EditProfile() {
     <>
       <div className="pfp-controls">
         <div className="pfp-upload">
-          <label htmlFor="upload">
+          <label htmlFor="upload" className="btn primary">
             <input type="file" id="upload" accept="image/*"/>
             <span>Update Photo</span>
           </label>
         </div>
         
         <div className="pfp-remove">
-          <button>Remove Image</button>
+          <Button variant="secondary">Remove Image</Button>
         </div>
       </div>
 
@@ -23,7 +24,7 @@ export function EditProfile() {
         <input type="text" placeholder="Confirm Password" />
       </div>
 
-      <button className="confirm-btn">Confirm Changes</button>
+      <Button>Confirm Changes</Button>
     </>
   );
 }

@@ -1,4 +1,6 @@
 import { createPortal } from "react-dom";
+import { Button } from "./Button";
+
 import CloseIcon from '../assets/icons/close-icon-black.svg';
 import './ConfirmModal.css';
 
@@ -17,12 +19,12 @@ export function ConfirmModal({ title, message, confirmLabel = "Confirm", cancelL
         <p>{message}</p>
 
         <div className="modal-actions">
-          <button className="secondary" onClick={onCancel}>
+          <Button variant="secondary" onClick={onCancel}>
             {cancelLabel}
-          </button>
-          <button className="primary" onClick={onConfirm}>
+          </Button>
+          <Button onClick={onConfirm}>
             {confirmLabel}
-          </button>
+          </Button>
         </div>
       </div>
     </div>,

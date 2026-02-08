@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { ConfirmModal } from '../../components/ConfirmModal';
-import './Settings.css'
+import { Button } from '../../components/Button';
 
 export function Settings() {
   const [showConfirm, setShowConfirm] = useState(false);
@@ -15,7 +15,7 @@ export function Settings() {
 
   return (
     <>
-      <button className="logout" onClick={() => setShowConfirm(true)}>Logout</button>
+      <Button onClick={() => setShowConfirm(true)}>Logout</Button>
 
       {showConfirm && (
         <ConfirmModal title={"Confirm Logout"} message={"Are you sure you want to logout?"} 

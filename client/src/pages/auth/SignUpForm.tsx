@@ -1,3 +1,5 @@
+import { Button } from '../../components/Button';
+
 import GoogleIcon from '../../assets/icons/google-icon.svg';
 import './AuthForm.css';
 
@@ -13,7 +15,7 @@ export function SignUpForm() {
       <input type="password" placeholder="Password" />
       <input type="password" placeholder="Confirm Password" />
 
-      <button className="primary-btn">Create account</button>
+      <Button>Create account</Button>
 
       <div className="auth-divider">
         <div className="line" />
@@ -21,10 +23,7 @@ export function SignUpForm() {
         <div className="line" />
       </div>
 
-      <button className="secondary-btn">
-        <img src={GoogleIcon} alt="" />
-        Google
-      </button>
+      <Button variant="secondary" icon={GoogleIcon}>Google</Button>
     </div>
   );
 }
