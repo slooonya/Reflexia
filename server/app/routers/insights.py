@@ -1,12 +1,10 @@
 from fastapi import APIRouter, HTTPException, status
 from app.models.insight import InsightEntry
 from app.schemas.insight import InsightCreate, InsightOut, InsightUpdate
+from app.models.to_out_util import to_out
 
 
 router = APIRouter(prefix="/insights", tags=["insights"])
-
-def to_out(doc: InsightEntry) -> InsightOut:
-  return InsightOut.model_validate(doc)
 
 @router.post("", response_model=InsightOut)
 async def create_insight(data: InsightCreate):
@@ -16,8 +14,12 @@ async def create_insight(data: InsightCreate):
   return to_out(insight)
 
 @router.get("", response_model=list[InsightOut])
-async def get_insights():
-  insights = await InsightEntry.find_all().to_list()
+async def get_insights(period_type: str | None = None):
+  query = InsightEntry.find_all()
+  if period_type:
+    query = query.find(InsightEntry.period_type == period_type)
+
+  insights = await query.sort("-period_start").to_list()
 
   return [to_out(insight) for insight in insights]
 

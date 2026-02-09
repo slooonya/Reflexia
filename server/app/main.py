@@ -6,6 +6,7 @@ from app.core.config import settings
 from app.db.database import init_db
 
 from app.routers.insights import router as insights_router
+from app.routers.upload import router as upload_router
 
 import logging
 
@@ -23,7 +24,7 @@ async def lifespan(app: FastAPI):
 
   yield
 
-  await app.mongodb_client.close()
+  await app.mongo_client.close()
   logger.info("MongoDB connection closed")
 
 
@@ -38,6 +39,7 @@ app.add_middleware(
 )
 
 app.include_router(insights_router)
+app.include_router(upload_router)
 
 @app.get("/")
 async def root():
