@@ -7,7 +7,7 @@ import uuid
 
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
-DEBUG_AI = True
+DEBUG_AI = False
 
 # TODO: compose a better prompt
 def generate_weekly_summary(metadata: list[dict]) -> str:
@@ -22,11 +22,14 @@ def generate_weekly_summary(metadata: list[dict]) -> str:
 
   Write a short summary (1-2 paragraphs) describing the main themes, interests, and emotional tone.
   """
-
-  response = client.responses.create(
-    model="gpt-5-mini",
-    input=prompt
-  )
+  try:
+    response = client.responses.create(
+      model="gpt-5-mini",
+      input=prompt
+    )
+    print(response.output_text)
+  except Exception as e:
+    print("AI call failed:", e)
 
   return response.output_text.strip()
 
@@ -43,10 +46,14 @@ def generate_weekly_image_generation_prompt(summary: str) -> str:
   {summary}
   """ 
 
-  response = client.responses.create(
-    model="gpt-5-mini",
-    input=prompt
-  )
+  try:
+    response = client.responses.create(
+      model="gpt-5-mini",
+      input=prompt
+    )
+    print(response.output_text)
+  except Exception as e:
+    print("AI call failed", e)
 
   return response.output_text
 
@@ -63,11 +70,14 @@ def generate_monthly_summary(weekly_summaries: list[str]) -> str:
 
   {combined_summaries}
   """
-
-  response = client.responses.create(
-    model="gpt-5-mini",
-    input=prompt
-  )
+  try:
+    response = client.responses.create(
+      model="gpt-5-mini",
+      input=prompt
+    )
+    print(response.output_text)
+  except Exception as e:
+    print("AI call failed", e)
 
   return response.output_text
 
@@ -84,24 +94,32 @@ def generate_monthly_image_generation_prompt(weekly_summaries: list[str]) -> str
 
   {combined_summaries}
   """
-
-  response = client.responses.create(
-    model="gpt-5-mini",
-    input=prompt
-  )
+  
+  try:
+    response = client.responses.create(
+      model="gpt-5-mini",
+      input=prompt
+    )
+    print(response.output_text)
+  except Exception as e:
+    print("AI call failed", e)
 
   return response.output_text
 
 
 def generate_image(image_prompt: str) -> str:
   if DEBUG_AI:
-    return "/generated_images/test.png"
+    return "/images/test.png"
 
-  response = client.responses.create(
-    model="gpt-image-1",
-    input=image_prompt,
-    tools=[{"type": "image generation"}],
-  )
+  try:
+    response = client.responses.create(
+      model="gpt-5",
+      input=image_prompt,
+      tools=[{"type": "image_generation"}],
+    )
+    print(response.output_text)
+  except Exception as e:
+    print("AI call failed", e)
 
   image_data = [
     output.result
@@ -113,10 +131,10 @@ def generate_image(image_prompt: str) -> str:
     raise RuntimeError("No image returned")
 
   filename = f"{uuid.uuid4()}.png"
-  path = Path("generated_images") / filename
+  path = Path("images") / filename
   path.parent.mkdir(parents=True, exist_ok=True)
 
   image_bytes = base64.b64decode(image_data[0])
   path.write_bytes(image_bytes)
 
-  return f"/generated_images/{filename}"
+  return f"/images/{filename}"

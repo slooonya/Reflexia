@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
@@ -7,6 +8,8 @@ from app.db.database import init_db
 
 from app.routers.insights import router as insights_router
 from app.routers.upload import router as upload_router
+
+from pathlib import Path
 
 import logging
 
@@ -30,6 +33,9 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(title=settings.APP_NAME, lifespan=lifespan)
 
+Path("images").mkdir(exist_ok=True)
+app.mount("/images", StaticFiles(directory="images"), name="images")
+
 app.add_middleware(
   CORSMiddleware,
   allow_origins=["*"],
@@ -44,3 +50,25 @@ app.include_router(upload_router)
 @app.get("/")
 async def root():
     return {"status": "ok"}
+
+
+@app.get("/test-youtube")
+async def test_youtube():
+    import requests
+    
+    video_id = "dQw4w9WgXcQ"
+    url = f"https://www.googleapis.com/youtube/v3/videos"
+    params = {
+        "part": "snippet",
+        "id": video_id,
+        "key": settings.YOUTUBE_API_KEY
+    }
+    
+    r = requests.get(url, params=params)
+    return r.json()
+
+@app.get("/test-google") 
+async def test(): 
+  import requests 
+  r = requests.get("https://www.google.com") 
+  return {"status": r.status_code}

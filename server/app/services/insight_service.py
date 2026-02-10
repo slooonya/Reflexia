@@ -6,13 +6,16 @@ from app.services.ai_service import (
 )
 from app.models.insight import InsightEntry
 from datetime import datetime
+from tqdm import tqdm 
 
 
 async def generate_weekly_insight(data: list, user_id: str, start: datetime, end: datetime):
   video_ids = extract_video_ids(data, start, end)[:30] # TODO: This is to avoid wasting tokens. Remove this later
 
-  metadata = [get_video_metadata(video_id) for video_id in video_ids]
+  metadata = [get_video_metadata(video_id) for video_id in tqdm(video_ids, "Fetching metadata")]
   metadata = [m for m in metadata if m]
+
+  print(metadata[0])
 
   if not metadata:
     return None

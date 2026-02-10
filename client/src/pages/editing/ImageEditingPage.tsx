@@ -1,10 +1,11 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Polaroid } from '../../components/Polaroid';
 import { EditingPrompt } from './EditingPrompt';
 import { EditingResult } from './EditingResult';
 import { Button } from '../../components/Button';
-import { monthlyGalleryData, weeklyGalleryData } from '../gallery/galleryData';
+import { getInsight } from '../../api/insights';
+import type { Insight } from '../../types/insight';
 
 import TestImage from '../../assets/images/test-image.png';
 import BackIcon from '../../assets/icons/back-icon.svg';
@@ -17,13 +18,16 @@ export function ImageEditingPage() {
   const [step, setStep] = useState("input");
   const [fixes, setFixes] = useState("");
   const [resultImage, setResultImage] = useState<string | null>(null);
+  const [entry, setEntry] = useState<Insight | null>(null);
+
+  useEffect(() => {
+    if (!id) return;
+    getInsight(id).then(setEntry);
+  }, [id]);
+
+  if (!entry) return <div>Loading...</div>;
 
   const FIXES = "Cleaned up some of the background details so the illustration feels less busy and gives you more mental “space” to think.";
-
-  const item = type === "month"
-    ? monthlyGalleryData.find(x => x.id === id)
-    : weeklyGalleryData.find(x => x.id === id);
-  if (!item) return <div>Not found</div>;
 
   function submitFix() {
     setFixes(FIXES);
@@ -53,7 +57,7 @@ export function ImageEditingPage() {
       <div className="editing-page-content">
         <div className="editing-left-container">
           <div className="polaroid-container">
-            <Polaroid imageSrc={item.image} caption={item.caption} />
+            <Polaroid imageSrc={entry.image_url} caption={entry.period_label} />
           </div>
         </div>
 

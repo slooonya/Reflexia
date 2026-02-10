@@ -1,10 +1,11 @@
+from beanie import PydanticObjectId
 from fastapi import APIRouter, UploadFile, File, HTTPException, status
 from app.models.to_out_util import to_out
 from app.services.watch_history_service import process_watch_history
 import json
 
 
-router = APIRouter(prefix="/upload", tags=["upload"])
+router = APIRouter(prefix="/api/upload", tags=["upload"])
 
 @router.post("/watch-history")
 async def upload_watch_history(file: UploadFile = File(...)):
@@ -20,7 +21,7 @@ async def upload_watch_history(file: UploadFile = File(...)):
 
   # TODO: setting the time period to one week to avoid token waste, change this to a longer time period later
   insights = await process_watch_history(
-    data=data, user_id="1", n_weeks=1
+    data=data, user_id=PydanticObjectId('698a317cd048c552a8f09b47'), n_weeks=1
   )
 
   return [to_out(insight) for insight in insights]

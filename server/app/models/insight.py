@@ -1,9 +1,9 @@
-from beanie import Document
+from beanie import Document, PydanticObjectId
 from datetime import datetime
 from typing import Literal, Optional
 
 class InsightEntry(Document):
-  user_id: Optional[str] = None # TODO: change to str when auth is added
+  user_id: PydanticObjectId
   period_type: Literal["week", "month"]
   period_label: str
   period_start: Optional[datetime] = None
@@ -14,16 +14,4 @@ class InsightEntry(Document):
   class Settings:
     name = "insights"
 
-  model_config = { 
-    "json_schema_extra": { #TODO: add the missing fields 
-      "example": {
-        "user_id": "1",
-        "period_type": "week",
-        "period_label": "Jan 26 - Feb 1",
-        "period_start": "",
-        "period_end": "",
-        "summary": "",
-        "image_url": ""
-      }
-    }
-  }
+  # TODO: add model config

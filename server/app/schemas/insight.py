@@ -1,3 +1,4 @@
+from beanie import PydanticObjectId
 from pydantic import BaseModel
 from typing import Literal, Optional
 from datetime import datetime
@@ -11,50 +12,24 @@ class InsightCreate(BaseModel):
   summary: Optional[str] = None
   image_url: Optional[str] = None
 
-  model_config = {
-    "json_schema_extra": { #TODO: add the missing fields
-      "example": {
-        "period_type": "month",
-        "period_label": "February",
-        "period_start": "",
-        "period_end": "",
-        "summary": "",
-        "image_url": ""
-      }
-    }
-  }  
+  # TODO: add model config
 
 class InsightOut(BaseModel):
-  id: str
+  id: PydanticObjectId
   period_type: str
   period_label: str
   summary: Optional[str]
   image_url: Optional[str]
 
+  # TODO: add model config
   model_config = {  
     "from_attributes": True,
-    "json_schema_extra": { #TODO: add the missing fields
-      "example": {
-        "id": "1",
-        "period_type": "month",
-        "period_label": "February",
-        "summary": "",
-        "image_url": ""
-      }
-    }
-  } 
+  }
     
 
 class InsightUpdate(BaseModel):
   summary: Optional[str] = None
   image_url: Optional[str] = None
 
-  model_config = { 
-    "json_schema_extra": { #TODO: add the missing fields 
-      "example": {
-        "summary": "",
-        "image_url": ""
-      }
-    }
-  }
+  # TODO: add model config
     

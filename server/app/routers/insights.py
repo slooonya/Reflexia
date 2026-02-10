@@ -4,7 +4,7 @@ from app.schemas.insight import InsightCreate, InsightOut, InsightUpdate
 from app.models.to_out_util import to_out
 
 
-router = APIRouter(prefix="/insights", tags=["insights"])
+router = APIRouter(prefix="/api/insights", tags=["insights"])
 
 @router.post("", response_model=InsightOut)
 async def create_insight(data: InsightCreate):

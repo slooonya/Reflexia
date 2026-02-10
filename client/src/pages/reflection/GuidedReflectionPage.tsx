@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { ProgressHeader } from "./ProgressHeader";
 import { Polaroid } from '../../components/Polaroid';
@@ -6,7 +6,8 @@ import { ChatInput } from './ChatInput';
 import { ChatMessages } from './ChatMessages';
 import { ChatIntro } from './ChatIntro';
 import { ChatSummary } from './ChatSummary';
-import { monthlyGalleryData, weeklyGalleryData } from '../gallery/galleryData';
+import type { Insight } from '../../types/insight';
+import { getInsight } from '../../api/insights';
 
 import NextIcon from '../../assets/icons/next-icon.svg';
 import './GuidedReflectionPage.css';
@@ -15,6 +16,7 @@ export function GuidedReflectionPage() {
   const [step, setStep] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
   const [chatMessages, setChatMessages] = useState([]);
+  const [entry, setEntry] = useState<Insight | null>(null);
 
   const REFLECTION_STEPS = ["Description","Feelings", "Evaluation", "Analysis", "Conclusion", "Action Plan"];
 
@@ -66,12 +68,14 @@ export function GuidedReflectionPage() {
 
   const isComplete = step === REFLECTION_STEPS.length;
 
-  const { id, type } = useParams();
+  const { id } = useParams();
 
-  const item = type === "month"
-    ? monthlyGalleryData.find(x => x.id === id)
-    : weeklyGalleryData.find(x => x.id === id);
-  if (!item) return <div>Not Found</div>;
+  useEffect(() => {
+    if (!id) return;
+    getInsight(id).then(setEntry);
+  }, [id]);
+
+  if (!entry) return <div>Loading...</div>;
   
   return (
     <>
@@ -96,7 +100,7 @@ export function GuidedReflectionPage() {
           </div>
           
           <div className="reflective-image">
-            <Polaroid imageSrc={item.image} caption={item.caption}/>
+            <Polaroid imageSrc={entry.image_url} caption={entry.period_label}/>
           </div>
         </div>
 
