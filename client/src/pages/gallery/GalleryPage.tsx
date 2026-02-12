@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Navbar } from "../../components/Navbar";
 import { Toggle } from "../../components/Toggle";
 import { MonthlyGallery } from "./MonthlyGallery";
 import { WeeklyGallery } from "./WeeklyGallery";
-import { getInsights } from "../../api/insights";
-import type { Insight } from "../../types/insight";
+import { Loader } from "../../components/Loader";
 
 import './GalleryPage.css';
+import { useInsights } from "../../hooks/useInsights";
 
 export function GalleryPage() {
   const [mode, setMode] = useState("Week");
-  const [insights, setInsights] = useState<Insight[]>([]);
+  const { data: insights, loading } = useInsights();
 
-  useEffect(() => {
-    getInsights().then(setInsights);
-  }, []);
+  if (loading) return <Loader />;
 
   const weekly = insights.filter(i => i.period_type === "week");
   const monthly = insights.filter(i => i.period_type === "month")

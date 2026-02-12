@@ -4,6 +4,7 @@ import { Polaroid } from '../../components/Polaroid';
 import { EditingPrompt } from './EditingPrompt';
 import { EditingResult } from './EditingResult';
 import { Button } from '../../components/Button';
+import { Loader } from '../../components/Loader';
 import { getInsight } from '../../api/insights';
 import type { Insight } from '../../types/insight';
 
@@ -25,7 +26,7 @@ export function ImageEditingPage() {
     getInsight(id).then(setEntry);
   }, [id]);
 
-  if (!entry) return <div>Loading...</div>;
+  if (!entry) return <Loader />;
 
   const FIXES = "Cleaned up some of the background details so the illustration feels less busy and gives you more mental “space” to think.";
 
