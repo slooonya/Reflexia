@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { ConfirmModal } from '../../components/ConfirmModal';
+import { ProgressBar } from '../../components/ProgressBar';
 
 import ExitIcon from '../../assets/icons/close-icon-brown.svg';
 import BackIcon from '../../assets/icons/back-icon-brown.svg';
@@ -33,9 +34,7 @@ export function ProgressHeader({ step, total, onBack }) {
         </div>
 
         <div className="progress-bar-container">
-          <div className="progress-bar">
-            <div className="progress-fill" style={{ width: `${progress * 100}%` }}></div>
-          </div>
+          <ProgressBar progress={progress} />
         </div>
 
         <div className="progress-steps">

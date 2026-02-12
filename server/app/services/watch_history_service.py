@@ -1,14 +1,19 @@
 from app.models.insight import InsightEntry
 from app.services.insight_service import generate_weekly_insight, generate_monthly_insight
-from app.services.upload_service import create_week_intervals
 
 
-async def process_watch_history(data, user_id, n_weeks):
-  intervals = create_week_intervals(data, n_weeks)
+async def process_watch_history(data, user_id, intervals, job_id):
   insights = []
+  total = len(intervals)
 
-  for start, end in intervals:
-    insight = await generate_weekly_insight(data, user_id=user_id, start=start, end=end)
+  weekly_base, weekly_weight = 10, 55
+
+  for i, (start, end) in enumerate(intervals):
+    insight_progress_base = weekly_base + (weekly_weight * i / total)
+    insight_progress_weight = weekly_weight / total
+
+    insight = await generate_weekly_insight(data, user_id, start, end, job_id, base=insight_progress_base, 
+                                            weight=insight_progress_weight, index=i+1, total=total)
 
     if insight:
       insights.append(insight) 
@@ -24,8 +29,14 @@ async def process_watch_history(data, user_id, n_weeks):
     InsightEntry.period_type == "month"
   ).count()
 
+  monthly_base, monthly_weight = 65, 25
+
   for chunk_index in range(existing_monthly, monthly_total):
-    monthly = await generate_monthly_insight(user_id, chunk_index)
+    base = monthly_base + monthly_weight * (chunk_index / monthly_total)
+    weight = monthly_weight / monthly_total
+
+    monthly = await generate_monthly_insight(user_id, chunk_index, job_id, base, 
+                                             weight, index=chunk_index+1, total=monthly_total)
     if monthly:
       insights.append(monthly)
 

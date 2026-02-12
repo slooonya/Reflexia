@@ -8,6 +8,7 @@ import { UserProfilePage } from './pages/profile/UserProfilePage';
 import { NotFoundPage } from './pages/error/NotFoundPage';
 import { DetailsPage } from './pages/gallery/DetailsPage';
 import { LandingPage } from './pages/landing/LandingPage';
+import { ProcessingPage } from './pages/processing/ProcessingPage';
 import './App.css'
 
 function App() {
@@ -21,7 +22,8 @@ function App() {
       <Route path="/editing/:type/:id" element={<ImageEditingPage />} />
       <Route path="upload" element={<UploadPage />} />
       <Route path="profile" element={<UserProfilePage />} />
-      <Route path="/details/:type/:id" element={<DetailsPage />}></Route>
+      <Route path="/details/:type/:id" element={<DetailsPage />} />
+      <Route path="/processing/:jobId" element={<ProcessingPage />}/>
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

@@ -29,17 +29,3 @@
   border: none;
   background: none;
 }
-
-.progress-bar {
-  height: 10px;
-  width: 100%;
-  background: white;
-  border-radius: 50px;
-}
-
-.progress-fill {
-  height: 100%;
-  background: var(--color-accent);
-  border-radius: 50px;
-  transition: width 0.2s ease;
-}

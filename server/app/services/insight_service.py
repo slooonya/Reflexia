@@ -4,25 +4,44 @@ from app.services.ai_service import (
   generate_weekly_summary, generate_weekly_image_generation_prompt, 
   generate_monthly_summary, generate_monthly_image_generation_prompt, generate_image
 )
+from app.services.jobs_service import update_job
 from app.models.insight import InsightEntry
 from datetime import datetime
 from tqdm import tqdm 
 
 
-async def generate_weekly_insight(data: list, user_id: str, start: datetime, end: datetime):
-  video_ids = extract_video_ids(data, start, end)[:30] # TODO: This is to avoid wasting tokens. Remove this later
+async def generate_weekly_insight(data, user_id, start, end, job_id, base, weight, index, total):
+  def step(percentage, label):
+    value = int(base + weight * percentage)
+    update_job(job_id, value, label)
 
-  metadata = [get_video_metadata(video_id) for video_id in tqdm(video_ids, "Fetching metadata")]
-  metadata = [m for m in metadata if m]
+  step(0.0, f"Weekly insight {index}/{total}: extracting videos")
 
-  print(metadata[0])
+  video_ids = extract_video_ids(data, start, end)[:5] # TODO: This is to avoid wasting tokens. Remove this later
+
+  metadata = []
+
+  for i, video_id in enumerate(video_ids):
+    step(0.25 + 0.3 * (i / max(len(video_ids), 1)), 
+         f"Weekly insight {index}/{total}: fetching metadata {i + 1}/{len(video_ids)}")
+    
+    m = get_video_metadata(video_id)
+    if m:
+      metadata.append(m)
 
   if not metadata:
     return None
+  
+  step(0.55, f"Weekly insight {index}/{total}: generating summary")
 
   summary = generate_weekly_summary(metadata)
+
+  step(0.75, f"Weekly insight {index}/{total}: generating image")
+
   image_prompt = generate_weekly_image_generation_prompt(summary)
   image_url = generate_image(image_prompt)
+
+  step(0.95, f"Weekly insight {index}/{total}: saving")
 
   label = format_week_label(start, end)
 
@@ -40,7 +59,13 @@ async def generate_weekly_insight(data: list, user_id: str, start: datetime, end
   return insight
 
 
-async def generate_monthly_insight(user_id: str, chunk_index: int):
+async def generate_monthly_insight(user_id, chunk_index, job_id, base, weight, index, total):
+  def step(percentage, label):
+    value = int(base + weight * percentage)
+    update_job(job_id, value, label)
+
+  step(0.1, f"Monthly insight {index}/{total}: collecting weeks")
+
   weeks = await InsightEntry.find(
     InsightEntry.user_id == user_id,
     InsightEntry.period_type == "week"
@@ -53,8 +78,12 @@ async def generate_monthly_insight(user_id: str, chunk_index: int):
   if len(chunk) < 5:
     return None
 
+  step(0.4, f"Monthly insight {index}/{total}: generating summary")
+
   weekly_summaries = [week.summary for week in chunk]
   summary = generate_monthly_summary(weekly_summaries)
+
+  step(0.7, f"Monthly insight {index}/{total}: generating image")
 
   image_prompt = generate_monthly_image_generation_prompt(weekly_summaries)
   image_url = generate_image(image_prompt)
@@ -63,6 +92,8 @@ async def generate_monthly_insight(user_id: str, chunk_index: int):
   end = chunk[-1].period_end
 
   label = format_month_label(start)
+
+  step(1.0, f"Monthly insight {index}/{total}: saving")
 
   insight = InsightEntry(
     user_id=user_id,
