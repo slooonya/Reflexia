@@ -5,9 +5,11 @@ import json
 import base64
 import uuid
 
+from app.core.paths import IMAGES_DIR
+
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
 
-DEBUG_AI = False
+DEBUG_AI = True
 
 # TODO: compose a better prompt
 def generate_weekly_summary(metadata: list[dict]) -> str:
@@ -131,10 +133,10 @@ def generate_image(image_prompt: str) -> str:
     raise RuntimeError("No image returned")
 
   filename = f"{uuid.uuid4()}.png"
-  path = Path("images") / filename
-  path.parent.mkdir(parents=True, exist_ok=True)
+  images_path = IMAGES_DIR / filename
+  images_path.parent.mkdir(parents=True, exist_ok=True)
 
   image_bytes = base64.b64decode(image_data[0])
-  path.write_bytes(image_bytes)
+  images_path.write_bytes(image_bytes)
 
   return f"/images/{filename}"
