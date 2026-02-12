@@ -1,7 +1,7 @@
 import { useState } from "react";
 import './PromptInput.css';
 
-export function PromptInput({ placeholder, onSubmit, buttonLabel = "Send" }) {
+export function PromptInput({ placeholder, onSubmit, buttonLabel = "Send", disabled }) {
   const [inputText, setInputText] = useState("");
 
   function submit() {
@@ -24,7 +24,7 @@ export function PromptInput({ placeholder, onSubmit, buttonLabel = "Send" }) {
   return (
     <div className="prompt-input">
       <textarea placeholder={placeholder} value={inputText} onChange={saveInputText} onKeyDown={handleKeyDown}/>
-      <button onClick={submit}>{buttonLabel}</button>
+      <button disabled={disabled} onClick={submit}>{buttonLabel}</button>
     </div>
   );
 }

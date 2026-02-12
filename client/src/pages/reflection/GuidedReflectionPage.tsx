@@ -2,12 +2,15 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { ProgressHeader } from "./ProgressHeader";
 import { Polaroid } from '../../components/Polaroid';
-import { ChatInput } from './ChatInput';
 import { ChatMessages } from './ChatMessages';
 import { ChatIntro } from './ChatIntro';
 import { ChatSummary } from './ChatSummary';
+import { Loader } from '../../components/Loader';
 import type { Insight } from '../../types/insight';
 import { getInsight } from '../../api/insights';
+import { ChatTypingIndicator } from './ChatTypingIndicator';
+import { PromptInput } from '../../components/PromptInput';
+import { useChat } from '../../hooks/useChat';
 
 import NextIcon from '../../assets/icons/next-icon.svg';
 import './GuidedReflectionPage.css';
@@ -15,10 +18,10 @@ import './GuidedReflectionPage.css';
 export function GuidedReflectionPage() {
   const [step, setStep] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
-  const [chatMessages, setChatMessages] = useState([]);
   const [entry, setEntry] = useState<Insight | null>(null);
+  const { messages, botLoading, sendMessage, resetChat } = useChat();
 
-  const REFLECTION_STEPS = ["Description","Feelings", "Evaluation", "Analysis", "Conclusion", "Action Plan"];
+  const REFLECTION_STEPS = ["Description", "Feelings", "Evaluation", "Analysis", "Conclusion", "Action Plan"];
 
   const PROMPTS = ["Looking at this week's image, how was your overall viewing experience?", 
     "How did it feel when you settled in for a long narrative story? Did it feel like a warm hug, or did you feel a little guilty about how long it was taking?", 
@@ -75,7 +78,12 @@ export function GuidedReflectionPage() {
     getInsight(id).then(setEntry);
   }, [id]);
 
-  if (!entry) return <div>Loading...</div>;
+  if (!entry) return <Loader />;
+
+  function handleSendMessage(message) {
+    if (!hasStarted) setHasStarted(true);
+    sendMessage(message);
+  }
   
   return (
     <>
@@ -110,16 +118,16 @@ export function GuidedReflectionPage() {
           )}
 
           {!isComplete && hasStarted && (
-            <ChatMessages chatMessages={chatMessages} />
+            <ChatMessages chatMessages={messages} />
           )}
 
-          {hasStarted && chatMessages.length >= 6 && (
+          {hasStarted && messages.length >= 6 && (
             <button
               className="next-step-button"
               onClick={() => {
                 setStep(s => s + 1);
                 setHasStarted(false);
-                setChatMessages([]);
+                resetChat();
               }}
             >
               Next
@@ -131,9 +139,10 @@ export function GuidedReflectionPage() {
             <ChatSummary summary={SUMMARY} />
           )}
 
+          {botLoading && <ChatTypingIndicator />}
+
           {!isComplete && (
-            <ChatInput placeholder={PLACEHOLDERS[step]} chatMessages={chatMessages} 
-                       setChatMessages={setChatMessages} setHasStarted={setHasStarted}/>
+            <PromptInput placeholder={PLACEHOLDERS[step]} onSubmit={handleSendMessage} disabled={botLoading} />
           )}
         </div>
       </div>
