@@ -3,7 +3,7 @@ import { Polaroid } from '../../components/Polaroid';
 import { WeeklyImages } from './WeeklyImages';
 import { addEmptySlots } from './emptySlotGenerator';
 import type { Insight } from '../../types/insight';
-import { EmptyState } from './EmptyState';
+import { EmptyState } from '../../components/EmptyState';
 
 import EmptyImg from '../../assets/images/empty.svg';
 import UploadIcon from '../../assets/icons/upload-icon-white.svg';
@@ -14,8 +14,10 @@ export function MonthlyGallery({ weekly, monthly }) {
 
   if (!monthly.length) {
     return (
-      <EmptyState img={EmptyImg} title="Nothing here yet" text="Upload your watch history to generate monthly insights." 
-                  action={() => navigate("/upload")} actionLabel="Upload" btnIcon={UploadIcon} />
+      <div className="empty-state-container">
+        <EmptyState img={EmptyImg} title="Nothing here yet" text="Upload your watch history to generate monthly insights." 
+                    action={() => navigate("/upload")} actionLabel="Upload" btnIcon={UploadIcon} variant="accent"/>
+      </div>
     );
   }
 

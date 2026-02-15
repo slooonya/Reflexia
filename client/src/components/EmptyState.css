@@ -4,22 +4,18 @@
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 100px 24px 24px 24px;
   text-align: center;
 }
 
-.empty-state h2 {
+h2 {
   line-height: 1.1;
+}
+
+.title-primary {
+  color: black;
 }
 
 .empty-state p {
   color: grey;
   margin-bottom: 0.5rem;
-  width: 25%;
-}
-
-@media (max-width: 768px) {
-  .empty-state p {
-    width: 100%;
-  }
 }

@@ -1,7 +1,7 @@
 import { Link, useNavigate } from 'react-router';
 import { Polaroid } from '../../components/Polaroid';
 import { addEmptySlots } from './emptySlotGenerator';
-import { EmptyState } from './EmptyState';
+import { EmptyState } from '../../components/EmptyState';
 
 import EmptyImg from '../../assets/images/empty.svg';
 import UploadIcon from '../../assets/icons/upload-icon-white.svg';
@@ -12,8 +12,10 @@ export function WeeklyGallery({ weekly }) {
 
   if (!weekly.length) {
     return (
-      <EmptyState img={EmptyImg} title="Nothing here yet" text="Upload your watch history to generate weekly insights." 
-                  action={() => navigate("/upload")} actionLabel="Upload" btnIcon={UploadIcon} />
+      <div className="empty-state-container">
+        <EmptyState img={EmptyImg} title="Nothing here yet" text="Upload your watch history to generate weekly insights." 
+                    action={() => navigate("/upload")} actionLabel="Upload" btnIcon={UploadIcon} variant="accent" />
+      </div>
     );
   }
 

@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Polaroid } from '../../components/Polaroid';
 import { Navbar } from '../../components/Navbar';
@@ -6,6 +7,7 @@ import { Button } from '../../components/Button';
 import { Loader } from '../../components/Loader';
 import { useInsight } from '../../hooks/useInsight';
 import { useInsights } from '../../hooks/useInsights';
+import { Toggle } from '../../components/Toggle';
 
 import BackIcon from '../../assets/icons/back-icon.svg';
 import './DetailsPage.css';
@@ -13,6 +15,7 @@ import './DetailsPage.css';
 export function DetailsPage() {
   const { id, type } = useParams();
   const navigate = useNavigate();
+  const [mode, setMode] = useState("Viewing");
 
   const { data: entry } = useInsight(id);
   const { data: entries, loading } = useInsights();
@@ -59,7 +62,17 @@ export function DetailsPage() {
         </div>
 
         <div className="details-right-container">
-          <SummarySection summary={entry.summary} id={entry.id} type={entry.period_type}/>
+          <Toggle options={["Viewing", "Reflection"]} active={mode} variant="black" onChange={setMode}/>
+
+          <div className={`summary-mode-container ${mode === "Viewing" ? "viewing" : "reflection"}`}>
+            <div className="summary-mode viewing">
+              <SummarySection summary={entry.summary} id={entry.id} type={entry.period_type}/>
+            </div>
+
+            <div className="summary-mode reflection">
+              <SummarySection summary={null} id={entry.id} type={entry.period_type}/> {/*TODO: change to reflection summary*/}
+            </div>
+          </div>
         </div>
       </div>
     </>

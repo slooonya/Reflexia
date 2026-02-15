@@ -27,6 +27,10 @@
   color: black;
 }
 
+.empty-state-container {
+  padding: 100px 24px 24px 24px;
+}
+
 @media (max-width: 768px) {
   .monthly-gallery-grid {
     grid-template-columns: 1fr;

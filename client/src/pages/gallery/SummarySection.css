@@ -1,8 +1,5 @@
 .summary-container {
-  background-color: white;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+  width: 100%;
 }
 
 .summary-container h1 {
@@ -13,7 +10,6 @@
 .summary-container p {
   margin: 1rem 0;
   text-align: justify;
-  padding: 0 1rem;
   max-height: 300px;
   overflow-y: auto;
 }
