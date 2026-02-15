@@ -1,12 +1,24 @@
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { Polaroid } from '../../components/Polaroid';
 import { WeeklyImages } from './WeeklyImages';
 import { addEmptySlots } from './emptySlotGenerator';
 import type { Insight } from '../../types/insight';
+import { EmptyState } from './EmptyState';
 
+import EmptyImg from '../../assets/images/empty.svg';
+import UploadIcon from '../../assets/icons/upload-icon-white.svg';
 import './MonthlyGallery.css'
 
 export function MonthlyGallery({ weekly, monthly }) {
+  const navigate = useNavigate();
+
+  if (!monthly.length) {
+    return (
+      <EmptyState img={EmptyImg} title="Nothing here yet" text="Upload your watch history to generate monthly insights." 
+                  action={() => navigate("/upload")} actionLabel="Upload" btnIcon={UploadIcon} />
+    );
+  }
+
   const items = addEmptySlots(monthly, 2);
 
   function getWeeksForMonth(month: Insight) {
