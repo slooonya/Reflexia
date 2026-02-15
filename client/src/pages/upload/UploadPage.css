@@ -30,6 +30,10 @@
   color: grey;
 }
 
+.processing-btn {
+  margin-top: 1rem;
+}
+
 .upload-right-container {
   display: flex;
   flex-direction: column;

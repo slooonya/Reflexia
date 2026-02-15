@@ -23,11 +23,3 @@ async def upload_watch_history(file: UploadFile = File(...), bg: BackgroundTasks
   bg.add_task(process_upload_job, job_id, data, PydanticObjectId('698a317cd048c552a8f09b47'))
 
   return {"job_id": job_id}
-
-
-@router.get("/upload-status/{job_id}")
-async def upload_status(job_id: str):
-  job = get_job(job_id)
-  if not job:
-    raise HTTPException(404)
-  return job

@@ -1,5 +1,5 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
+import { getJob } from "../api/jobs";
 
 export function useJobProgress(jobId) {
   const [progress, setProgress] = useState(null);
@@ -9,11 +9,11 @@ export function useJobProgress(jobId) {
     if (!jobId) return;
 
     const id = setInterval(async () => {
-      const response = await axios.get(`/api/jobs/${jobId}`);
-      setProgress(response.data.progress);
-      setStatus(response.data.status);
+      const data = await getJob(jobId);
+      setProgress(data.progress);
+      setStatus(data.status);
 
-      if (response.data.progress >= 100) {
+      if (data.progress >= 100) {
         clearInterval(id);
       }
     }, 1000);

@@ -7,8 +7,3 @@ export async function uploadWatchHistory(file: File) {
   const response = await axios.post('/api/upload/watch-history', form);
   return response.data;
 }
-
-export async function getUploadStatus(jobId: string) {
-  const response = await axios.get(`api/upload/upload-status/${jobId}`)
-  return response.data;
-}
