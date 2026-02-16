@@ -26,6 +26,19 @@
   font-size: 16px;
 }
 
+.tips li {
+  margin-top: 1rem;
+  line-height: 1.4;
+}
+
+.tip-title {
+  font-weight: 700;
+}
+
+.tip-text {
+  font-weight: 400;
+}
+
 @media (max-width: 768px) {
   .chat-intro {
     padding: 16px;

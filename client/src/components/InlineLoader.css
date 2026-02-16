@@ -1,0 +1,14 @@
+.inline-loader {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  padding: 24px;
+}
+
+.loader.small {
+  width: 28px;
+  height: 28px;
+  border-width: 3px;
+  font-weight: 600;
+}

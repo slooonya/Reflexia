@@ -11,9 +11,12 @@ export function ChatIntro({ prompt, tips }) {
 
       <h1 className='tips-heading'>Tips:</h1>
       <ul className="tips">
-        <li>{tips[1]}</li>
-        <li>{tips[2]}</li>
-        <li>{tips[3]}</li>
+        {tips.map((tip, i) => (
+          <li key={i}>
+            <span className="tip-title">{tip.title}: </span>
+            <span className="tip-text">{tip.text}</span>
+          </li>
+        ))}
       </ul>
     </div>
   );

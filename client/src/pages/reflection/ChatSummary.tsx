@@ -1,4 +1,5 @@
 import { useParams } from 'react-router';
+import ReactMarkdown from 'react-markdown';
 import { Button } from '../../components/Button';
 
 import './ChatSummary.css';
@@ -8,10 +9,11 @@ export function ChatSummary({ summary }) {
 
   return (
     <div className="chat-summary">
-      <p>{ summary }</p>
+      <div className="chat-summary-content">
+        <ReactMarkdown>{ summary }</ReactMarkdown>
+      </div>
 
       <div className="session-btns">
-        <Button to="/chat">Chat</Button>
         <Button to={`/details/${type}/${id}`}>Complete Session</Button>
       </div>
     </div>

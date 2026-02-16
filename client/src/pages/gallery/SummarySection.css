@@ -7,7 +7,7 @@
   color: black;
 }
 
-.summary-container p {
+.summary-content {
   margin: 1rem 0;
   text-align: justify;
   max-height: 300px;
@@ -21,7 +21,7 @@
 }
 
 @media (max-width: 768px) {
-  .summary-container p {
+  .summary-content {
     font-size: 14px;
   }
 

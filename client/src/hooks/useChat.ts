@@ -1,16 +1,29 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import type { ChatMessage } from "../types/chat";
-// import { sendReflectionMessage } from "../api/reflection";
+import { sendReflectionMessage } from "../api/reflection";
 
-export function useChat() {
+export function useChat(insightId: string, step: number) {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [botLoading, setBotLoading] = useState(false);
 
-  async function sendMessage(message) {
+  const hydrate = useCallback((savedMessages) => {
+    setMessages(
+      savedMessages.map(message => ({
+        id: crypto.randomUUID(),
+        role: message.role,
+        content: message.content
+      }))
+    )
+  }, []);
+
+  async function sendMessage(message: string) {
+    const content = message.trim();
+    if (!content) return;
+
     const userMessage: ChatMessage = {
         id: crypto.randomUUID(),
-        sender: "user",
-        message: message
+        role: "user",
+        content
       };
     
     setMessages(prevMessages => [...prevMessages, userMessage]);
@@ -18,12 +31,12 @@ export function useChat() {
     setBotLoading(true);
 
     try {
-      // const reply = await sendReflectionMessage(message);
+      const reply = await sendReflectionMessage(content, step, insightId);
 
       const botMessage: ChatMessage = {
         id: crypto.randomUUID(),
-        sender: "bot",
-        message: "beep boop" // reply.data.reply
+        role: "system",
+        content: reply
       }
 
       setMessages(prevMessages => [...prevMessages, botMessage]);
@@ -32,8 +45,8 @@ export function useChat() {
         ...prevMessages,
         {
           id: crypto.randomUUID(),
-          sender: "bot",
-          message: "Something wend wrong"
+          role: "system",
+          content: "Something went wrong"
         }
       ]);
     } finally {
@@ -45,5 +58,5 @@ export function useChat() {
     setMessages([]);
   }
 
-  return { messages, botLoading, sendMessage, resetChat };
+  return { messages, botLoading, sendMessage, resetChat,hydrate };
 }

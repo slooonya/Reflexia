@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Polaroid } from '../../components/Polaroid';
 import { Navbar } from '../../components/Navbar';
@@ -8,6 +8,7 @@ import { Loader } from '../../components/Loader';
 import { useInsight } from '../../hooks/useInsight';
 import { useInsights } from '../../hooks/useInsights';
 import { Toggle } from '../../components/Toggle';
+import { getReflectionSummary } from '../../api/reflection';
 
 import BackIcon from '../../assets/icons/back-icon.svg';
 import './DetailsPage.css';
@@ -16,12 +17,20 @@ export function DetailsPage() {
   const { id, type } = useParams();
   const navigate = useNavigate();
   const [mode, setMode] = useState("Viewing");
+  const [reflectionSummary, setReflectionSummary] = useState(null);
+
+  useEffect(() => {
+    if (!id) return;
+
+    getReflectionSummary(id).then(response => {
+      setReflectionSummary(response.summary);
+    });
+  }, [id])
 
   const { data: entry } = useInsight(id);
   const { data: entries, loading } = useInsights();
 
-  if (loading) return <Loader />
-  if (!entry) return <div>Not found</div>;
+  if (loading || !entry) return <Loader />
 
   const sameTypeData = entries
     .filter(e => e.period_type === entry.period_type)
@@ -70,7 +79,7 @@ export function DetailsPage() {
             </div>
 
             <div className="summary-mode reflection">
-              <SummarySection summary={null} id={entry.id} type={entry.period_type}/> {/*TODO: change to reflection summary*/}
+              <SummarySection summary={reflectionSummary} id={entry.id} type={entry.period_type}/>
             </div>
           </div>
         </div>

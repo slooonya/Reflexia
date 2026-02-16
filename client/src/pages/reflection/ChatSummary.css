@@ -5,7 +5,7 @@
   animation: fade 0.5s forwards;
 }
 
-.chat-summary p {
+.chat-summary-content {
   flex: 1; 
   margin: 1rem 0;
   text-align: justify;
@@ -21,7 +21,7 @@
 }
 
 @media (max-width: 768px) {
-  .chat-summary p {
+  .chat-summary-content {
     font-size: 14px;
     margin-top: 0;
   }

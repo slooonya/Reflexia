@@ -1,10 +1,10 @@
 from openai import OpenAI
 from app.core.config import settings
-from pathlib import Path
 import json
 import base64
 import uuid
 
+from app.utils.randomizer import pick_step_prompt
 from app.core.paths import IMAGES_DIR
 
 client = OpenAI(api_key=settings.OPENAI_API_KEY)
@@ -17,12 +17,27 @@ def generate_weekly_summary(metadata: list[dict]) -> str:
     return f"Test weekly summary ({len(metadata)} videos)"
 
   prompt = f"""
-  You are analyzing a user's YouTube watch history.
+  Analyze this YouTube watch history metadata.
 
-  This is the information on the recent videos the user watched:
+  Write a reflective viewing summary.
+
+  Include:
+  - Dominant content themes
+  - Repeated topics or formats
+  - Style of content (educational, entertainment, commentary, etc.)
+  - Emotional tone
+  - Variety vs repetition
+
+  Rules:
+  - Do NOT judge or give advice
+  - Be neutral
+
+  Format:
+  - 2 short paragraphs
+  - Use **bold highlights** for main themes 
+
+  Metadata:
   {json.dumps(metadata, ensure_ascii=False)}
-
-  Write a short summary (1-2 paragraphs) describing the main themes, interests, and emotional tone.
   """
   try:
     response = client.responses.create(
@@ -42,7 +57,18 @@ def generate_weekly_image_generation_prompt(summary: str) -> str:
     return f"Test weekly image prompt from {summary}"
 
   prompt = f"""
-  Create a single image prompt that visually represents the user's watch history.
+  Create an image prompt that visually represents the user's media consumption patterns.
+
+  Include:
+  - Objects symbolizing content themes
+  - Mood lighting
+  - Environment
+  - Color palette reflecting emotional tone
+  - Visual metaphors where appropriate
+
+  Rules:
+  - No text overlays
+  - Do not infer a user's appearance
 
   Summary of user's viewing:
   {summary}
@@ -68,8 +94,25 @@ def generate_monthly_summary(weekly_summaries: list[str]) -> str:
   combined_summaries = "\n".join(weekly_summaries)
 
   prompt = f"""
-  You are analyzing a user's YouTube watch history. Summarize (in 1-2 paragraphs) the month viewing based on the following weekly summaries:
+  Write a reflective summary based on the weekly YouTube watch history summaries.
 
+  Include:
+  - Recurring themes across weeks
+  - Shifts in interests or tone
+  - Consistency vs exploration
+  - Emotional patterns across time
+
+  Rules:
+  - Neutral and supportive
+  - No judgment
+  - No advice
+
+  Format:
+  - 2-3 short paragraphs
+  - Use **bold highlights** for main themes 
+  - Smooth narrative flow
+
+  Weekly summaries:
   {combined_summaries}
   """
   try:
@@ -92,8 +135,19 @@ def generate_monthly_image_generation_prompt(weekly_summaries: list[str]) -> str
   combined_summaries = "\n".join(weekly_summaries)
 
   prompt = f"""
-  Produce a single image generation prompt based on these weekly summaries of user's watch history:
+  Create an image prompt that visually represents a month of user's media consumption.
 
+  Include:
+  - Symbolic elements for dominant themes
+  - Mood lighting
+  - Sense of time or progression
+  - Color palette tied to emotional tone
+
+  Rules:
+  - INo text overlays
+  - Avoid inferring a user's appearance
+
+  Weekly summaries:
   {combined_summaries}
   """
   
@@ -140,3 +194,71 @@ def generate_image(image_prompt: str) -> str:
   images_path.write_bytes(image_bytes)
 
   return f"/images/{filename}"
+
+
+ASSISTANT_PROMPT = """
+You are a guided reflection assistant helping users examine their media consumption using the Gibbs reflective cycle.
+
+Style:
+- Warm, calm, non-judgmental
+- Supportive but not therapeutic
+- Curious, not leading
+
+Rules:
+- Ask AT MOST ONE question per reply
+- No advice
+- Do not analyze for user
+- If the user shares something meaningful, reflect it back briefly
+
+Format:
+- Short paragraphs
+- Optional bullet points
+- Use **bold highlights**
+- Max 90 words
+"""
+
+async def generate_chat_reply(messages, step):
+
+  step_prompt = pick_step_prompt(step)
+
+  response = client.chat.completions.create(
+    model="gpt-5-mini",
+    messages=[
+      {"role": "system", "content": ASSISTANT_PROMPT + 
+       "\n\nCurrent reflection stage guidance:\n" +
+       step_prompt},
+      *messages
+    ]
+  )
+
+  return response.choices[0].message.content
+
+
+async def generate_reflection_summary(messages):
+  prompt = """
+  Summarize this media reflection session.
+
+  Include:
+  - Main viewing patterns noticed
+  - Emotional responses mentioned
+  - Any insights or planned adjustments
+
+  Rules:
+  - Supportive and neutral
+  - No judgment/advice
+
+  Format:
+  - 140-180 words
+  - Structured paragraphs
+  - Use **bold highlights** for key insights
+  """
+
+  response = client.chat.completions.create(
+    model="gpt-5-mini",
+    messages=[
+      {"role": "system", "content": prompt},
+      *messages
+    ]
+  )
+
+  return response.choices[0].message.content

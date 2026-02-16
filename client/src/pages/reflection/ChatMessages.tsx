@@ -15,7 +15,7 @@ export function ChatMessages({ chatMessages }) {
   return (
     <div className="chat-messages" ref={chatMessagesRef}>
       {chatMessages.map(msg => (
-        <ChatMessage key={msg.id} sender={msg.sender} message={msg.message}/>
+        <ChatMessage key={msg.id} sender={msg.role} message={msg.content}/>
       ))}
     </div>
   );

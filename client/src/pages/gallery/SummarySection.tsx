@@ -1,3 +1,4 @@
+import ReactMarkdown from 'react-markdown';
 import { Button } from '../../components/Button';
 import { EmptyState } from '../../components/EmptyState';
 import { useNavigate } from 'react-router';
@@ -15,7 +16,10 @@ export function SummarySection({ summary, type, id }) {
       <div className="summary-container">
         <h1>Summary</h1>
         <hr />
-        <p>{summary}</p>
+
+        <div className="summary-content">
+          <ReactMarkdown>{summary}</ReactMarkdown>
+        </div>
 
         <div className="action-btns">
           <Button to={`/editing/${type}/${id}`} icon={EditIcon}>Edit</Button>

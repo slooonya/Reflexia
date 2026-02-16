@@ -11,7 +11,7 @@ export function ProgressHeader({ step, total, onBack }) {
   const [showConfirm, setShowConfirm] = useState(false);
   const { type, id } = useParams();
 
-  const progress = step / total;
+  const progress = step / total * 100;
   const navigate = useNavigate();
 
   function exit() {
