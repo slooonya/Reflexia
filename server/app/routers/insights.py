@@ -1,7 +1,8 @@
 from fastapi import APIRouter, HTTPException, status
 from app.models.insight import InsightEntry
-from app.schemas.insight import InsightCreate, InsightOut, InsightUpdate
+from app.schemas.insight import ImageEditRequest, InsightCreate, InsightOut, InsightUpdate
 from app.models.to_out_util import to_out
+from app.services.ai_service import generate_image, refine_image_prompt
 
 
 router = APIRouter(prefix="/api/insights", tags=["insights"])
@@ -65,3 +66,28 @@ async def delete_insight(insight_id: str):
   await insight.delete()
 
   return {"message": "Entry deleted successfully"}
+
+
+@router.post("/{insight_id}/edit-image")
+async def edit_image(insight_id: str, body: ImageEditRequest):
+  insight = await InsightEntry.get(insight_id)
+
+  if not insight:
+    raise HTTPException(404, "Insight not found")
+
+  refined_prompt = await refine_image_prompt(
+    insight.image_prompt,
+    body.fixes
+  )
+
+  new_url = await generate_image(refined_prompt)
+
+  insight.image_prompt = refined_prompt
+  insight.image_url = new_url
+
+  await insight.save()
+
+  return {
+    "imageUrl": new_url,
+    "fixesSummary": "applied your requested vidual refinements."
+  }

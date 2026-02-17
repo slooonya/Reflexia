@@ -32,4 +32,9 @@ class InsightUpdate(BaseModel):
   image_url: Optional[str] = None
 
   # TODO: add model config
-    
+
+
+class ImageEditRequest(BaseModel):
+  fixes: str
+
+  # TODO: add model config

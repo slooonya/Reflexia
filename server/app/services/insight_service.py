@@ -52,7 +52,8 @@ async def generate_weekly_insight(data, user_id, start, end, job_id, base, weigh
     period_start=start,
     period_end=end,
     summary=summary,
-    image_url=image_url
+    image_url=image_url,
+    image_prompt=image_prompt
   )
 
   await insight.insert()
@@ -102,7 +103,8 @@ async def generate_monthly_insight(user_id, chunk_index, job_id, base, weight, i
     period_start=start,
     period_end=end,
     summary=summary,
-    image_url=image_url
+    image_url=image_url,
+    image_prompt=image_prompt
   )
 
   await insight.insert()

@@ -10,6 +10,7 @@ class InsightEntry(Document):
   period_end: Optional[datetime] = None
   summary: str
   image_url: Optional[str] = None
+  image_prompt: Optional[str] = None
 
   class Settings:
     name = "insights"

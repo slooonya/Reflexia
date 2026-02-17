@@ -9,3 +9,8 @@ export async function getInsight(id: string) {
   const response = await axios.get(`/api/insights/${id}`)
   return response.data;
 }
+
+export async function editInsightImage(id: string, fixes: string) {
+  const response = await axios.post(`/api/insights/${id}/edit-image`, { fixes })
+  return response.data;
+}

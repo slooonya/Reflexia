@@ -196,6 +196,30 @@ def generate_image(image_prompt: str) -> str:
   return f"/images/{filename}"
 
 
+async def refine_image_prompt(base_prompt, fixes):
+  response = await client.responses.create(
+    model="gpt-5-mini",
+    input=[
+      {
+        "role": "system",
+        "content": "You refine image generation prompts while preserving symbolism and theme."
+      },
+      {
+        "role": "user",
+        "content": f"""
+        Base image prompt:
+        {base_prompt}
+
+        User requested changes:
+        {fixes}
+        """
+      }
+    ]
+  )
+
+  return response.output_text.strip()
+
+
 ASSISTANT_PROMPT = """
 You are a guided reflection assistant helping users examine their media consumption using the Gibbs reflective cycle.
 

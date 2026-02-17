@@ -5,10 +5,10 @@ import { EditingPrompt } from './EditingPrompt';
 import { EditingResult } from './EditingResult';
 import { Button } from '../../components/Button';
 import { Loader } from '../../components/Loader';
-import { getInsight } from '../../api/insights';
+import { editInsightImage, getInsight } from '../../api/insights';
 import type { Insight } from '../../types/insight';
+import { InlineLoader } from '../../components/InlineLoader';
 
-import TestImage from '../../assets/images/test-image.png';
 import BackIcon from '../../assets/icons/back-icon.svg';
 import './ImageEditingPage.css';
 
@@ -28,12 +28,16 @@ export function ImageEditingPage() {
 
   if (!entry) return <Loader />;
 
-  const FIXES = "Cleaned up some of the background details so the illustration feels less busy and gives you more mental “space” to think.";
+  async function submitFix(userFixes) {
+    if (!id) return;
 
-  function submitFix() {
-    setFixes(FIXES);
+    setStep("loading");
 
-    setResultImage(TestImage);
+    const response = await editInsightImage(id, userFixes);
+
+    setFixes(response.fixesSummary);
+    setResultImage(response.imageUrl);
+
     setStep("result");
   }
 
@@ -65,6 +69,10 @@ export function ImageEditingPage() {
         <div className="editing-right-container">
           {step === "input" && (
             <EditingPrompt onSubmit={submitFix} />
+          )}
+
+          {step === "loading" && (
+            <InlineLoader label="Editing your reflective image..." />
           )}
 
           {step === "result" && (
