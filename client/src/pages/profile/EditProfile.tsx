@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Button } from '../../components/Button';
 import { FormInput } from '../../components/FormInput';
-import { updateProfile } from '../../api/profile';
+import { removePfp, updateProfile, uploadPfp } from '../../api/profile';
 
 import './EditProfile.css';
 
@@ -60,18 +60,34 @@ export function EditProfile({ user, onProfileUpdated }) {
     }
   }
 
+  async function handlePfpUpload(pfp) {
+    try {
+      const response = await uploadPfp(pfp);
+      onProfileUpdated({ ...user, pfp_url: response.pfp_url });
+    } catch {
+      alert("Upload failed");
+    }
+  }
+
+  async function handleRemovePfp() {
+    await removePfp();
+    onProfileUpdated({ ...user, pfp_url: null });
+  }
+
   return (
     <>
       <div className="pfp-controls">
         <div className="pfp-upload">
           <label htmlFor="upload" className="btn primary">
-            <input type="file" id="upload" accept="image/*"/>
+            <input type="file" id="upload" accept="image/*" hidden 
+                   onChange={(e) => { const file = e.target.files?.[0]; if (file) handlePfpUpload(file); }} />
+
             <span>Update Photo</span>
           </label>
         </div>
         
         <div className="pfp-remove">
-          <Button variant="secondary">Remove Image</Button>
+          <Button variant="secondary" onClick={handleRemovePfp}>Remove Image</Button>
         </div>
       </div>
 

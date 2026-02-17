@@ -4,7 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
 
 from app.core.config import settings
-from app.core.paths import IMAGES_DIR
+from app.core.paths import IMAGES_DIR, UPLOAD_DIR
 from app.db.database import init_db
 
 from app.routers.insights import router as insights_router
@@ -36,6 +36,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(title=settings.APP_NAME, lifespan=lifespan)
 
 app.mount("/images", StaticFiles(directory=IMAGES_DIR), name="images")
+app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
 
 app.add_middleware(
   CORSMiddleware,

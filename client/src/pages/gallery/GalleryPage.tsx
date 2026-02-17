@@ -4,9 +4,9 @@ import { Toggle } from "../../components/Toggle";
 import { MonthlyGallery } from "./MonthlyGallery";
 import { WeeklyGallery } from "./WeeklyGallery";
 import { Loader } from "../../components/Loader";
+import { useInsights } from "../../hooks/useInsights";
 
 import './GalleryPage.css';
-import { useInsights } from "../../hooks/useInsights";
 
 export function GalleryPage() {
   const [mode, setMode] = useState("Week");

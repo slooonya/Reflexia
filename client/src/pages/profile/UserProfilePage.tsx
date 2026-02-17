@@ -30,7 +30,7 @@ export function UserProfilePage() {
       <div className="profile-page-content">
         <div className="profile-left-container">
           <div className="pfp-container">
-            <Polaroid imageSrc={user.pfpUrl ?? TestPfp} caption={user.username}/>
+            <Polaroid imageSrc={user.pfp_url ?? TestPfp} caption={user.username}/>
           </div>
         </div>
         

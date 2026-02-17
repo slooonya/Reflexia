@@ -11,7 +11,10 @@ export default defineConfig({
       },
       '/images': {
         target: 'http://localhost:8000'
-      }
+      },
+      '/uploads': {
+        target: 'http://localhost:8000'
+      },
     }
   }
 })

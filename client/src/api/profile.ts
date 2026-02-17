@@ -6,6 +6,19 @@ export async function updateProfile(data) {
 }
 
 export async function getProfile() {
-  const response = await axios.get("/api/profile")
+  const response = await axios.get("/api/profile");
+  return response.data;
+}
+
+export async function uploadPfp(pfp) {
+  const form = new FormData();
+  form.append("file", pfp);
+
+  const response = await axios.patch("/api/profile/pfp", form);
+  return response.data;
+}
+
+export async function removePfp() {
+  const response = await axios.delete("/api/profile/pfp")
   return response.data;
 }

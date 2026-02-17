@@ -91,3 +91,4 @@ env.bak/
 venv.bak/
 
 server/images/
+server/uploads/

@@ -1,8 +1,10 @@
-from fastapi import APIRouter, HTTPException
+import uuid
+from fastapi import APIRouter, File, HTTPException, UploadFile
 
 from app.schemas.profile import ProfileResponse, ProfileUpdateRequest
 from app.models.user import User
 from app.services.users import get_dev_user
+from app.core.paths import UPLOAD_DIR
 
 
 router = APIRouter(prefix="/api/profile", tags=["profile"])
@@ -61,8 +63,46 @@ async def update_profile(body: ProfileUpdateRequest):
 
   await user.save()
 
-  return {"status": "ok"}
-      
+  return {
+    "id": str(user.id),
+    "username": user.username,
+    "email": user.email,
+    "pfp_url": user.pfp_url
+  }
+
+
+@router.patch("/pfp")
+async def upload_pfp(file: UploadFile = File(...)):
+  # TODO: change this to real user
+  user = await get_dev_user()
+
+  if not file.content_type.startswith("image/"):
+    raise HTTPException(400, "File must be an image")
+  
+  extension = file.filename.split(".")[-1]
+  filename = f"{uuid.uuid4()}.{extension}"
+  path = UPLOAD_DIR / filename
+
+  contents = await file.read()
+
+  path.write_bytes(contents)
+
+  user.pfp_url = f"/uploads/{filename}"
+  await user.save()
+
+  return {"pfp_url": user.pfp_url}
+
+
+@router.delete("/pfp")
+async def remove_pfp():
+  # TODO: change this to real user
+  user = await get_dev_user()
+
+  user.pfp_url = None
+  await user.save()
+
+  return {"ok": True}
+
     
 @router.get("/", response_model=ProfileResponse)
 async def get_profile():
@@ -72,5 +112,6 @@ async def get_profile():
   return ProfileResponse(
     id=str(user.id),
     username=user.username,
-    email=user.email
+    email=user.email,
+    pfp_url=user.pfp_url
   )
