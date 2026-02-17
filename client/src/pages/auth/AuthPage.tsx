@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Toggle } from '../../components/Toggle';
 import { SignUpForm } from './SignUpForm';
 import { SignInForm } from './SignInForm';
+import { PolaroidSwiper } from '../../components/PolaroidSwiper';
 
 import './AuthPage.css';
 
@@ -15,6 +16,9 @@ export function AuthPage() {
       <div className="auth-page-content">
         <div className="auth-left-container">
           <h1>Reflexia</h1>
+          <div className="swiper-container">
+            <PolaroidSwiper />
+          </div>
         </div>
 
         <div className="auth-right-container">

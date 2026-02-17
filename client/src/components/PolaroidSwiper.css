@@ -1,0 +1,17 @@
+@import "swiper/css";
+@import "swiper/css/effect-cards";
+
+.auth-swiper {
+  max-width: 23vw;
+  max-height: 80vh;
+  margin-top: 3rem;
+}
+
+.swiper-slide {
+  border-radius: 10px;
+  display: flex;
+}
+
+.swiper-slide-shadow {
+  border-radius: 10px;
+}

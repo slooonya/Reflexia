@@ -6,9 +6,23 @@
 
 .auth-left-container {
   padding: 24px 48px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .auth-left-container h1 {
+  position: absolute;
+  top: 24px;
+  left: 48px;
+  animation: fade 1s forwards;
+}
+
+.swiper-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   animation: fade 1s forwards;
 }
 
@@ -48,6 +62,10 @@
     grid-template-columns: 1fr;
   }
 
+  .swiper {
+    display: none;
+  }
+
   .auth-left-container {
     padding: 0;
     position: initial;
@@ -57,6 +75,9 @@
   }
 
   .auth-left-container h1 {
+    top: 0;
+    left: 0;
+    position: relative;
     font-size: 48px;
   }
 

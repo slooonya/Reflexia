@@ -1,14 +1,9 @@
 import './Polaroid.css';
 
-type PolaroidProps = {
-  imageSrc: string;
-  caption: string;
-};
-
-export function Polaroid({ imageSrc, caption }: PolaroidProps) {
+export function Polaroid({ imageSrc, caption }) {
   return (
     <div className="polaroid">
-      <img className="polaroid-image" src={imageSrc} />
+      <img className="polaroid-image" src={imageSrc} loading="lazy"/>
       <div className="polaroid-caption">{caption}</div>
     </div>
   );
