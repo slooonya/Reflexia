@@ -31,10 +31,12 @@
   font-size: 12px;
 }
 
-.auth-form input {
-  padding: 14px;
-  border-radius: 12px;
-  border: 1px solid #ccc;
+.form-error-banner {
+  background: #fff3f3;
+  border: 1px solid #e5484d;
+  padding: 10px;
+  border-radius: 10px;
+  color: #e5484d;
   font-size: 14px;
 }
 

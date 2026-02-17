@@ -1,10 +1,10 @@
 import { Link } from 'react-router';
-import type { ReactNode, MouseEventHandler } from 'react';
+import type { ButtonHTMLAttributes, ReactNode } from 'react';
 import './Button.css'
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   children?: ReactNode;
-  onClick?: MouseEventHandler;
+  onClick?: () => void;
   variant?: 'primary' | 'secondary' | 'accent';
   to?: string;
   icon?: string;
@@ -16,7 +16,7 @@ export function Button({ children, onClick, variant = 'primary', to, icon, class
 
   if (to) {
     return (
-      <Link to={to} className={fullClassName} {...props}>
+      <Link to={to} className={fullClassName}>
         {icon && <img src={icon} className="btn-icon" />}
         <span>{children}</span>
       </Link>
@@ -29,5 +29,4 @@ export function Button({ children, onClick, variant = 'primary', to, icon, class
       <span>{children}</span>
     </button>
   )
-
 }

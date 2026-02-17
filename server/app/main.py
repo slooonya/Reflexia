@@ -11,6 +11,7 @@ from app.routers.insights import router as insights_router
 from app.routers.upload import router as upload_router
 from app.routers.jobs import router as jobs_router
 from app.routers.reflection import router as reflection_router
+from app.routers.profile import router as profile_router
 
 import logging
 
@@ -48,6 +49,7 @@ app.include_router(insights_router)
 app.include_router(upload_router)
 app.include_router(jobs_router)
 app.include_router(reflection_router)
+app.include_router(profile_router)
 
 @app.get("/")
 async def root():

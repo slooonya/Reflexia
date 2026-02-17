@@ -68,7 +68,7 @@ async def delete_insight(insight_id: str):
   return {"message": "Entry deleted successfully"}
 
 
-@router.post("/{insight_id}/edit-image")
+@router.patch("/{insight_id}/edit-image")
 async def edit_image(insight_id: str, body: ImageEditRequest):
   insight = await InsightEntry.get(insight_id)
 

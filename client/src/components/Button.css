@@ -70,6 +70,15 @@
   height: 20px;
 }
 
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn:disabled:hover {
+  transform: none;
+}
 
 @media (max-width: 768px) {
   .btn {
