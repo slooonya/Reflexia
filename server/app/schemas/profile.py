@@ -11,4 +11,4 @@ class ProfileResponse(BaseModel):
   id: str
   username: str
   email: str
-  pfp_url: str
+  pfp_url: str | None = None
