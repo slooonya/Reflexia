@@ -6,7 +6,9 @@ export function Settings() {
   const [showConfirm, setShowConfirm] = useState(false);
 
   function logout() {
-    console.log("Logged out");
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("refresh_token");
+    window.location.href= "/auth";
   }
 
   function cancel() {

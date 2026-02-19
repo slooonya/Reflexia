@@ -11,6 +11,7 @@ class Settings(BaseSettings):
   OPENAI_API_KEY: str
   SECRET_KEY: str
   ACCESS_TOKEN_EXPIRE_MINUTES: int
+  REFRESH_TOKEN_EXPIRE_DAYS: int
   ALGORITHM: str
   YOUTUBE_API_KEY: str
 

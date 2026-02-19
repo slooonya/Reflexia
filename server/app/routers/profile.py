@@ -4,8 +4,8 @@ from fastapi import APIRouter, File, HTTPException, UploadFile, Depends, status
 from app.schemas.profile import ProfileResponse, ProfileUpdateRequest
 from app.models.user import User
 from app.core.paths import UPLOAD_DIR
+from app.core.security import hash_password, verify_password
 from app.dependencies.auth import get_current_user
-from app.utils.password_util import hash_password, verify_password
 
 
 router = APIRouter(prefix="/api/profile", tags=["profile"])
