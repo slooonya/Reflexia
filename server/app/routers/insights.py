@@ -1,22 +1,26 @@
-from fastapi import APIRouter, HTTPException, status
+from fastapi import APIRouter, HTTPException, status, Depends
 from app.models.insight import InsightEntry
 from app.schemas.insight import ImageEditRequest, InsightCreate, InsightOut, InsightUpdate
-from app.models.to_out_util import to_out
+from app.utils.converters import to_out
+from app.models.user import User
 from app.services.ai_service import generate_image, refine_image_prompt
+from app.dependencies.auth import get_current_user
 
 
 router = APIRouter(prefix="/api/insights", tags=["insights"])
 
 @router.post("", response_model=InsightOut)
-async def create_insight(data: InsightCreate):
-  insight = InsightEntry(data.model_dump())
+async def create_insight(data: InsightCreate, user: User = Depends(get_current_user)):
+  insight = InsightEntry(**data.model_dump(), user_id=user.id)
   await insight.insert()
 
   return to_out(insight)
 
+
 @router.get("", response_model=list[InsightOut])
-async def get_insights(period_type: str | None = None):
-  query = InsightEntry.find_all()
+async def get_insights(period_type: str | None = None, user: User = Depends(get_current_user)):
+  query = InsightEntry.find(InsightEntry.user_id == user.id)
+
   if period_type:
     query = query.find(InsightEntry.period_type == period_type)
 
@@ -24,22 +28,24 @@ async def get_insights(period_type: str | None = None):
 
   return [to_out(insight) for insight in insights]
 
+
 @router.get("/{insight_id}", response_model=InsightOut)
-async def get_insight(insight_id: str):
+async def get_insight(insight_id: str, user: User = Depends(get_current_user)):
   insight = await InsightEntry.get(insight_id)
 
-  if not insight:
+  if not insight or insight.user_id != user.id:
     raise HTTPException(
       status_code=status.HTTP_404_NOT_FOUND, detail=f"Insight with id {insight_id} not found"
     )
   
   return to_out(insight)
 
+
 @router.patch("/{insight_id}", response_model=InsightOut)
-async def update_insight(insight_id: str, data: InsightUpdate):
+async def update_insight(insight_id: str, data: InsightUpdate, user: User = Depends(get_current_user)):
   insight = await InsightEntry.get(insight_id)
 
-  if not insight:
+  if not insight or insight.user_id != user.id:
     raise HTTPException(
       status_code=status.HTTP_404_NOT_FOUND, detail=f"Insight with id {insight_id} not found"
     )
@@ -55,10 +61,10 @@ async def update_insight(insight_id: str, data: InsightUpdate):
 
 
 @router.delete("/{insight_id}")
-async def delete_insight(insight_id: str):
+async def delete_insight(insight_id: str, user: User = Depends(get_current_user)):
   insight = await InsightEntry.get(insight_id)
 
-  if not insight:
+  if not insight or insight.user_id != user.id:
     raise HTTPException(
       status_code=status.HTTP_404_NOT_FOUND, detail=f"Insight with id {insight_id} not found"
     )
@@ -69,11 +75,11 @@ async def delete_insight(insight_id: str):
 
 
 @router.patch("/{insight_id}/edit-image")
-async def edit_image(insight_id: str, body: ImageEditRequest):
+async def edit_image(insight_id: str, body: ImageEditRequest, user: User = Depends(get_current_user)):
   insight = await InsightEntry.get(insight_id)
 
-  if not insight:
-    raise HTTPException(404, "Insight not found")
+  if not insight or insight.user_id != user.id:
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Insight not found")
 
   refined_prompt = await refine_image_prompt(
     insight.image_prompt,
@@ -89,5 +95,5 @@ async def edit_image(insight_id: str, body: ImageEditRequest):
 
   return {
     "imageUrl": new_url,
-    "fixesSummary": "applied your requested vidual refinements."
+    "fixesSummary": "Applied your requested vidual refinements."
   }

@@ -9,6 +9,7 @@ import { NotFoundPage } from './pages/error/NotFoundPage';
 import { DetailsPage } from './pages/gallery/DetailsPage';
 import { LandingPage } from './pages/landing/LandingPage';
 import { ProcessingPage } from './pages/processing/ProcessingPage';
+import ProtectedRoute from './utils/ProtectedRoute';
 import './App.css'
 
 function App() {
@@ -16,14 +17,15 @@ function App() {
   return (
     <Routes>
       <Route index element={<LandingPage />}/>
-      <Route path="gallery" element={<GalleryPage />}/>
       <Route path="auth" element={<AuthPage />} />
-      <Route path="/reflection/:type/:id" element={<GuidedReflectionPage />} />
-      <Route path="/editing/:type/:id" element={<ImageEditingPage />} />
-      <Route path="upload" element={<UploadPage />} />
-      <Route path="profile" element={<UserProfilePage />} />
-      <Route path="/details/:type/:id" element={<DetailsPage />} />
-      <Route path="/processing/:jobId" element={<ProcessingPage />}/>
+
+      <Route path="gallery" element={<ProtectedRoute><GalleryPage /></ProtectedRoute>}/>
+      <Route path="/reflection/:type/:id" element={<ProtectedRoute><GuidedReflectionPage /></ProtectedRoute>} />
+      <Route path="/editing/:type/:id" element={<ProtectedRoute><ImageEditingPage /></ProtectedRoute>} />
+      <Route path="upload" element={<ProtectedRoute><UploadPage /></ProtectedRoute>} />
+      <Route path="profile" element={<ProtectedRoute><UserProfilePage /></ProtectedRoute>} />
+      <Route path="/details/:type/:id" element={<ProtectedRoute><DetailsPage /></ProtectedRoute>} />
+      <Route path="/processing/:jobId" element={<ProtectedRoute><ProcessingPage /></ProtectedRoute>}/>
 
       <Route path="*" element={<NotFoundPage />} />
     </Routes>

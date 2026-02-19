@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router';
 import { Button } from '../../components/Button';
 import { FormInput } from '../../components/FormInput';
 import { login } from '../../api/auth';
@@ -8,6 +9,8 @@ import './AuthForm.css';
 import axios from 'axios';
 
 export function SignInForm() {
+  const navigate = useNavigate();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,14 +23,14 @@ export function SignInForm() {
 
     try {
       const data = await login({ email, password });
-      localStorage.setItem("token", data.token);
+      localStorage.setItem("access_token", data.access_token);
 
-      // TODO: redirect here
+      navigate("/gallery");
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        if (err.response?.status === 401) {
-          setError("Invalid email or password");
-        }
+        setError(err.response?.data?.detail || "Invalid email or password");
+      } else {
+        setError("Something went wrong");
       }
     } finally {
       setLoading(false);

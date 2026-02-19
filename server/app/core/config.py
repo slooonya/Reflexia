@@ -10,6 +10,8 @@ class Settings(BaseSettings):
   DB_NAME: str
   OPENAI_API_KEY: str
   SECRET_KEY: str
+  ACCESS_TOKEN_EXPIRE_MINUTES: int
+  ALGORITHM: str
   YOUTUBE_API_KEY: str
 
 settings = Settings()

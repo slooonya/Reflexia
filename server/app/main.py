@@ -12,6 +12,7 @@ from app.routers.upload import router as upload_router
 from app.routers.jobs import router as jobs_router
 from app.routers.reflection import router as reflection_router
 from app.routers.profile import router as profile_router
+from app.routers.auth import router as auth_router
 
 import logging
 
@@ -51,6 +52,7 @@ app.include_router(upload_router)
 app.include_router(jobs_router)
 app.include_router(reflection_router)
 app.include_router(profile_router)
+app.include_router(auth_router)
 
 @app.get("/")
 async def root():

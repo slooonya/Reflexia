@@ -2,6 +2,7 @@ from beanie import Document, PydanticObjectId
 from datetime import datetime
 from typing import Literal, Optional
 
+
 class InsightEntry(Document):
   user_id: PydanticObjectId
   period_type: Literal["week", "month"]
@@ -14,5 +15,3 @@ class InsightEntry(Document):
 
   class Settings:
     name = "insights"
-
-  # TODO: add model config

@@ -1,9 +1,9 @@
-from beanie import Document
+from beanie import Document, PydanticObjectId
 from typing import List, Dict
 
 class ReflectionSession(Document):
-  user_id: str
-  insight_id: str
+  user_id: PydanticObjectId
+  insight_id: PydanticObjectId
   messages: List[Dict]
   summary: str
   current_step: int = 0

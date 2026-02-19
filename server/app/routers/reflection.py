@@ -1,20 +1,18 @@
-from fastapi import APIRouter, HTTPException
+from fastapi import APIRouter, HTTPException, Depends, status
 
 from app.services.ai_service import generate_chat_reply
 from app.services.reflection_service import  get_or_create_reflection_session
 from app.services.ai_service import generate_reflection_summary
 from app.models.reflection import ReflectionSession
+from app.models.user import User
 from app.schemas.reflection import ReflectionChatRequest, ReflectionStepUpdateRequest
-from app.services.users import get_dev_user
+from app.dependencies.auth import get_current_user
 
 
 router = APIRouter(prefix="/api/reflection", tags=["reflection"])
 
 @router.post("/chat")
-async def handle_reflection_chat(request: ReflectionChatRequest):
-
-  user = await get_dev_user()
-
+async def handle_reflection_chat(request: ReflectionChatRequest, user: User = Depends(get_current_user)):
   session = await get_or_create_reflection_session(str(user.id), request.insight_id)
 
   session.current_step = request.step
@@ -39,14 +37,11 @@ async def handle_reflection_chat(request: ReflectionChatRequest):
 
 
 @router.post("/complete/{insight_id}")
-async def complete_reflection(insight_id: str):
-
-  user = await get_dev_user()
-
+async def complete_reflection(insight_id: str, user: User = Depends(get_current_user)):
   session = await get_or_create_reflection_session(str(user.id), insight_id)
 
   if not session:
-    raise HTTPException(404)
+    raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
   
   session.summary = await generate_reflection_summary(session.messages)
   session.completed = True
@@ -57,9 +52,7 @@ async def complete_reflection(insight_id: str):
 
 
 @router.get("/session/{insight_id}")
-async def get_reflection_session(insight_id: str):
-  user = await get_dev_user()
-
+async def get_reflection_session(insight_id: str, user: User = Depends(get_current_user)):
   session = await get_or_create_reflection_session(str(user.id), insight_id)
 
   if not session:
@@ -73,9 +66,7 @@ async def get_reflection_session(insight_id: str):
 
 
 @router.get("/summary/{insight_id}")
-async def get_reflection_summary(insight_id: str):
-  user = await get_dev_user()
-
+async def get_reflection_summary(insight_id: str, user: User = Depends(get_current_user)):
   session = await ReflectionSession.find_one(
     ReflectionSession.user_id == str(user.id),
     ReflectionSession.insight_id == insight_id,
@@ -89,9 +80,7 @@ async def get_reflection_summary(insight_id: str):
 
 
 @router.post("/step")
-async def update_reflection_step(request: ReflectionStepUpdateRequest):
-  user = await get_dev_user()
-
+async def update_reflection_step(request: ReflectionStepUpdateRequest, user: User = Depends(get_current_user)):
   session = await get_or_create_reflection_session(str(user.id), request.insight_id)
   
   session.current_step = request.step

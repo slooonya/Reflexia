@@ -1,5 +1,5 @@
 from beanie import PydanticObjectId
-from pydantic import BaseModel
+from pydantic import BaseModel, ConfigDict
 from typing import Literal, Optional
 from datetime import datetime
 
@@ -12,7 +12,6 @@ class InsightCreate(BaseModel):
   summary: Optional[str] = None
   image_url: Optional[str] = None
 
-  # TODO: add model config
 
 class InsightOut(BaseModel):
   id: PydanticObjectId
@@ -21,20 +20,16 @@ class InsightOut(BaseModel):
   summary: Optional[str]
   image_url: Optional[str]
 
-  # TODO: add model config
-  model_config = {  
-    "from_attributes": True,
-  }
+  model_config = ConfigDict(
+    from_attributes=True,
+    populate_by_name=True
+  )
     
 
 class InsightUpdate(BaseModel):
   summary: Optional[str] = None
   image_url: Optional[str] = None
 
-  # TODO: add model config
-
 
 class ImageEditRequest(BaseModel):
   fixes: str
-
-  # TODO: add model config
