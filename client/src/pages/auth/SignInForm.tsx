@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router';
+import { useLocation, useNavigate } from 'react-router';
 import { Button } from '../../components/Button';
 import { FormInput } from '../../components/FormInput';
 import { login } from '../../api/auth';
@@ -10,6 +10,15 @@ import axios from 'axios';
 
 export function SignInForm() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const params = new URLSearchParams(location.search);
+  const reason = params.get("reason");
+
+  let message = location.state?.message;
+
+  if (reason === "expired") {
+    message = "Your session has expired. Please sign in again.";
+  }
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -24,6 +33,7 @@ export function SignInForm() {
     try {
       const data = await login({ email, password });
       localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("refresh_token", data.refresh_token)
 
       navigate("/gallery");
     } catch (err) {
@@ -35,6 +45,10 @@ export function SignInForm() {
     } finally {
       setLoading(false);
     }
+  }
+
+  function handleGoogleLogin() {
+    window.location.href = "/api/auth/google";
   }
 
   return (
@@ -50,6 +64,12 @@ export function SignInForm() {
         </div>
       )}
 
+      {message && !error && (
+        <div className="form-success-banner">
+          {message}
+        </div>
+      )}
+
       <FormInput type="email" placeholder="Email" value={email} onChange={setEmail} />
       <FormInput type="password" placeholder="Password" value={password} onChange={setPassword} />
 
@@ -61,7 +81,7 @@ export function SignInForm() {
         <div className="line" />
       </div>
 
-      <Button variant="secondary" icon={GoogleIcon}>Google</Button>
+      <Button variant="secondary" icon={GoogleIcon} onClick={handleGoogleLogin}>Google</Button>
     </div>
   );
 }

@@ -35,6 +35,7 @@ export function SignUpForm() {
     try {
       const data = await register({ email, password });
       localStorage.setItem("access_token", data.access_token);
+      localStorage.setItem("refresh_token", data.refresh_token);
 
       navigate("/gallery");
     } catch (err) {
@@ -46,6 +47,10 @@ export function SignUpForm() {
     } finally {
       setLoading(false);
     }
+  }
+
+  function handleGoogleLogin() {
+    window.location.href = "/api/auth/google";
   }
 
   return (
@@ -78,7 +83,7 @@ export function SignUpForm() {
         <div className="line" />
       </div>
 
-      <Button variant="secondary" icon={GoogleIcon}>Google</Button>
+      <Button variant="secondary" icon={GoogleIcon} onClick={handleGoogleLogin}>Google</Button>
     </div>
   );
 }

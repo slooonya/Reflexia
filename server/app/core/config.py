@@ -14,5 +14,9 @@ class Settings(BaseSettings):
   REFRESH_TOKEN_EXPIRE_DAYS: int
   ALGORITHM: str
   YOUTUBE_API_KEY: str
+  GOOGLE_CLIENT_ID: str
+  GOOGLE_CLIENT_SECRET: str
+  FRONTEND_URL: str
+  BACKEND_URL: str
 
 settings = Settings()

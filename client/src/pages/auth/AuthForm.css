@@ -40,6 +40,15 @@
   font-size: 14px;
 }
 
+.form-success-banner {
+  background: #f3fff3;
+  border: 1px solid #36e33c;
+  padding: 10px;
+  border-radius: 10px;
+  color: #36e33c;
+  font-size: 14px;
+}
+
 .primary-btn {
   padding: 14px;
   border-radius: 50px;

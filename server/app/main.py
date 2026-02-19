@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from starlette.middleware.sessions import SessionMiddleware
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 from contextlib import asynccontextmanager
@@ -35,6 +36,8 @@ async def lifespan(app: FastAPI):
 
 
 app = FastAPI(title=settings.APP_NAME, lifespan=lifespan)
+
+app.add_middleware(SessionMiddleware, secret_key=settings.SECRET_KEY)
 
 app.mount("/images", StaticFiles(directory=IMAGES_DIR), name="images")
 app.mount("/uploads", StaticFiles(directory=UPLOAD_DIR), name="uploads")
