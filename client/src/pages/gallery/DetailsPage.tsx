@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router';
+import { useLocation, useNavigate, useParams } from 'react-router';
+import { useInsight } from '../../hooks/useInsight';
+import { useInsights } from '../../hooks/useInsights';
 import { Polaroid } from '../../components/Polaroid';
 import { Navbar } from '../../components/Navbar';
 import { SummarySection } from './SummarySection';
 import { Button } from '../../components/Button';
 import { Loader } from '../../components/Loader';
-import { useInsight } from '../../hooks/useInsight';
-import { useInsights } from '../../hooks/useInsights';
 import { Toggle } from '../../components/Toggle';
+import { ImageOverlay } from '../../components/ImageOverlay';
 import { getReflectionSummary } from '../../api/reflection';
+import { toast } from 'sonner';
 
 import BackIcon from '../../assets/icons/back-icon.svg';
 import './DetailsPage.css';
@@ -16,16 +18,23 @@ import './DetailsPage.css';
 export function DetailsPage() {
   const { id, type } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [mode, setMode] = useState("Viewing");
   const [reflectionSummary, setReflectionSummary] = useState(null);
+  const [isImageOpen, setIsImageOpen] = useState(false);
 
   useEffect(() => {
     if (!id) return;
 
+    if (location.state?.sessionComplete) {
+      toast.success("Reflection session completed ✨");
+    }
+
     getReflectionSummary(id).then(response => {
       setReflectionSummary(response.summary);
     });
-  }, [id])
+  }, [id, location.state])
 
   const { data: entry } = useInsight(id);
   const { data: entries, loading } = useInsights();
@@ -53,7 +62,7 @@ export function DetailsPage() {
 
       <div className="details-page-content">
         <div className="details-left-container">
-          <div className="polaroid-container">
+          <div className="polaroid-container" onClick={() => setIsImageOpen(true)}>
             <Polaroid imageSrc={entry.image_url} caption={entry.period_label} />
           </div>
 
@@ -84,6 +93,10 @@ export function DetailsPage() {
           </div>
         </div>
       </div>
+
+      {isImageOpen && (
+        <ImageOverlay img={entry.image_url} onClose={() => setIsImageOpen(false)}/>
+      )}
     </>
   );
 }

@@ -54,7 +54,7 @@ export function SignUpForm() {
   }
 
   return (
-    <div className="auth-form signup">
+    <form className="auth-form signup" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
       <div className="form-intro">
         <h2>Create account</h2>
         <p>Begin your journey toward mindful media consumption.</p>
@@ -75,7 +75,7 @@ export function SignUpForm() {
       <FormInput type="password" placeholder="Confirm Password" value={confirmPassword} onChange={setConfirmPassword} 
                  onBlur={() => setClicked(c => ({ ...c, confirmPassword: true }))} error={confirmPasswordError} />
 
-      <Button disabled={!isValid || loading} onClick={handleSubmit}>Create account</Button>
+      <Button disabled={!isValid || loading} type="submit">Create account</Button>
 
       <div className="auth-divider">
         <div className="line" />
@@ -84,6 +84,6 @@ export function SignUpForm() {
       </div>
 
       <Button variant="secondary" icon={GoogleIcon} onClick={handleGoogleLogin}>Google</Button>
-    </div>
+    </form>
   );
 }

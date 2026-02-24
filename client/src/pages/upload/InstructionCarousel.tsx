@@ -1,14 +1,9 @@
 import { useState } from "react";
+import { ImageOverlay } from "../../components/ImageOverlay";
 
-import type { InstructionStep } from "./UploadPage";
-import CloseIcon from "../../assets/icons/close-icon.svg";
 import './InstructionCarousel.css';
 
-type InstructionCarouselProps = {
-  steps: InstructionStep[]
-}
-
-export function InstructionCarousel({ steps }: InstructionCarouselProps) {
+export function InstructionCarousel({ steps }) {
   const [currentStep, setCurrentStep] = useState(0);
   const [isImageOpen, setIsImageOpen] = useState(false);
 
@@ -45,10 +40,7 @@ export function InstructionCarousel({ steps }: InstructionCarouselProps) {
       </div>
 
       {isImageOpen && (
-        <div className="image-overlay" onClick={() => setIsImageOpen(false)}>
-          <img src={CloseIcon} className="close-icon" onClick={() => setIsImageOpen(false)}/>
-          <img src={steps[currentStep].image} />
-        </div>
+        <ImageOverlay img={steps[currentStep].image} onClose={() => setIsImageOpen(false)} />
       )}
     </>
   );

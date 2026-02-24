@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { Button } from '../../components/Button';
 import { FormInput } from '../../components/FormInput';
 import { removePfp, updateProfile, uploadPfp } from '../../api/profile';
+import { toast } from 'sonner';
 
 import './EditProfile.css';
 
@@ -48,13 +49,13 @@ export function EditProfile({ user, onProfileUpdated }) {
       const update = await updateProfile(payload);
       onProfileUpdated(update);
 
-      alert("Profile updated");
+      toast.success("Profile updated");
     } catch (err) {
       if (axios.isAxiosError(err)) {
-        const data = err.response?.data;
+        const detail = err.response?.data.detail;
 
-        if (data?.field) {
-          setServerErrors(prev => ({ ...prev, [data.field]: data.message }));
+        if (detail?.field) {
+          setServerErrors(prev => ({ ...prev, [detail.field]: detail.message }));
         }
       }
     }
@@ -65,7 +66,7 @@ export function EditProfile({ user, onProfileUpdated }) {
       const response = await uploadPfp(pfp);
       onProfileUpdated({ ...user, pfp_url: response.pfp_url });
     } catch {
-      alert("Upload failed");
+      toast.error("Upload failed");
     }
   }
 
@@ -108,7 +109,7 @@ export function EditProfile({ user, onProfileUpdated }) {
                    onChange={setConfirmPassword} error={confirmPasswordError}/>
       </div>
 
-      <Button disabled={!isValid} onClick={handleSubmit}>Confirm Changes</Button>
+      <Button disabled={!isValid || !hasChanges} onClick={handleSubmit}>Confirm Changes</Button>
     </>
   );
 }

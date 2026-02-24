@@ -4,9 +4,9 @@ import { Button } from '../../components/Button';
 import { FormInput } from '../../components/FormInput';
 import { login } from '../../api/auth';
 
+import axios from 'axios';
 import GoogleIcon from '../../assets/icons/google-icon.svg';
 import './AuthForm.css';
-import axios from 'axios';
 
 export function SignInForm() {
   const navigate = useNavigate();
@@ -52,7 +52,7 @@ export function SignInForm() {
   }
 
   return (
-    <div className="auth-form signin">
+    <form className="auth-form signin" onSubmit={(e) => { e.preventDefault(); handleSubmit(); }}>
       <div className="form-intro">
         <h2>Welcome back</h2>
         <p>Continue your journey toward mindful media consumption.</p>
@@ -73,7 +73,7 @@ export function SignInForm() {
       <FormInput type="email" placeholder="Email" value={email} onChange={setEmail} />
       <FormInput type="password" placeholder="Password" value={password} onChange={setPassword} />
 
-      <Button onClick={handleSubmit} disabled={loading || !email || !password }>Sign in with Email</Button>
+      <Button type="submit" disabled={loading || !email || !password }>Sign in with Email</Button>
 
       <div className="auth-divider">
         <div className="line" />
@@ -82,6 +82,6 @@ export function SignInForm() {
       </div>
 
       <Button variant="secondary" icon={GoogleIcon} onClick={handleGoogleLogin}>Google</Button>
-    </div>
+    </form>
   );
 }
