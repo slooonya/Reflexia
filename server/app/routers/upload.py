@@ -1,9 +1,9 @@
-from fastapi import APIRouter, Depends, UploadFile, File, HTTPException, status, BackgroundTasks
-from app.services.jobs_service import create_job
-from app.services.upload_job_service import process_upload_job
-from app.dependencies.auth import get_current_user
+from fastapi import APIRouter, Depends, UploadFile, File, BackgroundTasks
+
+from app.core.dependencies import get_current_user
 from app.models.user import User
-import json
+from app.services.upload.processing_service import ProcessingService
+from app.services.upload.upload_service import UploadService
 
 
 router = APIRouter(prefix="/api/upload", tags=["upload"])
@@ -14,17 +14,7 @@ async def upload_watch_history(
   bg: BackgroundTasks = BackgroundTasks(), 
   user: User = Depends(get_current_user)
 ):
-  if not file.filename.endswith(".json"):
-    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="File must be JSON")
-  
-  contents = await file.read()
-
-  try:
-    data = json.loads(contents)
-  except:
-    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Invalid JSON file")
-  
-  job_id = create_job(user_id=user.id)
-  bg.add_task(process_upload_job, job_id, data, user.id)
+  job_id, data = await UploadService.handle_watch_history_upload(file, user.id)
+  bg.add_task(ProcessingService.process_upload_job, job_id, data, str(user.id))
 
   return {"job_id": job_id}

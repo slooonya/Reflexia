@@ -1,97 +1,35 @@
-import uuid
-from fastapi import APIRouter, File, HTTPException, UploadFile, Depends, status
+from fastapi import APIRouter, File, UploadFile, Depends
 
 from app.schemas.profile import ProfileResponse, ProfileUpdateRequest
 from app.models.user import User
-from app.core.paths import UPLOAD_DIR
-from app.core.security import hash_password, verify_password
-from app.dependencies.auth import get_current_user
+from app.core.dependencies import get_current_user
+from app.services.profile_service import ProfileService
 
 
 router = APIRouter(prefix="/api/profile", tags=["profile"])
 
 @router.patch("/")
 async def update_profile(body: ProfileUpdateRequest, user: User = Depends(get_current_user)): 
-  if body.username:
-    exists = await User.find_one(
-      User.username == body.username,
-      User.id != user.id
-    )
+  updated_user = await ProfileService.update_profile(user, body)
 
-    if exists:
-      raise HTTPException(
-        status_code=status.HTTP_409_CONFLICT,
-        detail={
-          "field": "username",
-          "message": "Username already taken"
-        }
-      )
-    
-    user.username = body.username
-
-  if body.email:
-    exists = await User.find_one(
-      User.email == body.email,
-      User.id != user.id
-    )
-
-    if exists:
-      raise HTTPException(
-        status_code=status.HTTP_409_CONFLICT,
-        detail={
-          "field": "email",
-          "message": "Email already registered"
-        }
-      )
-    
-    user.email = body.email
-
-  if body.password:
-    if verify_password(body.password, user.password):
-      raise HTTPException(
-        status_code=status.HTTP_400_BAD_REQUEST,
-        detail={
-          "field": "password",
-          "message": "New password must be different"
-        }
-      )
-    
-    user.password = hash_password(body.password)
-
-  await user.save()
-
-  return {
-    "id": str(user.id),
-    "username": user.username,
-    "email": user.email,
-    "pfp_url": user.pfp_url
-  }
+  return ProfileResponse(
+    id=str(updated_user.id),
+    username=updated_user.username,
+    email=updated_user.email,
+    pfp_url=updated_user.pfp_url
+  )
 
 
 @router.patch("/pfp")
 async def upload_pfp(file: UploadFile = File(...), user: User = Depends(get_current_user)):
-  if not file.content_type.startswith("image/"):
-    raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="File must be an image")
-  
-  extension = file.filename.split(".")[-1]
-  filename = f"{uuid.uuid4()}.{extension}"
-  path = UPLOAD_DIR / filename
+  url = await ProfileService.upload_pfp(user, file)
 
-  contents = await file.read()
-
-  path.write_bytes(contents)
-
-  user.pfp_url = f"/uploads/{filename}"
-  await user.save()
-
-  return {"pfp_url": user.pfp_url}
+  return {"pfp_url": url}
 
 
 @router.delete("/pfp")
 async def remove_pfp(user: User = Depends(get_current_user)):
-  user.pfp_url = None
-  await user.save()
-
+  await ProfileService.remove_pfp(user)
   return {"ok": True}
 
     
