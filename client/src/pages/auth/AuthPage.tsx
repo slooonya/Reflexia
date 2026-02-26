@@ -5,6 +5,7 @@ import { SignInForm } from './SignInForm';
 import { PolaroidSwiper } from '../../components/PolaroidSwiper';
 
 import './AuthPage.css';
+import { Link } from 'react-router';
 
 export function AuthPage() {
   const [mode, setMode] = useState("Sign In");
@@ -15,7 +16,7 @@ export function AuthPage() {
 
       <div className="auth-page-content">
         <div className="auth-left-container">
-          <h1>Reflexia</h1>
+          <Link to="/" className="logo-link">Reflexia</Link>
           <div className="swiper-container">
             <PolaroidSwiper />
           </div>

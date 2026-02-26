@@ -42,7 +42,8 @@ api.interceptors.response.use(
         return api(originalRequest);
       } catch (refreshError) {
         processQueue(refreshError);
-        window.location.href = "/auth?reason=expired";
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
         return Promise.reject(refreshError);
       } finally {
         isRefreshing = false;

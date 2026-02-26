@@ -12,7 +12,11 @@
   justify-content: center;
 }
 
-.auth-left-container h1 {
+.logo-link {
+  font-size: 36px;
+  text-decoration: none;
+  font-family: var(--font-heading);
+  color: var(--color-accent);
   position: absolute;
   top: 24px;
   left: 48px;
@@ -74,7 +78,7 @@
     align-items: center;
   }
 
-  .auth-left-container h1 {
+  .logo-link  {
     top: 0;
     left: 0;
     position: relative;

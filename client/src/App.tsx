@@ -11,6 +11,7 @@ import { LandingPage } from './pages/landing/LandingPage';
 import { ProcessingPage } from './pages/processing/ProcessingPage';
 import { Toaster } from 'sonner';
 import ProtectedRoute from './utils/ProtectedRoute';
+
 import './App.css'
 
 function App() {
