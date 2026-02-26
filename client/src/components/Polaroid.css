@@ -4,7 +4,7 @@
   background: white;
   padding: 12px 12px 32px;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
-  border-radius: 10px;
+  border-radius: 1.5rem;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 1;
 }
@@ -13,7 +13,7 @@
   width: 100%;
   aspect-ratio: 3 / 4;
   object-fit: cover;
-  border-radius: 5px;
+  border-radius: 1rem;
 }
 
 .polaroid-caption {

@@ -16,7 +16,6 @@ html, body {
   color: black;
   line-height: 1.5;
   background-color: var(--color-base);
-  overflow-x: hidden;
   scroll-behavior: smooth;
 }
 

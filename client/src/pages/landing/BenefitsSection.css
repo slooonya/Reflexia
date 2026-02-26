@@ -5,3 +5,14 @@
   display: flex;
   justify-content: center;
 }
+
+.benefits h2 {
+  font-size: 2.5rem;
+  color: black;
+}
+
+@media (max-width: 768px) {
+  .benefits h2 {
+    font-size: 2rem;
+  }
+}

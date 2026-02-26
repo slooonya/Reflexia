@@ -4,7 +4,6 @@ import { FeaturesSection } from "./FeaturesSection";
 import { FooterSection } from "./FooterSection";
 import { HeroSection } from "./HeroSection";
 import { SolutionSection } from "./SolutionSection";
-import './LandingPage.css';
 
 export function LandingPage() {
   return (
