@@ -13,7 +13,7 @@ export function SignInForm() {
   const location = useLocation();
   const params = new URLSearchParams(location.search);
   const reason = params.get("reason");
-
+ 
   let message = location.state?.message;
 
   if (reason === "expired") {
@@ -25,6 +25,16 @@ export function SignInForm() {
 
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+
+  function handleEmailChange(value: string) {
+    setEmail(value);
+    if (error) setError("");
+  }
+
+  function handlePasswordChange(value: string) {
+    setPassword(value);
+    if (error) setError("");
+  }
 
   async function handleSubmit() {
     setLoading(true);
@@ -64,16 +74,16 @@ export function SignInForm() {
         </div>
       )}
 
-      {message && !error && (
+      {message && !error && !email && !password && (
         <div className="form-success-banner">
           {message}
         </div>
       )}
 
-      <FormInput type="email" placeholder="Email" value={email} onChange={setEmail} />
-      <FormInput type="password" placeholder="Password" value={password} onChange={setPassword} />
+      <FormInput type="email" placeholder="Email" value={email} onChange={handleEmailChange} />
+      <FormInput type="password" placeholder="Password" value={password} onChange={handlePasswordChange} />
 
-      <Button type="submit" disabled={loading || !email || !password }>Sign in with Email</Button>
+      <Button type="submit" disabled={loading || !email || !password || error != ""}>Sign in with Email</Button>
 
       <div className="auth-divider">
         <div className="line" />

@@ -14,7 +14,7 @@ class AuthService:
     user = await User.find_one(User.email == email)
 
     if not user or not verify_password(password, user.password):
-      raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid credentials")
+      raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Invalid username or password")
     
     if user.is_google_account:
       raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="Please sign in with Google")
