@@ -30,6 +30,7 @@
 .gallery-view-container {
   display: grid;
   animation: fade 1s forwards;
+  overflow-x: hidden;
 }
 
 .gallery-view-container > * {

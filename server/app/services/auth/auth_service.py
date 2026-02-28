@@ -1,6 +1,6 @@
 import jwt
 
-from fastapi import HTTPException, status
+from fastapi import Cookie, HTTPException, status
 
 from app.core.security import create_access_token, create_refresh_token, hash_password, verify_password
 from app.services.auth.oauth_client import oauth
@@ -68,7 +68,7 @@ class AuthService:
     }
   
 
-  async def refresh(refresh_token: str):
+  async def refresh(refresh_token: str = Cookie(None)):
     if not refresh_token:
       raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Missing refresh token")
     

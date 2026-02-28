@@ -4,23 +4,14 @@ import { AuthContext } from "./AuthContext";
 
 export function AuthProvider({ children }) {
   const [authenticated, setAuthenticated] = useState(false);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const checkAuth = async () => {
-      const token = localStorage.getItem("access_token");
-
-      if (!token) {
-        setAuthenticated(false);
-        setLoading(false);
-        return;
-      }
-
       try {
         await api.get("/auth/me");
         setAuthenticated(true);
       } catch {
-        localStorage.removeItem("access_token");
         setAuthenticated(false);
       } finally {
         setLoading(false);

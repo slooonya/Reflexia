@@ -8,10 +8,10 @@
 }
 
 .swiper-slide {
-  border-radius: 10px;
+  border-radius: 22px;
   display: flex;
 }
 
 .swiper-slide-shadow {
-  border-radius: 10px;
+  border-radius: 24px;
 }

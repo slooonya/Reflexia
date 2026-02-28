@@ -41,10 +41,7 @@ export function SignInForm() {
     setError("");
 
     try {
-      const data = await login({ email, password });
-      localStorage.setItem("access_token", data.access_token);
-      localStorage.setItem("refresh_token", data.refresh_token)
-
+      await login({ email, password });
       navigate("/gallery");
     } catch (err) {
       if (axios.isAxiosError(err)) {

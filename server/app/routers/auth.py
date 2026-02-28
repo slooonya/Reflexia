@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Cookie, Depends, Request
 from fastapi.responses import JSONResponse, RedirectResponse
 
-from app.schemas.auth import LoginRequest, RegisterRequest, Token
+from app.schemas.auth import LoginRequest, RegisterRequest
 from app.models.user import User
 from app.services.auth.auth_service import AuthService
 from app.services.auth.oauth_client import oauth
@@ -11,7 +11,7 @@ from app.core.dependencies import get_current_user
 
 router = APIRouter(prefix="/api/auth", tags=["auth"])
 
-@router.post("/login", response_model=Token)
+@router.post("/login")
 async def login(body: LoginRequest):
   tokens = await AuthService.login(body.email, body.password)
 
