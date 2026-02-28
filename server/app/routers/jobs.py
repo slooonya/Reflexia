@@ -10,7 +10,8 @@ router = APIRouter(prefix="/api/jobs", tags=["jobs"])
 @router.get("/{job_id}")
 def read_job(job_id: str, user: User = Depends(get_current_user)):
   job = JobManager.get_job(job_id)
-  if not job or job["user_id"] != user.id:
+
+  if not job or job["user_id"] != str(user.id):
     raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Job not found")
   
   return job

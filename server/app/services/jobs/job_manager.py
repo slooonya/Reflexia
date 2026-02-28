@@ -2,10 +2,12 @@ jobs = {}
 
 class JobManager:
 
-  def create_job():
+  def create_job(user_id: str):
     import uuid
     job_id = str(uuid.uuid4())
+
     jobs[job_id] = {
+      "user_id": str(user_id),
       "status": "processing",
       "progress": 0
     }

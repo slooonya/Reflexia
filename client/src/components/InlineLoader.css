@@ -12,3 +12,7 @@
   border-width: 3px;
   font-weight: 600;
 }
+
+.inline-loader p {
+  font-weight: 600;
+}

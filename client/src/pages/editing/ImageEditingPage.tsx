@@ -33,12 +33,15 @@ export function ImageEditingPage() {
 
     setStep("loading");
 
-    const response = await editInsightImage(id, userFixes);
-
-    setFixes(response.fixesSummary);
-    setResultImage(response.imageUrl);
-
-    setStep("result");
+    try {
+      const response = await editInsightImage(id, userFixes);
+      setFixes(response.fixesSummary);
+      setResultImage(response.imageUrl);
+      setStep("result");
+    } catch (err) {
+      console.error(err);
+      setStep("input");
+    }
   }
 
   function retry() {

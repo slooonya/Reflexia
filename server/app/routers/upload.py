@@ -15,6 +15,6 @@ async def upload_watch_history(
   user: User = Depends(get_current_user)
 ):
   job_id, data = await UploadService.handle_watch_history_upload(file, user.id)
-  bg.add_task(ProcessingService.process_upload_job, job_id, data, str(user.id))
+  bg.add_task(ProcessingService.process_upload_job, job_id, data, user.id)
 
   return {"job_id": job_id}

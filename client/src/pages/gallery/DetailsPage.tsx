@@ -43,7 +43,9 @@ export function DetailsPage() {
 
   const sameTypeData = entries
     .filter(e => e.period_type === entry.period_type)
-    .sort((a, b) => a.period_start.localeCompare(b.period_start));
+    .sort((a, b) =>
+    new Date(a.period_start).getTime() -
+    new Date(b.period_start).getTime());
 
   const index = sameTypeData.findIndex(e => e.id === entry.id);
   

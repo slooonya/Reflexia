@@ -10,7 +10,7 @@ class ProcessingService:
     JobManager.update_progress(job_id, base=0, weight=5)
     
     # TODO: setting the time period to one week to avoid token waste, change this to a longer time period later
-    intervals = YouTubeService.create_week_intervals(data, 1)
+    intervals = YouTubeService.create_week_intervals(data, 5)
     JobManager.update_progress(job_id, base=5, weight=10)
 
     await ProcessingService.process_watch_history(data, user_id, intervals, job_id)
@@ -35,7 +35,7 @@ class ProcessingService:
 
       if insight:
         insights.append(insight) 
-    
+
     weekly_count = await InsightEntry.find(
       InsightEntry.user_id == user_id,
       InsightEntry.period_type == "week"

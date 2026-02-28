@@ -2,20 +2,20 @@ import json
 import base64
 import uuid
 
-from openai import OpenAI
+from openai import AsyncOpenAI
 
 from app.core.config import settings
 from app.core.paths import IMAGES_DIR
 from app.utils.randomizer import pick_step_prompt
 
-client = OpenAI(api_key=settings.OPENAI_API_KEY)
+client = AsyncOpenAI(api_key=settings.OPENAI_API_KEY)
 
-DEBUG_AI = True
+DEBUG_AI = False
 
 class AIService:
 
   # TODO: compose a better prompt
-  def generate_weekly_summary(metadata: list[dict]) -> str:
+  async def generate_weekly_summary(metadata: list[dict]) -> str:
     if DEBUG_AI:
       return f"Test weekly summary ({len(metadata)} videos)"
 
@@ -43,7 +43,7 @@ class AIService:
     {json.dumps(metadata, ensure_ascii=False)}
     """
     try:
-      response = client.responses.create(
+      response = await client.responses.create(
         model="gpt-5-mini",
         input=prompt
       )
@@ -55,7 +55,7 @@ class AIService:
 
 
   # TODO: compose a better prompt
-  def generate_weekly_image_generation_prompt(summary: str) -> str:
+  async def generate_weekly_image_generation_prompt(summary: str) -> str:
     if DEBUG_AI:
       return f"Test weekly image prompt from {summary}"
 
@@ -63,9 +63,6 @@ class AIService:
     Create an image prompt that visually represents the user's media consumption patterns.
 
     Include:
-    - Objects symbolizing content themes
-    - Mood lighting
-    - Environment
     - Color palette reflecting emotional tone
     - Visual metaphors where appropriate
 
@@ -75,10 +72,12 @@ class AIService:
 
     Summary of user's viewing:
     {summary}
+
+    Return only the prompt
     """ 
 
     try:
-      response = client.responses.create(
+      response = await client.responses.create(
         model="gpt-5-mini",
         input=prompt
       )
@@ -90,7 +89,7 @@ class AIService:
 
 
   # TODO: compose a better prompt
-  def generate_monthly_summary(weekly_summaries: list[str]) -> str:
+  async def generate_monthly_summary(weekly_summaries: list[str]) -> str:
     if DEBUG_AI:
       return f"Test monthly summary from weekly summaries"
 
@@ -119,7 +118,7 @@ class AIService:
     {combined_summaries}
     """
     try:
-      response = client.responses.create(
+      response = await client.responses.create(
         model="gpt-5-mini",
         input=prompt
       )
@@ -131,7 +130,7 @@ class AIService:
 
 
   # TODO: compose a better prompt
-  def generate_monthly_image_generation_prompt(weekly_summaries: list[str]) -> str:
+  async def generate_monthly_image_generation_prompt(weekly_summaries: list[str]) -> str:
     if DEBUG_AI:
       return f"Test monthly image prompt ({len(weekly_summaries)} summaries)"
 
@@ -141,21 +140,22 @@ class AIService:
     Create an image prompt that visually represents a month of user's media consumption.
 
     Include:
-    - Symbolic elements for dominant themes
-    - Mood lighting
+    - Dominant themes
     - Sense of time or progression
     - Color palette tied to emotional tone
 
     Rules:
-    - INo text overlays
+    - No text overlays
     - Avoid inferring a user's appearance
 
     Weekly summaries:
     {combined_summaries}
+
+    Return only the prompt
     """
     
     try:
-      response = client.responses.create(
+      response = await client.responses.create(
         model="gpt-5-mini",
         input=prompt
       )
@@ -166,19 +166,20 @@ class AIService:
     return response.output_text
 
 
-  def generate_image(image_prompt: str) -> str:
+  async def generate_image(image_prompt: str) -> str:
     if DEBUG_AI:
       return "/images/test.png"
 
     try:
-      response = client.responses.create(
+      response = await client.responses.create(
         model="gpt-5",
         input=image_prompt,
         tools=[{"type": "image_generation"}],
       )
       print(response.output_text)
     except Exception as e:
-      print("AI call failed", e)
+      print("Error generating image", e)
+      raise RuntimeError(f"Image generation failed: {e}")
 
     image_data = [
       output.result
@@ -224,7 +225,7 @@ class AIService:
 
 
   ASSISTANT_PROMPT = """
-  You are a guided reflection assistant helping users examine their media consumption using the Gibbs reflective cycle.
+  You are a guided reflection assistant helping users examine their YouTube media consumption using the Gibbs reflective cycle.
 
   Style:
   - Warm, calm, non-judgmental
@@ -242,13 +243,15 @@ class AIService:
   - Optional bullet points
   - Use **bold highlights**
   - Max 90 words
+
+  Return only the prompt
   """
 
   async def generate_chat_reply(messages, step):
 
     step_prompt = pick_step_prompt(step)
 
-    response = client.chat.completions.create(
+    response = await client.chat.completions.create(
       model="gpt-5-mini",
       messages=[
         {"role": "system", "content": AIService.ASSISTANT_PROMPT + 
@@ -280,7 +283,7 @@ class AIService:
     - Use **bold highlights** for key insights
     """
 
-    response = client.chat.completions.create(
+    response = await client.chat.completions.create(
       model="gpt-5-mini",
       messages=[
         {"role": "system", "content": prompt},

@@ -1,5 +1,5 @@
 import re
-import requests
+import httpx
 
 from datetime import datetime, timedelta
 
@@ -14,15 +14,17 @@ YOUTUBE_URL = "https://www.googleapis.com/youtube/v3/videos"
 
 class YouTubeService:
 
-  def get_video_metadata(video_id: str) -> dict:
+  client = httpx.AsyncClient(timeout=10)
+
+  async def get_video_metadata(video_id: str) -> dict:
     try:
       params = {
         "part": "snippet",
         "id": video_id,
         "key": settings.YOUTUBE_API_KEY
       }
-
-      response = requests.get(YOUTUBE_URL, params=params, timeout=10)
+      
+      response = await YouTubeService.client.get(YOUTUBE_URL, params=params)
       data = response.json()
 
     except Exception as e:

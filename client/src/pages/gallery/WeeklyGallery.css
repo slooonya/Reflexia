@@ -2,7 +2,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   gap: 80px;
-  padding: 100px 24px 24px 24px;
+  padding: 100px 24px 36px 24px;
 }
 
 .gallery-grid > :nth-child(3n + 1) {

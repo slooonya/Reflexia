@@ -36,9 +36,9 @@ export function MonthlyGallery({ weekly, monthly }) {
   return (
     <>
       <div className="monthly-gallery-grid">  
-        {items.map(item => {
+        {items.map((item, index) => {
           if (item.empty) {
-            return <div className="grid-slot"></div>;
+            return <div className="grid-slot" key={`empty-${index}`}></div>;
           }
 
           const weeks = getWeeksForMonth(item);

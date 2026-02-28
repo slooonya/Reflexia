@@ -1,4 +1,5 @@
 from fastapi import HTTPException, status
+from beanie import PydanticObjectId
 
 from app.models.reflection import ReflectionSession
 from app.services.ai_service import AIService
@@ -11,7 +12,7 @@ class ReflectionService:
 
     session.current_step = step
 
-    session.message.append({
+    session.messages.append({
       "role": "user",
       "content": message,
       "step": step
@@ -34,8 +35,8 @@ class ReflectionService:
 
   async def get_or_create_reflection_session(user_id: str, insight_id: str):
     session = await ReflectionSession.find_one(
-      ReflectionSession.user_id == user_id,
-      ReflectionSession.insight_id == insight_id,
+      ReflectionSession.user_id == PydanticObjectId(user_id),
+      ReflectionSession.insight_id == PydanticObjectId(insight_id),
       ReflectionSession.completed == False
     )
 
@@ -55,7 +56,13 @@ class ReflectionService:
   
 
   async def get_session(user_id: str, insight_id: str):
-    session = await ReflectionService.get_or_create_reflection_session(user_id, insight_id)
+    session =await ReflectionSession.find_one(
+      ReflectionSession.user_id == PydanticObjectId(user_id),
+      ReflectionSession.insight_id == PydanticObjectId(insight_id),
+      ReflectionSession.completed == False
+    )
+
+    if not session: return { "exists": False } 
 
     return {
       "exists": True,

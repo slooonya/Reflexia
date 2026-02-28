@@ -17,6 +17,8 @@ class InsightOut(BaseModel):
   id: PydanticObjectId
   period_type: str
   period_label: str
+  period_start: Optional[datetime]
+  period_end: Optional[datetime]
   summary: Optional[str]
   image_url: Optional[str]
 
