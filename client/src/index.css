@@ -1,6 +1,6 @@
 :root {
   --font-heading: 'Cooper Black', Georgia, serif;
-  --font-body: sans-serif;
+  --font-body: 'Satoshi', sans-serif;
   --color-accent: #413326;
   --color-base: #F6E9DB;
 }
@@ -17,6 +17,21 @@ html, body {
   line-height: 1.5;
   background-color: var(--color-base);
   scroll-behavior: smooth;
+}
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent);
+  border: 3px solid var(--color-base);
+  border-radius: 1rem;
+  background-clip: content-box;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
 }
 
 h1, h2 {

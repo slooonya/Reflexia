@@ -80,6 +80,10 @@
   transform: none;
 }
 
+span {
+  font-family: var(--font-body);
+}
+
 @media (max-width: 768px) {
   .btn {
     padding: 12px 16px;

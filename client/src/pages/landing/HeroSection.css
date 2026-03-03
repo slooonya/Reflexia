@@ -75,7 +75,10 @@
   font-size: 24px;
   font-family: var(--font-heading);
   z-index: 10;
-  margin-top: 12px;
+}
+
+.auth-btn span {
+  font-family: var(--font-heading);
 }
 
 @media (max-width: 768px) {
@@ -109,7 +112,7 @@
   .hero-content p {
     font-size: 12px;
     line-height: 1.2;
-    padding: 0 20px;
+    padding: 4px 20px;
   }
 
   .auth-btn {
