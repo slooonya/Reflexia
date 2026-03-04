@@ -35,12 +35,9 @@
   border-top-right-radius: 6px;
 }
 
-.chat-bubble div.collapsed {
-  display: -webkit-box;
-  -webkit-line-clamp: 4;
-  line-clamp: 4;
-  -webkit-box-orient: vertical;
+.chat-text {
   overflow: hidden;
+  transition: max-height 0.5s ease;
 }
 
 .expand-btn {

@@ -1,5 +1,6 @@
 .footer {
-  height: 50dvh;
+  position: relative;
+  min-height: 50dvh;
   background: white;
   margin: 0 150px;
   border-radius: 50px 50px 0 0;

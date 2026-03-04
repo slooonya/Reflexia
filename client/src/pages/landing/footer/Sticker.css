@@ -1,0 +1,45 @@
+.sticker {
+  position: absolute;
+  cursor: grab;
+  user-select: none;
+  pointer-events: auto;
+  z-index: 1;
+}
+
+.sticker-1 {
+  bottom: 80px;
+  left: 100px;
+  width: 100px;
+}
+
+.sticker-2 {
+  top: -40px;
+  right: 60px;
+  width: 100px;
+}
+
+.sticker-3 {
+  bottom: 10px;
+  right: 180px;
+  width: 80px;
+}
+
+@media (max-width: 768px) {
+  .sticker {
+    width: 60px;
+  }
+
+  .sticker-1 {
+    display: none;
+  }
+
+  .sticker-2 {
+    top: 150px;
+    right: 30px;
+  }
+
+  .sticker-3 {
+    right: 290px;
+    bottom: 180px;
+  }
+}

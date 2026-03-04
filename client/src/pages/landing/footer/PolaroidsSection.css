@@ -1,0 +1,61 @@
+.polaroids-demo {
+  position: relative;
+}
+
+.sticky-container {
+  position: sticky;
+  top: 0;
+  height: 140dvh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.row {
+  display: flex;
+  gap: 2rem;
+  white-space: nowrap;
+  will-change: transform;
+}
+
+.row.top {
+  padding-top: 30px;
+}
+
+.row.bottom {
+  padding-bottom: 60px;
+}
+
+.row > * {
+  flex-shrink: 0;
+}
+
+.polaroid-slot {
+  width: 220px;
+}
+
+.polaroid-slot:nth-child(3n) {
+  transform: rotate(-3deg);
+}
+
+.polaroid-slot:nth-child(4n) {
+  transform: rotate(1.5deg);
+}
+
+@media (max-width: 768px) {
+  .polaroids-demo {
+    padding: 60px 0;
+    height: 130dvh;
+  }
+
+  .sticky-container {
+    height: 85dvh;
+    top: 2rem;
+  }
+
+  .row.bottom {
+    padding-bottom: 30px;
+  }
+}

@@ -69,13 +69,13 @@ export function DetailsPage() {
           </div>
 
           <div className="controls">
-            <button className={`${!prev ? "disabled" : ""}`} 
-                    onClick={() => navigate(`/details/${type}/${prev.id}`)}>
+            <button className={`${!next ? "disabled" : ""}`} 
+                    onClick={() => navigate(`/details/${type}/${next.id}`)}>
               ‹
             </button>
 
-            <button className={`${!next ? "disabled" : ""}`}
-                    onClick={() => navigate(`/details/${type}/${next.id}`)}>
+            <button className={`${!prev ? "disabled" : ""}`}
+                    onClick={() => navigate(`/details/${type}/${prev.id}`)}>
               ›
             </button>
           </div>

@@ -1,15 +1,15 @@
-.features {
-  padding: 120px 50px;
+.how-it-works {
+  padding: 90px 50px;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.features h2 {
+.how-it-works h2 {
   font-size: 2.5rem;
 }
 
-.features-container {
+.how-it-works-container {
   margin-top: 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -18,14 +18,15 @@
   align-items: flex-start;
 }
 
-.features-left {
+.how-it-works-left {
   position: sticky;
-  top: 100px;
+  top: 25vh;
   padding: 1rem;
   background: white;
   border-radius: 42px;
   width: 100%;
   aspect-ratio: 4 / 3;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
 .image-frame {
@@ -36,7 +37,7 @@
   border-radius: 28px;
 }
 
-.feature-image {
+.step-image {
   position: absolute;
   inset: 0;
   width: 100%;
@@ -48,35 +49,35 @@
   transition: opacity 0.6s ease, transform 0.6s ease;
 }
 
-.feature-image.active {
+.step-image.active {
   opacity: 1;
   transform: scale(1);
 }
 
-.features-right {
+.how-it-works-right {
   display: flex;
   flex-direction: column;
   gap: 60px;
 }
 
-.features-right > :nth-child(odd){
+.how-it-works-right > :nth-child(odd){
   transform: rotate(1deg)
 }
 
-.features-right > :nth-child(even){
+.how-it-works-right > :nth-child(even){
   transform: rotate(-1deg)
 }
 
 @media (max-width: 768px) {
-  .features {
+  .how-it-works {
     padding: 60px 50px;
   }
 
-  .features h2 {
+  .how-it-works h2 {
     font-size: 2rem;
   }
 
-  .features-container {
+  .how-it-works-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -84,7 +85,7 @@
     gap: 50px;
   }
 
-  .features-left {
+  .how-it-works-left {
     position: initial;
     margin-top: 2rem;
   }

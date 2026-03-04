@@ -19,7 +19,9 @@
 }
 
 .form-intro {
-  gap: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
 .form-intro h2 {

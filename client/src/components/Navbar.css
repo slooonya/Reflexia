@@ -29,6 +29,7 @@
 .navbar-link {
   position: relative;
   font-size: 14px;
+  font-weight: 500;
   color: white;
   text-decoration: none;
   padding: 6px 10px;

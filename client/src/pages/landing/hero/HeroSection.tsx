@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
-import { Button } from '../../components/Button';
+import { Button } from '../../../components/Button';
 
-import ParallaxGirl from '../../assets/images/parallax-girl.png';
-import ParallaxBackground from '../../assets/images/parallax-background.png';
-import ParallaxPollaroids from '../../assets/images/parallax-polaroids.png';
+import ParallaxGirl from '../../../assets/images/parallax-girl.png';
+import ParallaxBackground from '../../../assets/images/parallax-background.png';
+import ParallaxPollaroids from '../../../assets/images/parallax-polaroids.png';
 import './HeroSection.css';
 
 export function HeroSection() {

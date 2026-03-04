@@ -44,7 +44,7 @@
 
 .modal-actions {
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   gap: 12px;
   margin-top: 24px;
 }

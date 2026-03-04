@@ -1,0 +1,33 @@
+.faq-item {
+  padding: 18px 20px;
+  border-radius: 1.5rem;
+  border: 2px solid rgb(197, 197, 197);
+  box-shadow: 0 6px rgb(197, 197, 197);
+}
+
+.question {
+  width: 100%;
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 600;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0;
+}
+
+.faq-icon {
+  width: 32px;
+  height: 32px;
+}
+
+.answer {
+  margin-top: 0.5rem;
+}
+
+.answer p {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #555;
+}

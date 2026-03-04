@@ -1,5 +1,5 @@
 .upload-page-content {
-  padding: 150px 50px 0 80px;
+  padding: 120px 50px 0 80px;
   display: grid;
   grid-template-columns: 1fr 2fr;
   align-items: start;
@@ -28,6 +28,7 @@
 .upload-left-container p {
   font-size: 16px;
   color: grey;
+  line-height: 1.7;
 }
 
 .processing-btn {

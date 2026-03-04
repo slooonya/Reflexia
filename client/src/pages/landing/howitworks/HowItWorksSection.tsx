@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
-import { FeatureCard } from './FeatureCard';
-import { features } from './featuresData';
+import { StepCard } from './StepCard';
+import { steps } from './stepsData';
 
-import './FeaturesSection.css';
+import './HowItWorksSection.css';
 
-export function FeaturesSection() {
+export function HowItWorksSection() {
   const [activeIndex, setActiveIndex] = useState(0);
   const refs = useRef<(HTMLDivElement | null)[]>([]);
 
@@ -35,22 +35,22 @@ export function FeaturesSection() {
   }, []);
 
   return (
-    <section className="features" id="features">
-      <h2>Features</h2>
+    <section className="how-it-works" id="how-it-works">
+      <h2>How It Works</h2>
 
-      <div className="features-container">
-        <div className="features-left">
+      <div className="how-it-works-container">
+        <div className="how-it-works-left">
           <div className="image-frame">
-            {features.map((feature, index) => (
-              <img key={index} src={feature.image} className={`feature-image ${index === activeIndex ? "active" : ""}`} />
+            {steps.map((step, index) => (
+              <img key={index} src={step.image} className={`step-image ${index === activeIndex ? "active" : ""}`} />
             ))}
           </div>
         </div>
 
-        <div className="features-right">
-          {features.map((feature, index) => (
+        <div className="how-it-works-right">
+          {steps.map((step, index) => (
             <div key={index} ref={(el) => {refs.current[index] = el;}}>
-              <FeatureCard title={feature.title} description={feature.description} icon={feature.icon}/>
+              <StepCard title={step.title} description={step.description} icon={step.icon}/>
             </div>
           ))}
         </div>

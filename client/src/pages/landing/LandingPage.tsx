@@ -1,9 +1,10 @@
 import { Navbar } from "../../components/Navbar";
-import { BenefitsSection } from "./BenefitsSection";
-import { FeaturesSection } from "./FeaturesSection";
-import { FooterSection } from "./FooterSection";
-import { HeroSection } from "./HeroSection";
-import { SolutionSection } from "./SolutionSection";
+import { FAQsSection } from "./faqs/FAQsSection";
+import { HowItWorksSection } from "./howitworks/HowItWorksSection";
+import { FooterSection } from "./footer/FooterSection";
+import { HeroSection } from "./hero/HeroSection";
+import { SolutionSection } from "./solution/SolutionSection";
+import { PolaroidsSection } from "./footer/PolaroidsSection";
 
 export function LandingPage() {
   return (
@@ -15,8 +16,9 @@ export function LandingPage() {
       <div className="landing-page-content">
         <HeroSection />
         <SolutionSection />
-        <BenefitsSection />
-        <FeaturesSection />
+        <HowItWorksSection />
+        <FAQsSection />
+        <PolaroidsSection />
         <FooterSection />
       </div>
     </>

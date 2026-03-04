@@ -8,7 +8,7 @@ export function Loader() {
 
       <div className="loader-container">
         <div className="loader"></div>
-        <p>LOADING</p>
+        <p>Loading</p>
       </div>
     </>
   );

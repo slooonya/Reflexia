@@ -42,8 +42,8 @@ export function Navbar({ mode = "app" }) {
         {mode === "landing" && (
           <>
             <a href="#solution" className="navbar-link"> Solution</a>
-            <a href="#benefits" className="navbar-link">Benefits</a>
-            <a href="#features" className="navbar-link">Features</a>
+            <a href="#how-it-works" className="navbar-link">Features</a>
+            <a href="#faqs" className="navbar-link">FAQs</a>
           </>
         )}
       </div>
