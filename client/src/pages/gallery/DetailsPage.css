@@ -24,7 +24,7 @@
 .controls {
   display: flex;
   justify-content: center;
-  gap: 24px;
+  gap: 2rem;
 }
 
 .controls button {
@@ -103,6 +103,12 @@
   pointer-events: none;
 }
 
+.action-btns {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+}
+
 @media (max-width: 768px) {
   .details-page-content {
     display: flex;
@@ -112,7 +118,7 @@
   }
 
   .details-right-container {
-    padding: 30px 100px;
+    padding: 20px 40px;
   }
 
   .summary-mode-container.reflection .summary-mode.viewing {

@@ -20,24 +20,39 @@ class AIService:
       return f"Test weekly summary ({len(metadata)} videos)"
 
     prompt = f"""
-    Analyze this YouTube watch history metadata.
+    You are analyzing a user's YouTube watch history to support **self-reflection**.
 
-    Write a reflective viewing summary.
+    Your goal is to describe patterns in a clear and structured way so the user can notice their own media habits.
 
-    Include:
-    - Dominant content themes
-    - Repeated topics or formats
-    - Style of content (educational, entertainment, commentary, etc.)
-    - Emotional tone
-    - Variety vs repetition
+    IMPORTANT:
+    - Be neutral and observational
+    - Do NOT judge the user
+    - Do NOT give advice
+    - DO NOT speculate about the user's identity
+    - Base observations only on the provided metadata
 
-    Rules:
-    - Do NOT judge or give advice
-    - Be neutral
+    Write a **concise summary of viewing** using the following format:
 
-    Format:
-    - 2 short paragraphs
-    - Use **bold highlights** for main themes 
+    **Main Themes**
+    - 3-5 dominant topics appearing in the viewing history
+    - Highlight important themes in **bold**
+
+    **Content Style**
+    Describe the type of content watched. Examples: educational, commentary, entertainment, tutorials, news, short-form clips.
+
+    **Viewing Patterns**
+    Describe noticeable patterns such as:
+    - Repetition of certain topics or creators
+    - Balance between different types of content
+    - Whether the viewing feels focused or varied
+
+    **Emotional Tone**
+    Describe the general mood suggested by the content (e.g., calm, dramatic, humorous, intense).
+
+    **Overall Picture**
+    Write 2-3 sentences summarizing what this week of viewing **feels like**.
+
+    Keep the tone reflective and descriptive.
 
     Metadata:
     {json.dumps(metadata, ensure_ascii=False)}
@@ -55,25 +70,41 @@ class AIService:
 
 
   # TODO: compose a better prompt
-  async def generate_weekly_image_generation_prompt(summary: str) -> str:
+  async def generate_weekly_image_generation_prompt(metadata: list[dict]) -> str:
     if DEBUG_AI:
-      return f"Test weekly image prompt from {summary}"
+      return f"Test weekly image prompt from ({len(metadata)} videos)"
 
     prompt = f"""
-    Create an image prompt that visually represents the user's media consumption patterns.
+    You are creating a prompt for an image generation model.
 
-    Include:
-    - Color palette reflecting emotional tone
-    - Visual metaphors where appropriate
+    The goal is to visually represent a person's **YouTube viewing patterns for the week**.
+
+    IMAGE PROMPT REQUIREMENTS
+
+    1. Scene
+    Describe a detailed environment that represents the viewing habits.
+
+    2. Visual Metaphors
+    Translate themes in the summary into symbolic objects or environments.
+
+    3. Color Palette
+    Choose colors that match the emotional tone of the content.
+
+    4. Lighting & Atmosphere
+    Describe lighting, depth, and mood to make the scene immersive.
+
+    5. Composition
+    Avoid generic abstract imagery. Instead create a **clear scene** that metaphorically reflects the viewing patterns.
+    The image should feel **alive and visually engaging**.
 
     Rules:
-    - No text overlays
-    - Do not infer a user's appearance
+    - No text or letters in the image
+    - Do not infer a user's identity
 
-    Summary of user's viewing:
-    {summary}
+    Write the output as a **single detailed image generation prompt**.
 
-    Return only the prompt
+    Metadata:
+    {json.dumps(metadata, ensure_ascii=False)}
     """ 
 
     try:
@@ -96,23 +127,36 @@ class AIService:
     combined_summaries = "\n".join(weekly_summaries)
 
     prompt = f"""
-    Write a reflective summary based on the weekly YouTube watch history summaries.
+    You are summarizing a month of a user's YouTube viewing patterns based on weekly summaries.
 
-    Include:
-    - Recurring themes across weeks
-    - Shifts in interests or tone
-    - Consistency vs exploration
-    - Emotional patterns across time
+    Your goal is to help the user notice **larger patterns across time** in their media consumption.
 
-    Rules:
-    - Neutral and supportive
-    - No judgment
-    - No advice
+    IMPORTANT:
+    - Be neutral and observational
+    - Do NOT judge the user
+    - Do NOT give advice
+    - Base observations only on the weekly summaries provided
 
-    Format:
-    - 2-3 short paragraphs
-    - Use **bold highlights** for main themes 
-    - Smooth narrative flow
+    Write a clear structured summary using the following format:
+
+    **Recurring Themes**
+    Describe the topics or types of content that appeared repeatedly throughout the month.
+
+    **Shifts Across the Month**
+    Describe any noticeable changes in interests, tone, or content style between weeks.
+
+    **Consistency vs Exploration**
+    Describe whether the viewing pattern appears focused around a few topics or explores a wide variety of content.
+
+    **Overall Picture**
+    Write 2-3 sentences summarizing what the month of viewing feels like as a whole.
+
+    GUIDELINES:
+    - 130-170 words total
+    - Short paragraphs (or brief bullet points if helpful)
+    - Use **bold highlights** for important observations
+    - Keep the tone reflective and descriptive
+    - Focus on major patterns rather than individual videos
 
     Weekly summaries:
     {combined_summaries}
@@ -137,21 +181,45 @@ class AIService:
     combined_summaries = "\n".join(weekly_summaries)
 
     prompt = f"""
-    Create an image prompt that visually represents a month of user's media consumption.
+    You are creating a prompt for an image generation model.
+    
+    The image should represent a **month of YouTube viewing patterns**.
 
-    Include:
-    - Dominant themes
-    - Sense of time or progression
-    - Color palette tied to emotional tone
+    The goal is to create a scene that feels symbolic and layered.
+
+    Design the image around **ONE dominant visual metaphor** that represents how the user's media consumption evolved during the month.
+
+    Possible metaphor styles include:
+    - a landscape that changes from left to right
+    - a growing tree with branches representing themes
+    - constellations forming in a night sky
+
+    IMAGE PROMPT REQUIREMENTS
+
+    1. Central Metaphor
+    Choose one strong visual metaphor and build the scene around it.
+
+    2. Sense of Time
+    Show progression across the image (for example left → right or foreground → background).
+
+    3. Visual Elements
+    Translate recurring themes into symbolic objects.
+
+    4. Color Palette
+    Use color transitions to reflect emotional tone or changes across the month.
+
+    5. Lighting & Atmosphere
+    Use lighting, depth, and atmosphere to make the scene immersive.
 
     Rules:
-    - No text overlays
-    - Avoid inferring a user's appearance
+    - No text or letters
+    - Do not infer the user's identity
+    - Avoid minimalism or empty scenes
+
+    Write a **single detailed image generation prompt**.
 
     Weekly summaries:
     {combined_summaries}
-
-    Return only the prompt
     """
     
     try:
@@ -201,12 +269,36 @@ class AIService:
 
 
   async def refine_image_prompt(base_prompt, fixes):
+    prompt ="""
+      You refine prompts for image generation.
+
+      Your job is to modify an existing prompt while preserving the details of the user's viewing.
+
+      Editing rules:
+      1. Preserve the core elements of the scene
+
+      2. Apply only the requested changes
+      - Modify lighting, color palette, mood, or details if the user asks.
+      - Do not introduce unrelated elements.
+
+      3. Maintain visual richness
+      - Ensure the prompt still contains environment, atmosphere, and lighting details.
+
+      4. Keep the prompt coherent
+      - Integrate the user's changes naturally into the description.
+
+      5. Do not add explanations.
+
+      Output:
+      Return only the revised image generation prompt.
+      """
+
     response = await client.responses.create(
       model="gpt-5-mini",
       input=[
         {
           "role": "system",
-          "content": "You refine image generation prompts while preserving symbolism and theme."
+          "content": prompt,
         },
         {
           "role": "user",
@@ -216,6 +308,8 @@ class AIService:
 
           User requested changes:
           {fixes}
+
+          Revise the prompt while keeping the original scene and metaphor intact.
           """
         }
       ]
@@ -225,26 +319,56 @@ class AIService:
 
 
   ASSISTANT_PROMPT = """
-  You are a guided reflection assistant helping users examine their YouTube media consumption using the Gibbs reflective cycle.
+  You are a reflection facilitator helping users examine their YouTube media consumption.
+  
+  Your role is to guide the user through the **Gibbs Reflective Cycle**. The goal is to help the user notice patterns and form their own insights.
 
-  Style:
-  - Warm, calm, non-judgmental
-  - Supportive but not therapeutic
-  - Curious, not leading
+  You are NOT a coach, therapist, or advisor.
 
-  Rules:
-  - Ask AT MOST ONE question per reply
-  - No advice
-  - Do not analyze for user
-  - If the user shares something meaningful, reflect it back briefly
+  CONVERSATION STYLE
+  - Warm, calm, and curious
+  - Neutral and non-judgmental
+  - Speak like a thoughtful listener
+  - Avoid sounding clinical or robotic
+  - Keep responses concise and natural.
 
-  Format:
+  HOW TO RESPOND
+  Each reply should follow this structure:
+
+  1. **Brief Reflection**
+  Acknowledge or paraphrase something the user said.
+
+  2. **Optional Observation**
+  Point out a small pattern or contrast if it is clearly present.
+
+  3. **One Open Question**
+  Ask ONE question that encourages deeper reflection.
+
+  QUESTION GUIDELINES
+  Good questions:
+  - invite noticing patterns
+  - explore feelings or reactions
+  - encourage curiosity
+  - remain open-ended
+
+  Avoid questions that:
+  - sound like advice
+  - assume motives
+  - feel interrogative
+  - lead the user toward a conclusion
+
+  RULES
+  - Ask **AT MOST one question**
+  - Do NOT give advice
+  - Do NOT analyze the user for them
+  - Do NOT make assumptions about their identity
+  - Do NOT lecture or provide long explanations
+
+  FORMATTING
   - Short paragraphs
-  - Optional bullet points
-  - Use **bold highlights**
-  - Max 90 words
-
-  Return only the prompt
+  - Natural conversational tone
+  - Use **bold** occasionally to highlight key ideas
+  - Maximum length: 90 words
   """
 
   async def generate_chat_reply(messages, step):
@@ -266,21 +390,35 @@ class AIService:
 
   async def generate_reflection_summary(messages):
     prompt = """
-    Summarize this media reflection session.
+    You are summarizing a user's reflection session about their YouTube viewing habits.
 
-    Include:
-    - Main viewing patterns noticed
-    - Emotional responses mentioned
-    - Any insights or planned adjustments
+    Your goal is to create a **reflection summary** that helps the user revisit what they noticed during the conversation.
 
-    Rules:
-    - Supportive and neutral
-    - No judgment/advice
+    IMPORTANT
+    - Be neutral and supportive
+    - Do NOT judge the user
+    - Do NOT give advice
+    - Base the summary only on what the user expressed
 
-    Format:
-    - 140-180 words
-    - Structured paragraphs
-    - Use **bold highlights** for key insights
+    Write the summary using the following structure:
+
+    **Viewing Patterns Noticed**
+    Briefly describe the main themes or habits the user observed in their viewing.
+
+    **Emotional Reactions**
+    Highlight any feelings or reactions the user mentioned while discussing their media consumption.
+
+    **Insights the User Reached**
+    Describe realizations or reflections that appeared during the conversation.
+
+    **Possible Next Steps**
+    Mention any future intentions the user expressed.
+
+    GUIDELINES
+    - 120-170 words total
+    - Short paragraphs or bullet points
+    - Use **bold highlights** for key ideas
+    - Focus on what the user discovered
     """
 
     response = await client.chat.completions.create(

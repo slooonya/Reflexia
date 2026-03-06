@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 import { Polaroid } from '../../components/Polaroid';
-import { EditingPrompt } from './EditingPrompt';
+import { EditingIntro } from './EditingIntro';
 import { EditingResult } from './EditingResult';
 import { Button } from '../../components/Button';
 import { Loader } from '../../components/Loader';
@@ -71,7 +71,7 @@ export function ImageEditingPage() {
 
         <div className="editing-right-container">
           {step === "input" && (
-            <EditingPrompt onSubmit={submitFix} />
+            <EditingIntro onSubmit={submitFix} />
           )}
 
           {step === "loading" && (

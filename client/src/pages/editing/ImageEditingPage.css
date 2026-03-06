@@ -9,7 +9,7 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   align-items: center;
-  padding: 120px 70px 50px;
+  padding: 80px 70px 30px;
   margin-bottom: 1rem;
   animation: fade 1s forwards;
 }
@@ -23,8 +23,8 @@
 
 .editing-right-container {
   background-color: white;
-  padding: 30px 40px;
-  border-radius: 12px;
+  padding: 20px 30px;
+  border-radius: 1.5rem;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
 }
 

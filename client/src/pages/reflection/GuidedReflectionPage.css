@@ -27,45 +27,13 @@
 .reflection-right-container {
   background: white;
   border-radius: 20px;
+  min-height: 0;
   height: 100%;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  padding: 30px;
+  padding: 20px 30px;
   box-shadow: 0 10px 24px rgba(0,0,0,0.18);
-}
-
-.next-step-button {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: center;
-  gap: 6px;
-  margin-top: auto;
-  margin-bottom: 6px;
-  border: 2px solid rgb(197, 197, 197);
-  background-color: white;
-  color: black;
-  padding: 12px;
-  border-radius: 12px;
-  font-weight: 600;
-  box-shadow: 0 6px rgb(197, 197, 197, 1);
-  transition: all 0.2s ease;
-  animation: fade 0.5s forwards;
-}
-
-.next-step-button:hover {
-  transform: translateY(2px);
-  box-shadow: 0 4px rgb(197, 197, 197, 1);
-}
-
-.next-step-button:active {
-  transform: translateY(6px);
-  box-shadow: none;
-}
-
-.next-step-button img {
-  width: 16px;
 }
 
 @media (max-width: 768px) {

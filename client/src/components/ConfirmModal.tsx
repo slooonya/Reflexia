@@ -14,9 +14,11 @@ export function ConfirmModal({ title, message, confirmLabel = "Confirm", cancelL
           </button>
         </div>
 
-        <h2>{title}</h2>
-        <hr />
-        <p>{message}</p>
+        <div className="modal-content">
+          <h2>{title}</h2>
+          <hr />
+          <p>{message}</p>
+        </div>
 
         <div className="modal-actions">
           <Button variant="secondary" onClick={onCancel}>

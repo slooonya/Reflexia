@@ -1,10 +1,10 @@
 import { PromptInput } from "../../components/PromptInput";
-import './EditingPrompt.css';
+import './EditingIntro.css';
 
-export function EditingPrompt({ onSubmit }) {
+export function EditingIntro({ onSubmit }) {
   return (
-    <>
-      <h1 className="edit-heading">Fix <br />Reflective <br />Image</h1>
+    <div className="editing-intro">
+      <h1>Fix <br />Reflective <br />Image</h1>
 
       <ul className="edit-prompts">
         <li>Is there anything in the image that <b>feels off or does not match</b> what you experienced?</li>
@@ -12,7 +12,7 @@ export function EditingPrompt({ onSubmit }) {
         <li>Do the characters or objects <b>look the way you imagined?</b> If not, what would you change about them?</li>
       </ul>
 
-      <PromptInput placeholder={"Enter a description..."} onSubmit={onSubmit}/>
-    </>
+      <PromptInput placeholder={"Enter a description..."} onSubmit={onSubmit} disabled={undefined}/>
+    </div>
   );
 }

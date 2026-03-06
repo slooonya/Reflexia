@@ -13,6 +13,8 @@ import { getReflectionSummary } from '../../api/reflection';
 import { toast } from 'sonner';
 
 import BackIcon from '../../assets/icons/back-icon.svg';
+import ReflectIcon from '../../assets/icons/reflect-icon.svg';
+import EditIcon from '../../assets/icons/edit-icon.svg';
 import './DetailsPage.css';
 
 export function DetailsPage() {
@@ -86,12 +88,17 @@ export function DetailsPage() {
 
           <div className={`summary-mode-container ${mode === "Viewing" ? "viewing" : "reflection"}`}>
             <div className="summary-mode viewing">
-              <SummarySection summary={entry.summary} id={entry.id} type={entry.period_type}/>
+              <SummarySection summary={entry.summary} />
             </div>
 
             <div className="summary-mode reflection">
-              <SummarySection summary={reflectionSummary} id={entry.id} type={entry.period_type}/>
+              <SummarySection summary={reflectionSummary} />
             </div>
+          </div>
+
+          <div className="action-btns">
+            <Button to={`/editing/${type}/${id}`} icon={EditIcon}>Edit</Button>
+            <Button to={`/reflection/${type}/${id}`} icon={ReflectIcon}>Reflect</Button>
           </div>
         </div>
       </div>

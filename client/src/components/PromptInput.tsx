@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
+
+import SendIcon from '../assets/icons/send-icon.svg';
 import './PromptInput.css';
 
-export function PromptInput({ placeholder, onSubmit, buttonLabel = "Send", disabled }) {
+export function PromptInput({ placeholder, onSubmit, disabled }) {
   const [inputText, setInputText] = useState("");
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   function submit() {
     if (!inputText.trim()) return;
     onSubmit(inputText.trim());
     setInputText("");
+
+    if (textareaRef.current) {
+      textareaRef.current.style.height = "auto";
+    }
   }
 
   function handleKeyDown(event) {
@@ -19,12 +26,22 @@ export function PromptInput({ placeholder, onSubmit, buttonLabel = "Send", disab
 
   function saveInputText(event) {
     setInputText(event.target.value);
+    
+    const textarea = textareaRef.current;
+    if (!textarea) return;
+
+    textarea.style.height = "auto";
+    textarea.style.height = Math.min(textarea.scrollHeight, 140) + "px";
   }
 
   return (
     <div className="prompt-input">
-      <textarea placeholder={placeholder} value={inputText} onChange={saveInputText} onKeyDown={handleKeyDown}/>
-      <button disabled={disabled} onClick={submit}>{buttonLabel}</button>
+      <textarea placeholder={placeholder} value={inputText} onChange={saveInputText} 
+                onKeyDown={handleKeyDown} ref={textareaRef} rows={1} />
+
+      <button disabled={disabled} onClick={submit}>
+        <img src={SendIcon} alt="" />
+      </button>
     </div>
   );
 }

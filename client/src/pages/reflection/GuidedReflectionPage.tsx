@@ -18,6 +18,7 @@ import { REFLECTION_STEPS, TIPS, PLACEHOLDERS } from './reflectionSteps';
 
 import NextIcon from '../../assets/icons/next-icon.svg';
 import './GuidedReflectionPage.css';
+import { Button } from '../../components/Button';
 
 export function GuidedReflectionPage() {
   const [step, setStep] = useState(0);
@@ -120,13 +121,7 @@ export function GuidedReflectionPage() {
           {botLoading && <ChatTypingIndicator />}
 
           {!isComplete && hasStarted && messages.length >= 2 && (
-            <button
-              className="next-step-button"
-              onClick={handleNextStep}
-            >
-              Next
-              <img src={NextIcon}></img>
-            </button>
+            <Button variant='secondary' onClick={handleNextStep} icon={NextIcon}>Next</Button>
           )}
 
           {isComplete && summaryLoading && (

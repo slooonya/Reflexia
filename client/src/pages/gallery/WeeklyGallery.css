@@ -22,7 +22,7 @@
 
 .grid-slot:empty {
   border: 2px dashed rgba(0,0,0,0.2);
-  border-radius: 8px;
+  border-radius: 1.5rem;
 }
 
 .grid-slot .link {

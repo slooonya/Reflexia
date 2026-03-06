@@ -92,7 +92,7 @@ class InsightService:
 
     step(0.75, f"Weekly insight {index}/{total}: generating image")
 
-    image_prompt = await AIService.generate_weekly_image_generation_prompt(summary)
+    image_prompt = await AIService.generate_weekly_image_generation_prompt(metadata)
     image_url = await AIService.generate_image(image_prompt)
 
     step(0.95, f"Weekly insight {index}/{total}: saving")

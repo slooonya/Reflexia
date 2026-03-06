@@ -88,7 +88,7 @@ export const PROMPTS: string[][] = [
 export const TIPS = [
   // STEP 1 — DESCRIPTION
   [
-    { title: "Be Specific", text: "Name the creators, the genres, and the specific topics covered in the videos." },
+    { title: "Be Specific", text: "Name the genres and the specific topics covered in the videos." },
     { title: "Include Context", text: "Mention when and where you were watching." },
     { title: "Identify the Hook", text: "Mention what drew you in—was it the thumbnail, the title, or an algorithmic recommendation?" },
     { title: "Notice Format", text: "Short clips, long videos, music, podcasts — note differences." }

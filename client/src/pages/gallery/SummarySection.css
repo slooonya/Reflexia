@@ -10,6 +10,7 @@
 .summary-content {
   margin: 1rem 0;
   text-align: justify;
+  line-height: 1.6;
   max-height: 300px;
   overflow-y: auto;
 }
@@ -28,18 +29,8 @@
   background-color: rgba(0, 0, 0, 0.35);
 }
 
-.action-btns {
-  display: flex;
-  justify-content: center;
-  gap: 2rem;
-}
-
 @media (max-width: 768px) {
   .summary-content {
     font-size: 14px;
-  }
-
-  .action-btns {
-    gap: 1rem;
   }
 }
