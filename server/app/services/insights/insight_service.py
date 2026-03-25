@@ -87,13 +87,13 @@ class InsightService:
       return None
     
     step(0.55, f"Weekly insight {index}/{total}: generating summary")
-
     summary = await AIService.generate_weekly_summary(metadata)
 
-    step(0.75, f"Weekly insight {index}/{total}: generating image")
-
+    step(0.65, f"Weekly insight {index}/{total}: generating prompt")
     image_prompt = await AIService.generate_weekly_image_generation_prompt(metadata)
-    image_url = await AIService.generate_image(image_prompt)
+
+    step(0.75, f"Weekly insight {index}/{total}: generating image")
+    image_url = await AIService.send_request_with_retries(AIService.generate_image, image_prompt)
 
     step(0.95, f"Weekly insight {index}/{total}: saving")
 
@@ -133,14 +133,14 @@ class InsightService:
       return None
 
     step(0.4, f"Monthly insight {index}/{total}: generating summary")
-
     weekly_summaries = [week.summary for week in chunk]
     summary = await AIService.generate_monthly_summary(weekly_summaries)
 
-    step(0.7, f"Monthly insight {index}/{total}: generating image")
-
+    step(0.7, f"Monthly insight {index}/{total}: generating prompt")
     image_prompt = await AIService.generate_monthly_image_generation_prompt(weekly_summaries)
-    image_url = await AIService.generate_image(image_prompt)
+
+    step(0.8, f"Monthly insight {index}/{total}: generating image")
+    image_url = await AIService.send_request_with_retries(AIService.generate_image, image_prompt)
 
     start = chunk[0].period_start
     end = chunk[-1].period_end

@@ -9,7 +9,7 @@ class ProcessingService:
   async def process_upload_job(job_id, data, user_id):
     JobManager.update_progress(job_id, base=0, weight=5)
     
-    # TODO: setting the time period to one week to avoid token waste, change this to a longer time period later
+    # TODO: Change this to a longer time period later
     intervals = YouTubeService.create_week_intervals(data, 5)
     JobManager.update_progress(job_id, base=5, weight=10)
 

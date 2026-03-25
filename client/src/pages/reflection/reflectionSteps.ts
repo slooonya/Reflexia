@@ -2,20 +2,19 @@ export const REFLECTION_STEPS = ["Description", "Feelings", "Evaluation", "Analy
 
 
 // TODO: Generate better and more tips and prompts
-
 export const PROMPTS: string[][] = [
 
   // STEP 1 — DESCRIPTION
   [
-    "Looking back at what you watched recently, what were the recurring themes or topics that kept appearing?",
+    "Looking back at what you watched recently, what kinds of videos or topics stand out to you?",
 
     "How would you describe the general energy of your recent session—was it educational, chaotic, or perhaps just a distraction?",
 
-    "How did you move from one video to the next: were you following a specific curiosity or just letting the algorithm lead?",
+    "What do you remember most about the content you spent time with recently?",
 
-    "Think about the environment where you were watching; what was happening around you during this session?",
+    "How would you describe your viewing session in a few words?",
 
-    "What was the 'vibe' of the creators you spent the most time with today (e.g., calm and grounded or loud and high-intensity)?"
+    "What was the 'vibe' of the creators you spent the most time with (e.g., calm and grounded or loud and high-intensity)?"
   ],
 
   // STEP 2 — FEELINGS
@@ -24,63 +23,61 @@ export const PROMPTS: string[][] = [
 
     "During your viewing, did you notice any moments where you felt a sudden spike in anxiety, envy, or relief?",
 
-    "How did your body feel during this session—did you feel tense, slumped over, or genuinely relaxed?",
+    "Did your mood change at all while you were watching videos?",
 
-    "Were there any videos that left you feeling 'numb' or like you were just scrolling on autopilot?",
+    "If you had to describe the emotional tone of the content you consumed, what would it be?",
 
-    "If you had to pick one emotion to summarize this entire viewing block, what would it be?"
+    "As you think about your recent viewing, how did it leave you feeling overall?"
   ],
 
   // STEP 3 — EVALUATION
   [
     "Which part of your recent viewing felt like it actually added value to your day?",
 
-    "Was there a specific point where you felt the content stopped being helpful and started feeling draining?",
+    "Did the time you spent watching videos feel aligned with what you wanted from your viewing?",
 
-    "How did this block of time impact your mental clarity for the tasks you have to do next?",
+    "What do you think was beneficial/negative about the videos you watched?",
 
-    "Compared to other ways you could have spent this time, how 'nourishing' did this digital diet feel?",
+    "If you had to give that block of content you watched a score out of 10, what would it be and why?",
 
-    "Did the videos you watched align with the person you want to be, or did they feel like a departure from your values?"
+    "Was there a moment where you felt like you were getting what you needed, or a moment where you felt like you were wasting time?"
   ],
 
   // STEP 4 — ANALYSIS
   [
-    "Why do you think your brain was drawn to this specific mix of content today?",
+    "Why do you think those particular videos caught your attention?",
     
-    "If you were looking for an escape, what exactly were you trying to get away from in your 'offline' life?",
+    "What might have influenced the direction your viewing took?",
 
-    "How does this recent history reflect what has been weighing on your mind lately?",
+    "Do you notice any connection between what you watched and what was on your mind?",
 
-    "What do you think the algorithm was 'trying' to make you feel, and did you let it succeed?",
-
-    "Why did you choose to stay in this specific 'rabbit hole' rather than clicking away earlier?"
+    "Why do you think you ended up watching that particular content at that moment?",
   ],
 
   // STEP 5 — CONCLUSION
   [
-    "What have you learned about how your recent digital habits are currently influencing your headspace?",
+    "What have you noticed about your media habits from this experience?",
 
-    "If you could go back and 'edit' this viewing session, which video would you have skipped entirely?",
+    "After reflecting on this, what's one thing you've learned about your current media habits?",
 
     "What did this session reveal about what you actually need right now (e.g., real connection, rest, or focus)?",
 
-    "How does this period of watching compare to your 'ideal' version of mindful media consumption?",
+    "What's a key insight you're taking away from how this session went?",
 
-    "In hindsight, was there a specific 'turning point' where the session became more harmful than helpful?"
+    "Is there anything new you've realized while thinking about your viewing?",
+
+    "If you had to summarize what this experience taught you about your media consumption habits, what would you say?"
   ],
 
   // STEP 6 — ACTION
   [
     "What is one small boundary you can set for your next session to make sure it supports your mental health?",
 
-    "How will you check in with your feelings before you hit play on the next 'recommended' video?",
+    "Thinking ahead, is there anything you'd like to do differently next time you watch videos on YouTube?",
 
-    "Is there a specific topic or creator you want to 'mute' or avoid tomorrow to protect your peace?",
+    "What would a 'win' look like for your next media session? How will you know it went better?",
 
-    "What is one 'real-world' activity you can do right now to ground yourself after all that screen time?",
-
-    "If you find yourself in a similar 'autopilot' mode tomorrow, what will be your signal to put the phone down?"
+    "What's a simple 'if-then' plan you can set? For example: 'If I notice I'm doomscrolling, then I will...'",
   ]
 ];
 
@@ -119,16 +116,16 @@ export const TIPS = [
 
   // STEP 5 — CONCLUSION
   [
-    { title: "Alternative Options", text: "Could you have gained this information or entertainment in a better way (e.g., reading an article or a different creator)?" },
-    { title: "The Core Lesson", text: "If you had to summarize the 'moral of the story', what would it be?" },
-    { title: "Summarize the Impact", text: "State clearly whether this content aligns with the person you want to be today." }
+    { title: "The Core Lesson", text: "Try to sum up what this session taught you about your current needs or habits." },
+    { title: "Look Forward", text: "Based on what you learned, what feels more clear about what you want next time?" },
+    { title: "Summarize the Impact", text: "Consider whether this content aligns with your mental health needs." }
   ],
 
   // STEP 6 — ACTION
   [
     { title: "Think Adjustments", text: "Small tweaks are enough." },
     { title: "Curate Your Feed", text: "Decide if you need to 'tell' the algorithm to show you less of this, or more of something else." },
-    { title: "Viewing Boundaries", text: "Decide now: Will you seek out more of this, or do you need a break from this topic?" }
+    { title: "Prepare a Trigger", text: "Decide on a signal (e.g., a timer, a sticky note) that will remind you to pause and check in." },
   ]
 ];
 

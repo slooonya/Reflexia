@@ -14,16 +14,14 @@ class ReflectionService:
 
     session.messages.append({
       "role": "user",
-      "content": message,
-      "step": step
+      "content": message
     })
 
     reply = await AIService.generate_chat_reply(session.messages, step)
 
     session.messages.append({
       "role": "system",
-      "content": reply,
-      "step": step
+      "content": reply
     })
 
     await session.save()
@@ -73,8 +71,8 @@ class ReflectionService:
 
   async def get_summary(user_id: str, insight_id: str):
     session = await ReflectionSession.find_one(
-      ReflectionSession.user_id == user_id,
-      ReflectionSession.insight_id == insight_id,
+      ReflectionSession.user_id == PydanticObjectId(user_id),
+      ReflectionSession.insight_id == PydanticObjectId(insight_id),
       ReflectionSession.completed == True
     )
 
