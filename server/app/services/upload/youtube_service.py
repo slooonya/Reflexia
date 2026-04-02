@@ -116,3 +116,17 @@ class YouTubeService:
           intervals.append((start, end))
 
       return intervals
+  
+
+  def create_month_intervals(data: list, n_months: int):
+    latest = YouTubeService.get_latest_watch_time(data)
+
+    intervals = []
+    current_end = latest
+
+    for _ in range(n_months):
+        start = current_end.replace(day=1, hour=0, minute=0, second=0, microsecond=0)
+        intervals.append((start, current_end))
+        current_end = start - timedelta(microseconds=1)
+
+    return intervals

@@ -53,5 +53,5 @@ async def edit_image(insight_id: str, body: ImageEditRequest, user: User = Depen
 
   return {
     "imageUrl": new_url,
-    "fixesSummary": "Applied your requested vidual refinements."
+    "fixesSummary": "Applied your requested visual refinements."
   }

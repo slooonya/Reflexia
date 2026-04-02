@@ -7,7 +7,7 @@ export async function sendReflectionMessage(message: string, step: number, insig
 
 export async function completeReflection(insightId) {
   const response = await api.post(`/api/reflection/complete/${insightId}`);
-  return response.data.summary;
+  return response.data.reflection_summary;
 }
 
 export async function loadReflectionSession(insightId: string){

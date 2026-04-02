@@ -34,7 +34,7 @@ export function DetailsPage() {
     }
 
     getReflectionSummary(id).then(response => {
-      setReflectionSummary(response.summary);
+      setReflectionSummary(response.reflection_summary);
     });
   }, [id, location.state])
 

@@ -28,7 +28,7 @@ class InsightService:
   
 
   async def get_insight(insight_id: str, user_id: PydanticObjectId) -> InsightEntry:
-    insight = await InsightEntry.get(insight_id)
+    insight = await InsightEntry.get(PydanticObjectId(insight_id))
 
     if not insight or insight.user_id != user_id:
       raise HTTPException(
@@ -87,10 +87,10 @@ class InsightService:
       return None
     
     step(0.55, f"Weekly insight {index}/{total}: generating summary")
-    summary = await AIService.generate_weekly_summary(metadata)
+    summary = await AIService.generate_summary(metadata, "week")
 
     step(0.65, f"Weekly insight {index}/{total}: generating prompt")
-    image_prompt = await AIService.generate_weekly_image_generation_prompt(metadata)
+    image_prompt = await AIService.generate_image_generation_prompt(metadata, "week")
 
     step(0.75, f"Weekly insight {index}/{total}: generating image")
     image_url = await AIService.send_request_with_retries(AIService.generate_image, image_prompt)
@@ -114,40 +114,39 @@ class InsightService:
     return insight
 
 
-  async def generate_monthly_insight(user_id, chunk_index, job_id, base, weight, index, total):
+  async def generate_monthly_insight(data, user_id, start, end, job_id, base, weight, index, total):
     def step(percentage, label):
         JobManager.update_progress(job_id, base, weight=weight * percentage, status=label)
 
-    step(0.1, f"Monthly insight {index}/{total}: collecting weeks")
+    step(0.1, f"Monthly insight {index}/{total}: extracting videos")
 
-    weeks = await InsightEntry.find(
-      InsightEntry.user_id == user_id,
-      InsightEntry.period_type == "week"
-    ).sort("period_start").to_list()
+    video_ids = YouTubeService.extract_video_ids(data, start, end) 
 
-    start_idx = chunk_index * 5
-    end_idx = start_idx + 5
-    chunk = weeks[start_idx:end_idx]
+    metadata = []
 
-    if len(chunk) < 5:
+    for i, video_id in enumerate(video_ids):
+      step(0.25 + 0.3 * (i / max(len(video_ids), 1)), 
+           f"Monthly insight {index}/{total}: fetching metadata {i + 1}/{len(video_ids)}")
+      
+      m = await YouTubeService.get_video_metadata(video_id)
+      if m:
+        metadata.append(m)
+
+    if not metadata:
       return None
 
-    step(0.4, f"Monthly insight {index}/{total}: generating summary")
-    weekly_summaries = [week.summary for week in chunk]
-    summary = await AIService.generate_monthly_summary(weekly_summaries)
+    step(0.55, f"Monthly insight {index}/{total}: generating summary")
+    summary = await AIService.generate_summary(metadata, "month")
 
-    step(0.7, f"Monthly insight {index}/{total}: generating prompt")
-    image_prompt = await AIService.generate_monthly_image_generation_prompt(weekly_summaries)
+    step(0.65, f"Monthly insight {index}/{total}: generating prompt")
+    image_prompt = await AIService.generate_image_generation_prompt(metadata, "month")
 
-    step(0.8, f"Monthly insight {index}/{total}: generating image")
+    step(0.75, f"Monthly insight {index}/{total}: generating image")
     image_url = await AIService.send_request_with_retries(AIService.generate_image, image_prompt)
-
-    start = chunk[0].period_start
-    end = chunk[-1].period_end
 
     label = InsightFormatter.format_month_label(start)
 
-    step(1.0, f"Monthly insight {index}/{total}: saving")
+    step(0.95, f"Monthly insight {index}/{total}: saving")
 
     insight = InsightEntry(
       user_id=user_id,

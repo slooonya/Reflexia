@@ -3,12 +3,18 @@ from beanie import PydanticObjectId
 
 from app.models.reflection import ReflectionSession
 from app.services.ai_service import AIService
+from app.services.insights.insight_service import InsightService
 
 
 class ReflectionService:
 
   async def handle_chat(user_id: str, insight_id: str, step: int, message: str):
     session = await ReflectionService.get_or_create_reflection_session(user_id, insight_id)
+
+    insight = await InsightService.get_insight(
+        insight_id,
+        PydanticObjectId(user_id)
+    )
 
     session.current_step = step
 
@@ -17,12 +23,18 @@ class ReflectionService:
       "content": message
     })
 
-    reply = await AIService.generate_chat_reply(session.messages, step)
+    reply = await AIService.generate_chat_reply(session.messages, step, insight.summary, session.conversation_summary)
 
     session.messages.append({
-      "role": "system",
+      "role": "assistant",
       "content": reply
     })
+
+    if len(session.messages) % 4 == 0:
+        session.conversation_summary = await AIService.summarize_conversation(
+          session.messages, 
+          session.conversation_summary
+        )
 
     await session.save()
 
@@ -45,7 +57,7 @@ class ReflectionService:
       user_id=user_id,
       insight_id=insight_id,
       messages=[],
-      summary="",
+      reflection_summary="",
       completed=False
     )
 
@@ -69,7 +81,7 @@ class ReflectionService:
     }
   
 
-  async def get_summary(user_id: str, insight_id: str):
+  async def get_reflection_summary(user_id: str, insight_id: str):
     session = await ReflectionSession.find_one(
       ReflectionSession.user_id == PydanticObjectId(user_id),
       ReflectionSession.insight_id == PydanticObjectId(insight_id),
@@ -77,9 +89,9 @@ class ReflectionService:
     )
 
     if not session:
-      return {"summary": None}
+      return {"reflection_summary": None}
     
-    return {"summary": session.summary}
+    return {"reflection_summary": session.reflection_summary}
   
 
   async def update_step(user_id: str, insight_id: str, step: int):
@@ -94,9 +106,9 @@ class ReflectionService:
     if not session:
       raise HTTPException(status_code=status.HTTP_404_NOT_FOUND)
     
-    session.summary = await AIService.generate_reflection_summary(session.messages)
+    session.reflection_summary = await AIService.generate_reflection_summary(session.messages)
     session.completed = True
 
     await session.save()
 
-    return { "summary": session.summary }
+    return { "reflection_summary": session.reflection_summary }

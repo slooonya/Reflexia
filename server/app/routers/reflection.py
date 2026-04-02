@@ -25,7 +25,7 @@ async def get_reflection_session(insight_id: str, user: User = Depends(get_curre
 
 @router.get("/summary/{insight_id}")
 async def get_reflection_summary(insight_id: str, user: User = Depends(get_current_user)):
-  return await ReflectionService.get_summary(str(user.id), insight_id)
+  return await ReflectionService.get_reflection_summary(str(user.id), insight_id)
 
 
 @router.post("/step")
