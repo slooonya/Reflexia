@@ -21,8 +21,8 @@ class ProcessingService:
   async def process_watch_history(data, user_id, job_id):
     insights = []
 
-    # TODO: Change this to a longer time period later
-    week_intervals = YouTubeService.create_week_intervals(data, 0)
+    # TODO: Change this to a longer time period later (6)
+    week_intervals = YouTubeService.create_week_intervals(data, 1)
     
     weekly_total = len(week_intervals)
     weekly_base, weekly_weight = 10, 55
@@ -37,8 +37,8 @@ class ProcessingService:
       if insight:
         insights.append(insight) 
 
-    # TODO: Change this to a longer time period later
-    month_intervals = YouTubeService.create_month_intervals(data, 1)
+    # TODO: Change this to a longer time period later (6)
+    month_intervals = YouTubeService.create_month_intervals(data, 0)
 
     monthly_total = len(month_intervals)
     monthly_base, monthly_weight = 65, 25

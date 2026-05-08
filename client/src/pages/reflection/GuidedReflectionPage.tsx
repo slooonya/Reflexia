@@ -49,14 +49,23 @@ export function GuidedReflectionPage() {
   const isComplete = step === REFLECTION_STEPS.length;
 
   const stepPrompt = useMemo(() => {
-  if (isComplete) return "";
-  return pickStepPrompt(step);
-}, [step, isComplete]);
+    if (isComplete) return "";
+    return pickStepPrompt(step);
+  }, [step, isComplete]);
 
   if (!entry) return <Loader />;
 
   function handleSendMessage(message) {
-    if (!hasStarted) setHasStarted(true);
+    if (!hasStarted) {
+      const stagePromptMessage = {
+        role: "system",
+        content: stepPrompt
+      };
+
+      hydrate([...messages, stagePromptMessage]);
+      setHasStarted(true);
+    }
+
     sendMessage(message);
   }
 
