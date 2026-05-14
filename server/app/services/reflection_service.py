@@ -30,12 +30,6 @@ class ReflectionService:
       "content": reply
     })
 
-    if len(session.messages) % 4 == 0:
-        session.conversation_summary = await AIService.summarize_conversation(
-          session.messages, 
-          session.conversation_summary
-        )
-
     await session.save()
 
     return { 
@@ -96,8 +90,18 @@ class ReflectionService:
 
   async def update_step(user_id: str, insight_id: str, step: int):
     session = await ReflectionService.get_or_create_reflection_session(user_id, insight_id)
+
+    session.conversation_summary = (
+      await AIService.summarize_conversation(
+        session.messages, 
+        session.conversation_summary
+      )
+    )
+
     session.current_step = step
     await session.save()
+
+    return {"success": True}
 
 
   async def complete_reflection(user_id: str, insight_id: str):
