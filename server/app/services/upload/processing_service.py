@@ -22,7 +22,7 @@ class ProcessingService:
     insights = []
 
     # TODO: Change this to a longer time period later (6)
-    week_intervals = YouTubeService.create_week_intervals(data, 0)
+    week_intervals = YouTubeService.create_week_intervals(data, 1)
     
     weekly_total = len(week_intervals)
     weekly_base, weekly_weight = 10, 55
@@ -38,7 +38,7 @@ class ProcessingService:
         insights.append(insight) 
 
     # TODO: Change this to a longer time period later (6)
-    month_intervals = YouTubeService.create_month_intervals(data, 1)
+    month_intervals = YouTubeService.create_month_intervals(data, 0)
 
     monthly_total = len(month_intervals)
     monthly_base, monthly_weight = 65, 25

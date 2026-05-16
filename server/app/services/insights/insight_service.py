@@ -87,10 +87,10 @@ class InsightService:
       return None
     
     step(0.55, f"Weekly insight {index}/{total}: generating summary")
-    summary = await AIService.generate_summary(metadata, "week")
+    summary = await AIService.send_request_with_retries(AIService.generate_summary, metadata, "week")
 
     step(0.65, f"Weekly insight {index}/{total}: generating prompt")
-    image_prompt = await AIService.generate_image_generation_prompt(metadata, "week")
+    image_prompt = await AIService.send_request_with_retries(AIService.generate_image_generation_prompt, metadata, "week")
 
     step(0.75, f"Weekly insight {index}/{total}: generating image")
     image_url = await AIService.send_request_with_retries(AIService.generate_image, image_prompt)
@@ -136,10 +136,10 @@ class InsightService:
       return None
 
     step(0.55, f"Monthly insight {index}/{total}: generating summary")
-    summary = await AIService.generate_summary(metadata, "month")
+    summary = AIService.send_request_with_retries(AIService.generate_summary, metadata, "month")
 
     step(0.65, f"Monthly insight {index}/{total}: generating prompt")
-    image_prompt = await AIService.generate_image_generation_prompt(metadata, "month")
+    image_prompt = await AIService.send_request_with_retries(AIService.generate_image_generation_prompt, metadata, "month")
 
     step(0.75, f"Monthly insight {index}/{total}: generating image")
     image_url = await AIService.send_request_with_retries(AIService.generate_image, image_prompt)

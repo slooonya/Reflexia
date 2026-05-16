@@ -383,7 +383,7 @@ class AIService:
     response = await client.responses.create(
       model="gpt-5",
       instructions=instructions,
-      input=messages
+      input=messages[-6:]
     )
 
     return response.output_text
@@ -454,7 +454,7 @@ class AIService:
     response = await client.responses.create(
         model="gpt-5",
         instructions=instructions,
-        input=messages[-6:]
+        input=messages
     )
 
     return response.output_text

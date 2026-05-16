@@ -60,7 +60,7 @@ class ReflectionService:
   
 
   async def get_session(user_id: str, insight_id: str):
-    session =await ReflectionSession.find_one(
+    session = await ReflectionSession.find_one(
       ReflectionSession.user_id == PydanticObjectId(user_id),
       ReflectionSession.insight_id == PydanticObjectId(insight_id),
       ReflectionSession.completed == False
