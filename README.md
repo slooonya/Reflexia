@@ -27,10 +27,13 @@
 </details>
 
 ## About The Project
-The app described in the CHI'26 extended abstract: "Reflexia: AI-Assisted Reflection on Personal Media Consumption".
-> Sofiia Mamonova and Brennan Jones. 2026. Reflexia: AI-Assisted Reflection on Personal Media Consumption. In Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems (CHI EA ’26), April 13–17, 2026, Barcelona, Spain. ACM, New York, NY, USA, 5 pages. https://doi.org/10.1145/3772363.3798688
+Reflexia is an AI-assisted reflection system developed as my Final Year Project and described in a CHI '26 Extended Abstract:
 
-// TODO: Add UI screenshots and project description
+> Sofiia Mamonova and Brennan Jones. 2026. Reflexia: AI-Assisted Reflection on Personal Media Consumption. In Proceedings of the Extended Abstracts of the 2026 CHI Conference on Human Factors in Computing Systems (CHI EA '26). Association for Computing Machinery, New York, NY, USA, Article 556, 1–6. https://doi.org/10.1145/3772363.3798688
+
+The system analyzes users' YouTube watch history to identify emotional and thematic patterns in media consumption, and based on this analysis, produces AI-generated imagery and textual summaries to help users better understand their viewing habits. Reflexia also includes a conversational agent that guides users through reflection sessions structured around Gibbs' Reflective Cycle, helping them connect and align their media consumption with their personal well-being goals and needs.
+
+<img width="1409" height="1591" alt="Screenshots" src="https://github.com/user-attachments/assets/7d557dce-e415-4adb-ace5-1d3a773d307f" />
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
