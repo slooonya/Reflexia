@@ -23,7 +23,7 @@ export function HeroSection() {
 
       <div className="hero-content">
         <h1>Reflexia</h1>
-        <p>Your AI assistant for reflection <br /> on personal media consumption</p>
+        <p>Your AI assistant for exploring<br /> personal media habits</p>
         <Button to="/auth" className="auth-btn" variant="secondary">Start</Button>
       </div>
     </section>

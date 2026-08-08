@@ -1,4 +1,6 @@
 import { useState } from "react";
+import { useScrollRestoration } from "../../hooks/useScrollRestoration";
+
 import { Navbar } from "../../components/Navbar";
 import { Toggle } from "../../components/Toggle";
 import { MonthlyGallery } from "./MonthlyGallery";
@@ -11,6 +13,8 @@ import './GalleryPage.css';
 export function GalleryPage() {
   const [mode, setMode] = useState("Week");
   const { data: insights, loading } = useInsights();
+
+  useScrollRestoration("gallery-scroll-position");
 
   if (loading) return <Loader />;
 

@@ -15,8 +15,8 @@ export function FooterSection() {
         <Sticker src={Sticker3} className="sticker-3" rotation={-4}/>
 
         <div className="footer-top">
-          <h2>Ready to start <br />consuming mindfully?</h2>
-          <Button to="/auth" className="start-btn">Start</Button>
+          <h2>Curious about <br></br> your viewing habits?</h2>
+          <Button to="/auth" className="start-btn">Start exploring</Button>
         </div>
 
         <div className="copyright">

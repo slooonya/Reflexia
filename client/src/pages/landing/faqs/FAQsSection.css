@@ -42,4 +42,8 @@
   .faqs-left {
     text-align: center;
   }
+
+  .question span {
+    text-align: left;
+  }
 }
