@@ -1,40 +1,3 @@
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.45);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 11;
-}
-
-.modal {
-  background: white;
-  border-radius: 1.5rem;
-  padding: 1.5rem 1.5rem 2rem;
-  max-width: 400px;
-  width: 100%;
-  animation: fade 0.5s forwards;
-}
-
-.close-btn {
-  display: flex;
-  justify-content: flex-end;
-}
-
-.close-btn button {
-  border: none;
-  background: none;
-}
-
-.close-btn button img {
-  width: 20px;
-}
-
-.modal-content {
-  padding: 0.5rem 1rem 0;
-}
-
 .modal-content h2 {
   color: black;
   text-align: center;
@@ -59,10 +22,6 @@
 }
 
 @media (max-width: 768px) {
-  .modal {
-    margin: 1rem;
-  }
-
   .modal-content h2 {
     font-size: 22px;
   }

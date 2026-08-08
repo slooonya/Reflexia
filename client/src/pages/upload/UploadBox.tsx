@@ -1,17 +1,11 @@
-import { useUpload } from "../../hooks/useUpload";
-
 import UploadIcon from "../../assets/icons/upload-icon-brown.svg";
 import './UploadBox.css';
 
 export function UploadBox({ onSuccess }) {
-  const { start } = useUpload();
-
   async function onChange(e) {
     const file = e.target.files?.[0];
     if (!file) return;
-
-    const jobId = await start(file);
-    onSuccess?.(jobId);
+    onSuccess?.(file);
   }
 
   return (

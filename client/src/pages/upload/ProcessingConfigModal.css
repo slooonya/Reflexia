@@ -1,0 +1,33 @@
+.processing-options {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.processing-options label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.processing-options label span {
+  color: black;
+  font-size: 14px;
+}
+
+.processing-options select {
+  padding: 0.55rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 0.75rem;
+  background: white;
+  font-family: inherit;
+  cursor: pointer;
+}
+
+.processing-options select:focus {
+  outline: none;
+}
