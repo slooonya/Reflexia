@@ -12,9 +12,9 @@ import { ImageOverlay } from '../../components/ImageOverlay';
 import { getReflectionSummary } from '../../api/reflection';
 import { toast } from 'sonner';
 
-import BackIcon from '../../assets/icons/back-icon.svg';
-import ReflectIcon from '../../assets/icons/reflect-icon.svg';
-import EditIcon from '../../assets/icons/edit-icon.svg';
+import BackIcon from '../../assets/icons/back-icon.svg?react';
+import ReflectIcon from '../../assets/icons/reflect-icon.svg?react';
+import EditIcon from '../../assets/icons/edit-icon.svg?react';
 import './DetailsPage.css';
 
 export function DetailsPage() {

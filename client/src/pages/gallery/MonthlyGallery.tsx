@@ -6,7 +6,7 @@ import type { Insight } from '../../types/insight';
 import { EmptyState } from '../../components/EmptyState';
 
 import EmptyImg from '../../assets/images/empty.svg';
-import UploadIcon from '../../assets/icons/upload-icon-white.svg';
+import UploadIcon from '../../assets/icons/upload-icon.svg?react';
 import './MonthlyGallery.css'
 
 export function MonthlyGallery({ weekly, monthly }) {

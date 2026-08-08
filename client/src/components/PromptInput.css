@@ -51,9 +51,10 @@
   cursor: not-allowed;
 }
 
-.prompt-input button img {
+.prompt-input button .send-icon {
   width: 18px;
   height: 18px;
+  color: var(--icon-color-light);
 }
 
 .prompt-input textarea:disabled {

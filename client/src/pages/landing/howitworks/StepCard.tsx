@@ -1,9 +1,9 @@
 import './StepCard.css';
 
-export function StepCard({ title, description, icon }) {
+export function StepCard({ title, description, icon: Icon }) {
   return (
     <div className="step-card">
-      <img src={icon} alt="" />
+      <Icon className="step-icon" />
       <h3>{title}</h3>
       <p>{description}</p>
     </div>

@@ -4,7 +4,7 @@ import { addEmptySlots } from './emptySlotGenerator';
 import { EmptyState } from '../../components/EmptyState';
 
 import EmptyImg from '../../assets/images/empty.svg';
-import UploadIcon from '../../assets/icons/upload-icon-white.svg';
+import UploadIcon from '../../assets/icons/upload-icon.svg?react';
 import './WeeklyGallery.css'
 
 export function WeeklyGallery({ weekly }) {

@@ -19,14 +19,14 @@
 }
 
 .primary {
-  background: black;
-  color: white;
-  border: 2px solid black;
-  box-shadow: 0 6px rgb(79, 79, 79);
+  background: var(--color-button-primary);
+  color: var(--color-button-primary-text);
+  border: 2px solid var(--color-button-primary);
+  box-shadow: 0 6px var(--color-shadow);
 }
 
 .primary:hover {
-  box-shadow: 0 4px rgb(79, 79, 79);
+  box-shadow: 0 4px var(--color-shadow);
 }
 
 .primary:active {
@@ -35,14 +35,14 @@
 }
 
 .secondary {
-  background: white;
-  color: black;
-  border: 2px solid rgb(197, 197, 197);
-  box-shadow: 0 6px rgb(197, 197, 197);
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 2px solid var(--color-border-button);
+  box-shadow: 0 6px var(--color-border-button);
 }
 
 .secondary:hover {
-  box-shadow: 0 4px rgb(197, 197, 197);
+  box-shadow: 0 4px var(--color-border-button);
 }
 
 .secondary:active {
@@ -52,12 +52,12 @@
 
 .accent {
   background: var(--color-accent);
-  color: white;
-  box-shadow: 0 6px rgb(91, 71, 53);
+  color: var(--color-accent-text);
+  box-shadow: 0 6px var(--color-shadow);
 }
 
 .accent:hover {
-  box-shadow: 0 4px rgb(91, 71, 53);;
+  box-shadow: 0 4px var(--color-shadow);
 }
 
 .accent:active {

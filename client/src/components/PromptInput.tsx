@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 
-import SendIcon from '../assets/icons/send-icon.svg';
+import SendIcon from '../assets/icons/send-icon.svg?react';
 import './PromptInput.css';
 
 export function PromptInput({ placeholder, onSubmit, disabled }) {
@@ -40,7 +40,7 @@ export function PromptInput({ placeholder, onSubmit, disabled }) {
                 onKeyDown={handleKeyDown} ref={textareaRef} rows={1} />
 
       <button disabled={disabled} onClick={submit}>
-        <img src={SendIcon} alt="" />
+        <SendIcon className="send-icon" />
       </button>
     </div>
   );

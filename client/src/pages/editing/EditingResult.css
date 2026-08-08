@@ -4,7 +4,7 @@
 
 .result-heading {
   text-align: center;
-  color: black;
+  color: var(--color-text);
 }
 
 .result-image-container {
@@ -21,7 +21,7 @@
 
 .result-subheading {
   text-align: center;
-  color: black;
+  color: var(--color-text);
 }
 
 .result-fixes {

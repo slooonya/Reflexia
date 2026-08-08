@@ -27,7 +27,7 @@
 
 .upload-left-container p {
   font-size: 16px;
-  color: grey;
+  color: var(--color-text-sub);
   line-height: 1.7;
 }
 

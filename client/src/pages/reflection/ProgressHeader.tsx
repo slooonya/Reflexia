@@ -3,8 +3,8 @@ import { useNavigate, useParams } from 'react-router';
 import { ConfirmModal } from '../../components/ConfirmModal';
 import { ProgressBar } from '../../components/ProgressBar';
 
-import ExitIcon from '../../assets/icons/close-icon-brown.svg';
-import BackIcon from '../../assets/icons/back-icon-brown.svg';
+import ExitIcon from '../../assets/icons/close-icon.svg?react';
+import BackIcon from '../../assets/icons/back-icon.svg?react';
 import './ProgressHeader.css';
 
 export function ProgressHeader({ step, total, onBack }) {
@@ -24,11 +24,11 @@ export function ProgressHeader({ step, total, onBack }) {
         <div className="session-action">
           {step === 0 ? (
             <button className="icon-btn" onClick={() => setShowConfirm(true)}>
-              <img src={ExitIcon} />
+              <ExitIcon className="progress-icon" />
             </button>
           ) : (
             <button className="icon-btn" onClick={onBack}>
-              <img src={BackIcon} />
+              <BackIcon className="progress-icon" />
             </button>
           )}
         </div>

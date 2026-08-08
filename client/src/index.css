@@ -3,6 +3,51 @@
   --font-body: 'Satoshi', sans-serif;
   --color-accent: #413326;
   --color-base: #F6E9DB;
+  --color-text: #000000;
+  --color-text-secondary: #6f665e;
+  --color-text-sub: #555;
+  --color-surface: #ffffff;
+  --color-border: #ccc;
+  --color-nav-text: #ffffff;
+  --color-accent-text: #ffffff;
+  --color-button-primary: #000000;
+  --color-button-primary-text: #ffffff;
+  --color-shadow: rgb(79, 79, 79);
+  --color-shadow-light: #c5c5c5;
+  --color-border-button: rgb(197, 197, 197);
+  --toggle-dark-bg: #000000;
+  --toggle-dark-text: #000000;
+  --toggle-dark-active-text: #ffffff;
+  --icon-color-dark: #000;
+  --icon-color-accent: #413326;
+  --icon-color-light: #fff;
+  --bubble-system: #eee;
+  --bubble-user: #413326;
+}
+
+[data-theme="dark"] {
+  --color-accent: #F6E9DB;
+  --color-base: #413326;
+  --color-text: #f6e9db;
+  --color-text-secondary: #c9bfb5;
+  --color-text-sub: #ffffff;
+  --color-surface: #4a3c30;
+  --color-border: #6a594a;
+  --color-nav-text: #413326;
+  --color-accent-text: #413326;
+  --color-button-primary: #F6E9DB;
+  --color-button-primary-text: #413326;
+  --color-shadow: #211b17;
+  --color-shadow-light: #6a594a;
+  --color-border-button: #6a594a;
+  --toggle-dark-bg: #F6E9DB;
+  --toggle-dark-text: #F6E9DB;
+  --toggle-dark-active-text: #413326;
+  --icon-color-dark: #f6e9db;
+  --icon-color-accent: #F6E9DB;
+  --icon-color-light: #000;
+  --bubble-system: #000;
+  --bubble-user: #413326;
 }
 
 * {
@@ -12,7 +57,7 @@
 
 html, body {
   font-family: var(--font-body);
-  color: black;
+  color: var(--color-text);
   line-height: 1.5;
   background-color: var(--color-base);
   scroll-behavior: smooth;

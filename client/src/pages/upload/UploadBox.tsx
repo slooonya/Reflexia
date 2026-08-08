@@ -1,4 +1,4 @@
-import UploadIcon from "../../assets/icons/upload-icon-brown.svg";
+import UploadIcon from "../../assets/icons/upload-icon.svg?react";
 import './UploadBox.css';
 
 export function UploadBox({ onSuccess }) {
@@ -12,7 +12,7 @@ export function UploadBox({ onSuccess }) {
     <div className="upload-box">
       <label htmlFor="upload">
         <input type="file" id="upload" accept=".json" onChange={onChange} />
-        <img src={UploadIcon} />
+        <UploadIcon className="upload-icon" />
         <span>Select a file to upload</span>
         <small>Supported format: .json</small>
       </label>

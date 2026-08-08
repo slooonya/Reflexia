@@ -18,7 +18,7 @@ import { Button } from '../../components/Button';
 import { ImageOverlay } from '../../components/ImageOverlay';
 import { REFLECTION_STEPS, TIPS, PLACEHOLDERS } from './reflectionSteps';
 
-import NextIcon from '../../assets/icons/next-icon.svg';
+import NextIcon from '../../assets/icons/next-icon.svg?react';
 import './GuidedReflectionPage.css';
 
 export function GuidedReflectionPage() {

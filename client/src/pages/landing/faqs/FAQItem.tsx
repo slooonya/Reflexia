@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from "motion/react";
 import { useState } from "react";
+import AddIcon from "../../../assets/icons/add-icon.svg?react";
 
-import AddIcon from '../../../assets/icons/add-icon.svg';
 import './FAQItem.css';
 
 export function FAQItem({ question, answer }) {
@@ -13,7 +13,7 @@ export function FAQItem({ question, answer }) {
         <span>{question}</span>
 
         <motion.span className="faq-icon" animate={{ rotate: open ? 45 : 0 }} transition={{ duration: 0.2 }}>
-          <img src={AddIcon} alt="" />
+          <AddIcon className="faq-icon-svg" />
         </motion.span>
       </button>
 

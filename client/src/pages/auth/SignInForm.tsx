@@ -5,7 +5,7 @@ import { FormInput } from '../../components/FormInput';
 import { login } from '../../api/auth';
 
 import axios from 'axios';
-import GoogleIcon from '../../assets/icons/google-icon.svg';
+import GoogleIcon from '../../assets/icons/google-icon.svg?react';
 import './AuthForm.css';
 
 export function SignInForm() {

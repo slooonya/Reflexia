@@ -4,7 +4,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 2rem;
-  background: white;
+  background: var(--color-surface);
 }
 
 .solution-top {
@@ -16,12 +16,12 @@
 
 .solution-top h2 {
   font-size: 40px;
-  color: black;
+  color: var(--color-text);
   text-align: center;
 }
 
 .solution-top p {
-  color: #555;
+  color: var(--color-text-sub);
   font-size: 18px;
 }
 
@@ -62,6 +62,7 @@
   font-size: 1.5rem;
   font-weight: 800;
   text-align: center;
+  color: black;
 }
 
 .wide-polaroid p {

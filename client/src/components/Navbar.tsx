@@ -1,16 +1,13 @@
-import { NavLink, Link, useLocation } from 'react-router';
+import { NavLink, Link } from 'react-router';
 
-import UploadIcon from '../assets/icons/upload-icon.svg';
-import HomeIcon from '../assets/icons/home-icon.svg';
-import ProfileIcon from '../assets/icons/profile-icon.svg';
-import ActiveHomeIcon from '../assets/icons/home-active-icon.svg';
-import ActiveProfileIcon from '../assets/icons/profile-active-icon.svg';
+import UploadIcon from '../assets/icons/upload-icon.svg?react';
+import HomeIcon from '../assets/icons/home-icon.svg?react';
+import ProfileIcon from '../assets/icons/profile-icon.svg?react';
+import ActiveHomeIcon from '../assets/icons/home-active-icon.svg?react';
+import ActiveProfileIcon from '../assets/icons/profile-active-icon.svg?react';
 import './Navbar.css';
 
 export function Navbar({ mode = "app" }) {
-  const location = useLocation();
-  const isGallery = location.pathname === "/" || location.pathname.startsWith("/gallery");
-
   return (
     <nav className="navbar">
       {mode === "app" ? (
@@ -24,17 +21,29 @@ export function Navbar({ mode = "app" }) {
         {mode === "app" && (
           <>
             <NavLink to="/gallery" className="navbar-link">
-              <img className="navbar-icon" src={isGallery ? ActiveHomeIcon : HomeIcon} />
-              <span className="navbar-text">Home</span>
+              {({ isActive }) => {
+                const Icon = isActive ? ActiveHomeIcon : HomeIcon;
+
+                return (
+                  <>
+                    <Icon className="navbar-icon" />
+                    <span className="navbar-text">Home</span>
+                  </>
+                );
+              }}
             </NavLink>
             
             <NavLink to="/profile" className="navbar-link">
-              {({ isActive }) => (
-                <>
-                  <img className="navbar-icon" src={isActive ? ActiveProfileIcon : ProfileIcon} />
-                  <span className="navbar-text">Profile</span>
-                </>
-              )}
+              {({ isActive }) => {
+                const Icon = isActive ? ActiveProfileIcon : ProfileIcon;
+
+                return (
+                  <>
+                    <Icon className="navbar-icon" />
+                    <span className="navbar-text">Profile</span>
+                  </>
+                );
+              }}
             </NavLink>
           </>
         )}
@@ -50,7 +59,7 @@ export function Navbar({ mode = "app" }) {
 
       {mode === "app" ? (
         <Link to="/upload" className="upload-btn">
-          <img className="upload-icon" src={UploadIcon}></img>
+          <UploadIcon className="upload-icn" />
           <span className="upload-text">Upload</span>
         </Link>
       ) : (

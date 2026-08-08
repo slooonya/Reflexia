@@ -1,5 +1,5 @@
 .faqs {
-  background: white;
+  background: var(--color-surface);
   padding: 90px;
   display: grid;
   grid-template-columns: 1fr 1.5fr;
@@ -14,12 +14,12 @@
 
 .faqs-left h2 {
   font-size: 2.5rem;
-  color: black;
+  color: var(--color-text);
 }
 
 .faqs-left p {
   font-size: 18px;
-  color: #555;
+  color: var(--color-text-sub);
 }
 
 .faqs-right {

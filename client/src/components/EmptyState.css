@@ -12,10 +12,10 @@ h2 {
 }
 
 .title-primary {
-  color: black;
+  color: var(--color-text);
 }
 
 .empty-state p {
-  color: grey;
+  color: var(--color-text-sub);
   margin-bottom: 0.5rem;
 }

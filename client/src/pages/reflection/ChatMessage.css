@@ -25,12 +25,12 @@
 }
 
 .chat-message.system .chat-bubble {
-  background: #eee;
+  background: var(--bubble-system);
   border-top-left-radius: 6px;
 }
 
 .chat-message.user .chat-bubble {
-  background: var(--color-accent);
+  background: var(--bubble-user);
   color: white;
   border-top-right-radius: 6px;
 }
@@ -48,12 +48,14 @@
   align-items: center;
 }
 
-.expand-btn img {
+.expand-btn .expand-icon {
   width: 14px;
+  height: 14px;
+  color: white;
   transition: all 0.3s ease-in-out;
 }
 
-.expand-btn.expanded img {
+.expand-btn.expanded .expand-icon {
   transform: rotate(180deg);
 }
 

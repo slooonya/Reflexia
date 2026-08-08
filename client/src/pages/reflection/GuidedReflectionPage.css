@@ -25,7 +25,7 @@
 }
 
 .reflection-right-container {
-  background: white;
+  background: var(--color-surface);
   border-radius: 20px;
   min-height: 0;
   height: 100%;

@@ -1,7 +1,7 @@
 .footer {
   position: relative;
   min-height: 50dvh;
-  background: white;
+  background: var(--color-surface);
   margin: 0 150px;
   border-radius: 50px 50px 0 0;
   display: flex;
@@ -26,7 +26,7 @@
 }
 
 .footer-top h2 {
-  color: black;
+  color: var(--color-text);
   line-height: 1.2;
   font-size: 2.5rem;
 }
@@ -39,7 +39,7 @@
 
 .copyright {
   font-size: 18px;
-  color: #555;
+  color: var(--color-text-sub);
 }
 
 @media (max-width: 768px) {

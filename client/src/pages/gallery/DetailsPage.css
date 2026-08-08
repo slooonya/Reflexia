@@ -55,7 +55,7 @@
   align-items: center;
   justify-content: center;
   padding: 30px 60px;
-  background: white;
+  background: var(--color-surface);
   border-radius: 20px;
   height: 100%;
   box-shadow: 0 10px 24px rgba(0,0,0,0.18);

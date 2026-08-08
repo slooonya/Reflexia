@@ -1,9 +1,9 @@
 import HistoryImage from '../../../assets/images/history.png';
 import GalleryImage from '../../../assets/images/gallery.png';
 import ChatbotImage from '../../../assets/images/chatbot.png';
-import SearchIcon from '../../../assets/icons/search-icon.svg';
-import UploadIcon from '../../../assets/icons/upload-icon.svg';
-import ReflectIcon from '../../../assets/icons/reflect-icon-black.svg';
+import SearchIcon from '../../../assets/icons/search-icon.svg?react';
+import UploadIcon from '../../../assets/icons/upload-icon.svg?react';
+import ReflectIcon from '../../../assets/icons/reflect-icon.svg?react';
 
 export const steps = [
   {

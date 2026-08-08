@@ -20,7 +20,7 @@
 .processing-page p {
   color: var(--color-accent);
   font-size: 16px;
-  color: grey;
+  color: var(--color-text-sub);
 }
 
 @media (max-width: 768px) {

@@ -2,7 +2,7 @@ import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 
 import BotImage from '../../assets/icons/bot-icon.svg';
-import ExpandIcon from '../../assets/icons/expand-icon.svg';
+import ExpandIcon from '../../assets/icons/expand-icon.svg?react';
 import './ChatMessage.css';
 
 export function ChatMessage({ message, sender }) {
@@ -24,7 +24,7 @@ export function ChatMessage({ message, sender }) {
 
         {isLong && (
           <button className={`expand-btn ${expanded ? "expanded" : ""}`} onClick={() => setExpanded(e => !e)} >
-            <img src={ExpandIcon} />
+            <ExpandIcon className='expand-icon' />
           </button>
         )}
       </div>

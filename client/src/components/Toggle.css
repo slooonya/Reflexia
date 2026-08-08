@@ -38,7 +38,7 @@
 }
 
 .toggle-brown button.active {
-  color: white;
+  color: var(--color-accent-text);;
 }
 
 .toggle-brown .toggle-slider {
@@ -46,15 +46,15 @@
 }
 
 .toggle-black button {
-  color: black;
+  color: var(--toggle-dark-text);
 }
 
 .toggle-black button.active {
-  color: white;
+  color: var(--toggle-dark-active-text);
 }
 
 .toggle-black .toggle-slider {
-  background: black;
+  background: var(--toggle-dark-bg);
 }
 
 @media (max-width: 768px) {

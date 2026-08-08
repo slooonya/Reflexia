@@ -9,7 +9,7 @@ import { editInsightImage, getInsight } from '../../api/insights';
 import type { Insight } from '../../types/insight';
 import { InlineLoader } from '../../components/InlineLoader';
 
-import BackIcon from '../../assets/icons/back-icon.svg';
+import BackIcon from '../../assets/icons/back-icon.svg?react';
 import './ImageEditingPage.css';
 
 export function ImageEditingPage() {

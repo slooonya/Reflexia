@@ -19,7 +19,7 @@
 
 .error-container p {
   font-size: 20px;
-  color: grey;
+  color: var(--color-text-sub);
   margin-bottom: 16px;
 }
 

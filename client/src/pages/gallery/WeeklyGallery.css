@@ -27,7 +27,7 @@
 
 .grid-slot .link {
   text-decoration: none;
-  color: black;
+  color: var(--color-text);
 }
 
 .empty-state-container {

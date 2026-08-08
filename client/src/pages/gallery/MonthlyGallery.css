@@ -24,7 +24,7 @@
 
 .monthly-image .link {
   text-decoration: none;
-  color: black;
+  color: var(--color-text);
 }
 
 .empty-state-container {

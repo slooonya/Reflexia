@@ -6,7 +6,7 @@ import { FormInput } from '../../components/FormInput';
 import { validateEmail, validatePassword } from '../../utils/validator';
 import { register } from '../../api/auth';
 
-import GoogleIcon from '../../assets/icons/google-icon.svg';
+import GoogleIcon from '../../assets/icons/google-icon.svg?react';
 import './AuthForm.css';
 
 export function SignUpForm() {

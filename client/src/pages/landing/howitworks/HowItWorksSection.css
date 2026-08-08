@@ -22,7 +22,7 @@
   position: sticky;
   top: 25vh;
   padding: 1rem;
-  background: white;
+  background: var(--color-surface);
   border-radius: 42px;
   width: 100%;
   aspect-ratio: 16 / 9;

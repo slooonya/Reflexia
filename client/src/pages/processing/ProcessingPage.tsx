@@ -4,7 +4,7 @@ import { useJobProgress } from "../../hooks/useJobProgress";
 import { ProgressBar } from "../../components/ProgressBar";
 import { Navbar } from "../../components/Navbar";
 import { Button } from "../../components/Button";
-import BackIcon from "../../assets/icons/back-icon.svg";
+import BackIcon from "../../assets/icons/back-icon.svg?react";
 
 import './ProcessingPage.css'
 

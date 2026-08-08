@@ -25,11 +25,11 @@
 }
 
 .form-intro h2 {
-  color: black;
+  color: var(--color-text);
 }
 
 .form-intro p {
-  color: #777;
+  color: var(--color-text-sub);
   font-size: 12px;
 }
 
@@ -59,7 +59,7 @@
   border: none;
   font-weight: 600;
   font-size: 14px;
-  box-shadow: 0 6px rgb(79, 79, 79);
+  box-shadow: 0 6px #4f4f4f;
   transition: all 0.2s ease;
 }
 
@@ -88,7 +88,7 @@
 
 .auth-divider span {
   font-size: 13px;
-  color: #777;
+  color: var(--color-text-sub);
 }
 
 .secondary-btn {
@@ -98,15 +98,15 @@
   justify-content: center;
   padding: 12px;
   border-radius: 50px;
-  border: 2px solid rgb(197, 197, 197, 1);
-  background: white;
-  box-shadow: 0 6px rgb(197, 197, 197, 1);
+  border: 2px solid var(--color-shadow-light);
+  background: var(--color-surface);
+  box-shadow: 0 6px var(--color-shadow-light);
   transition: all 0.2s ease;
 }
 
 .secondary-btn:hover {
   transform: translateY(2px);
-  box-shadow: 0 4px rgb(197, 197, 197, 1);
+  box-shadow: 0 4px var(--color-shadow-light);
 }
 
 .secondary-btn:active {

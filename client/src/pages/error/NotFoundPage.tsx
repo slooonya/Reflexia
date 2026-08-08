@@ -3,7 +3,7 @@ import { Navbar } from "../../components/Navbar";
 import { Polaroid } from "../../components/Polaroid";
 import { Button } from "../../components/Button";
 
-import BackIcon from '../../assets/icons/back-icon.svg';
+import BackIcon from '../../assets/icons/back-icon.svg?react';
 import TVStatic from '../../assets/images/tv-static.gif';
 import './NotFoundPage.css';
 

@@ -18,6 +18,7 @@
 
 .step.active {
   background: var(--color-accent);
+  color:  var( --color-accent-text);
 }
 
 .instruction-container {
@@ -49,7 +50,7 @@
 }
 
 .instruction-box {
-  background-color: white;
+  background-color: var(--color-surface);
   border-radius: 1.5rem;
   padding: 1rem 1rem 1rem 1rem;
   box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
@@ -86,7 +87,7 @@
 }
 
 .step-description code {
-  background: #e6e6e6;
+  background: var(--color-border);
   font-size: medium;
   border-radius: 4px;
   padding: 2px 4px;

@@ -1,5 +1,5 @@
 import { createPortal } from "react-dom";
-import CloseIcon from '../assets/icons/close-icon-black.svg';
+import CloseIcon from '../assets/icons/close-icon.svg?react';
 
 import './Modal.css';
 
@@ -15,7 +15,7 @@ export function Modal({children, onClose}) {
       <div className="modal">
         <div className="close-btn">
           <button onClick={onClose}>
-            <img src={CloseIcon} alt="Close"/>
+            <CloseIcon className="close-icon" />
           </button>
         </div>
 

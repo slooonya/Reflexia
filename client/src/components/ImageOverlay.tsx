@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { createPortal } from "react-dom";
 
 import './ImageOverlay.css';
-import CloseIcon from "../assets/icons/close-icon.svg";
+import CloseIcon from "../assets/icons/close-icon.svg?react";
 
 export function ImageOverlay({ img, onClose }) {
   useEffect(() => {
@@ -16,7 +16,7 @@ export function ImageOverlay({ img, onClose }) {
 
   return createPortal(
     <div className="image-overlay" onClick={onClose}>
-      <img src={CloseIcon} className="close-icon" onClick={onClose} alt="Close" />
+      <CloseIcon className="close-icon" onClick={onClose} />
       <img src={img} className="fullscreen-image" onClick={(e) => e.stopPropagation()} />
     </div>,
     document.body

@@ -1,13 +1,15 @@
 .step-card {
   padding: 40px;
   border-radius: 2rem;
-  background: white;
+  background: var(--color-surface);;
   box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
 }
 
-.step-card img {
+.step-icon {
   width: 36px;
+  height: 36px;
   margin-bottom: 0.5rem;
+  color: var(--icon-color-dark);
 }
 
 .step-card h3 {
@@ -18,7 +20,7 @@
 
 .step-card p {
   line-height: 1.7;
-  color: #555;
+  color: var(--color-text-sub);
   text-align: justify;
 }
 

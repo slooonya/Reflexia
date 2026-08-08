@@ -3,7 +3,7 @@
   text-align: center;
   border: 2px dashed var(--color-accent);
   border-radius: 20px;
-  background-color: white;
+  background-color: var(--color-surface);
   cursor: pointer;
   box-shadow: 0 6px 12px 0 rgba(0, 0, 0, 0.15);
   transition: all 0.25s ease;
@@ -30,9 +30,9 @@
   padding: 1.5rem;
 }
 
-.upload-box img {
+.upload-icon {
   width: 32px;
-  margin-bottom: 8px;
+  height: 32px;
 }
 
 .upload-box span {
@@ -41,5 +41,5 @@
 }
 
 .upload-box small {
-  color: #A0A0A0;
+  color: var(--color-text-sub);
 }
